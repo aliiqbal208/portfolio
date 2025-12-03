@@ -384,40 +384,54 @@ export default function RotPage() {
 
               <h1 className="font-mono font-semibold underline leading-10 text-3xl">Projects</h1>
 
-              <div className={styles.projectsHolder}>
-                {projectDisplayList.map((project, index) => (
-                  <div key={index} className="flex flex-col gap-[10px]">
-                    <ProjectCard projectDetails={project} />
-                    {index < projectDisplayList.length - 1 && (
-                      <div className="bg-[var(--fgColor)] w-[90%] opacity-[0.4] font-semibold h-0.5 mx-6 my-0"></div>
-                    )}
-                  </div>
-                ))}
-                <div
-                  onClick={() => {
-                    if (showMoreProject == "less") {
-                      setProjectDisplayList(projectsList)
-                      setShowMoreProject("more")
-                    } else {
-                      setProjectDisplayList(projectsList.slice(0, 3))
-                      setShowMoreProject("less")
-                    }
-                  }}
-                  className={styles.showMore}
-                >
-                  {showMoreProject == "less" && (
-                    <>
-                      Show More <ChevronRight size={20} />
-                    </>
-                  )}
-                  {showMoreProject == "more" && (
-                    <>
-                      <ChevronLeft size={20} />
-                      Show less
-                    </>
-                  )}
+              {isLoadingProjects ? (
+                <div className="flex justify-center items-center py-20">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white"></div>
                 </div>
-              </div>
+              ) : projectDisplayList.length === 0 ? (
+                <div className="text-center py-10 text-gray-600 dark:text-gray-400">
+                  <p>No projects found. Please check your configuration.</p>
+                </div>
+              ) : (
+                <>
+                  <div className={styles.projectsHolder}>
+                    {projectDisplayList.map((project, index) => (
+                      <div key={index} className="flex flex-col gap-[10px]">
+                        <ProjectCard projectDetails={project} />
+                        {index < projectDisplayList.length - 1 && (
+                          <div className="bg-[var(--fgColor)] w-[90%] opacity-[0.4] font-semibold h-0.5 mx-6 my-0"></div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  {projectsList.length > 3 && (
+                    <div
+                      onClick={() => {
+                        if (showMoreProject == "less") {
+                          setProjectDisplayList(projectsList)
+                          setShowMoreProject("more")
+                        } else {
+                          setProjectDisplayList(projectsList.slice(0, 3))
+                          setShowMoreProject("less")
+                        }
+                      }}
+                      className={styles.showMore}
+                    >
+                      {showMoreProject == "less" && (
+                        <>
+                          Show More <ChevronRight size={20} />
+                        </>
+                      )}
+                      {showMoreProject == "more" && (
+                        <>
+                          <ChevronLeft size={20} />
+                          Show less
+                        </>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
 
             <div className={styles.techStack}>
