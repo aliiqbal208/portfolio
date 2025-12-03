@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Arthur Vibe - AI Communication & Analytics Platform",
+    "imageUrl": "https://res.cloudinary.com/dtunq8gr3/image/upload/v1733180000/arthur_vibe_placeholder.png",
+    "description": "Intelligent, scalable communication platform built with Go (Golang) for high-performance, concurrent backend. Features speech processing, sentiment analysis, and adaptive AI-driven insights. Multi-cloud infrastructure (AWS & GCP) with serverless Lambda functions, MongoDB, PostgreSQL, and pgvector for semantic search and embeddings.",
+    "liveLink": "https://arthur.digital/vibe",
+    "work": "Lead Full Stack AI Developer",
+    "status": "Active"
+  },
+  {
+    "name": "Adology - AI-Powered Advertising Intelligence Platform",
+    "imageUrl": "https://res.cloudinary.com/dtunq8gr3/image/upload/v1733180000/adology_placeholder.png",
+    "description": "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Led full-stack development with scalable data pipelines, AI integrations (OpenAI), and interactive dashboards. Built event-driven architecture using Flask, Apify, and AWS services processing millions of Facebook and TikTok ads.",
+    "liveLink": "https://app.getadology.ai/",
+    "work": "Lead Full Stack AI Developer",
+    "status": "Active"
+  },
+  {
+    "name": "Govava - AI-Powered Gift Discovery Platform",
+    "imageUrl": "https://res.cloudinary.com/dtunq8gr3/image/upload/v1733180000/govava_placeholder.png",
+    "description": "World's first AI-driven gift discovery platform with personalized recommendations based on lifestyle and preferences. Built AI recommendation algorithms and semantic search system using Elasticsearch over millions of records. Scalable microservices architecture with Node.js, PostgreSQL, and AWS deployment.",
+    "liveLink": "https://www.govava.com",
+    "work": "Lead Backend AI Developer",
+    "status": "Active"
+  },
+  {
+    "name": "Arthur Companion App",
+    "imageUrl": "https://res.cloudinary.com/dtunq8gr3/image/upload/v1733180000/arthur_companion_placeholder.png",
+    "description": "Go-based platform enabling real-time group chat and peer communication within organizations. Designed connected system architecture with Gorilla WebSockets for real-time messaging, Redis for caching, and PostgreSQL for scalable data management. Deployed on AWS (EC2, Memcache) for high performance.",
+    "liveLink": "https://arthur.digital",
+    "work": "Lead Backend Developer",
+    "status": "Active"
+  }
+]

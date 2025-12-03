@@ -1,0 +1,356 @@
+.main {
+  min-height: 100vh;
+  position: relative;
+  padding: 0px 15px;
+}
+
+.detailsHolder {
+  max-width: 650px;
+  margin: 0px auto;
+  padding: 30px 0px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.heroSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heroSection h1 {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 28px;
+  line-height: 1em;
+}
+
+.heroSection .SWEpara {
+  color: #60a5fa; /* Light Blue */
+  font-weight: 500;
+  font-size: 20px;
+}
+
+@keyframes profilePicScroll {
+  100% {
+    transform: scale(2);
+  }
+}
+
+.socialsDiv {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  /* Allow wrapping on small screens */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.socialsDiv .socialsItem {
+  display: flex;
+  align-items: center;
+  /* Keep a consistent hit target size on mobile */
+  padding: 8px 12px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 7px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.socialsDiv .socialsItem:hover {
+  background-color: #202020;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.socialsDiv .socialsItem img {
+  height: 15px;
+  width: 15px;
+  object-fit: contain;
+}
+
+.socialsDiv .socialsItem p {
+  font-size: 0px;
+  color: white;
+  line-height: 1.2em;
+  overflow: hidden;
+  transition: all 0.25s;
+  opacity: 0;
+}
+
+/* On touch devices, always show the label (no hover) */
+@media (hover: none) {
+  .socialsDiv .socialsItem p {
+    font-size: 12px;
+    opacity: 1;
+    margin-left: 6px;
+  }
+  .socialsDiv .socialsItem:hover {
+    /* Disable hover-only embellishments on touch */
+    background-color: rgb(0, 0, 0);
+    box-shadow: none;
+    border-radius: 7px;
+    padding: 8px 12px;
+  }
+  .socialsDiv .socialsItem:hover p {
+    font-size: 12px;
+    opacity: 1;
+  }
+}
+
+.bio {
+  margin: 25px 0px;
+  font-size: 24px;
+}
+
+.bio p {
+  opacity: 0.8;
+  text-align: center;
+  line-height: 1.4em;
+}
+
+.bio span {
+  font-size: 14px;
+  color: #27f7e9;
+  background-color: #016d66;
+  padding: 4px 7px;
+  border-radius: 5px;
+  line-height: 1em;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.tabsHolder {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  /* Enable horizontal scrolling when needed */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox hide scrollbar */
+  padding-inline: 6px;
+}
+
+.tabsHolder::-webkit-scrollbar {
+  display: none; /* Chrome/Safari hide scrollbar */
+}
+
+.tabsHolder .tabItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  line-height: 1em;
+  position: relative;
+  cursor: pointer;
+  padding: 0px 20px;
+  /* Prevent squishing and allow smooth horizontal scroll */
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+
+.tabsHolder .tabItem .hoverThing {
+  background-color: rgba(138, 138, 138, 0.3);
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  padding: 20px 40px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.tabsHolder .tabItem:hover .hoverThing {
+  opacity: 1;
+}
+
+.tabItemActive::after {
+  position: absolute;
+  height: 2px;
+  width: 80%;
+  border-radius: 5px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  background-color: var(--fgColor);
+  transition: all 0.2s;
+  opacity: 0.5;
+}
+
+.tabsHolder .tabItemActive:hover::after {
+  opacity: 0;
+}
+
+.projectsSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.projectsHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.seperateDiv {
+  background-color: var(--primary);
+  border-radius: 10px;
+  width: 90%;
+  height: 1px;
+  opacity: 0.4;
+  margin: 0px auto;
+  transition: background-color 0.3s;
+}
+
+.showMore {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  background-color: var(--bgColor2);
+  padding: 7px;
+  border-radius: 7px;
+  transition: all 0.1s;
+  color: var(--fgColor);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.showMore svg {
+  transition: all 0.2s;
+}
+
+.showMore:hover {
+  background-color: var(--bgColor);
+}
+
+.showMore:hover svg {
+  transform: rotate(90deg);
+}
+
+.techStack {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.techStackItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+}
+
+.techStackItem img {
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.imgHolderHolder {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.photoHolder {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.photoHolder img {
+  transition: all 0.3s;
+  box-shadow: none;
+}
+
+.photoHolder img:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.56);
+}
+
+.pageFooter {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumeBtn {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.resumeBtn svg {
+  transition: all 0.2s;
+}
+
+.resumeBtn:hover svg {
+  transform: translateY(-2px);
+}
+
+/* small type/spacing adjustments for narrow devices */
+@media (max-width: 500px) {
+  .heroSection h1 {
+    font-size: 24px;
+    line-height: 1.1em;
+  }
+
+  .heroSection .SWEpara {
+    font-size: 18px;
+  }
+
+  .bio {
+    margin: 20px 0px;
+    font-size: 20px;
+  }
+
+  .techStack {
+    margin-top: 30px;
+    gap: 8px;
+  }
+
+  .techStackItem {
+    font-size: 13px;
+  }
+
+  .tabsHolder {
+    gap: 8px;
+    justify-content: flex-start; /* align left so users can pan horizontally */
+  }
+
+  .tabsHolder .tabItem {
+    padding: 0px 14px;
+    font-size: 16px;
+  }
+
+  /* Disable hover-only visuals on tabs for touch */
+  .tabsHolder .tabItem:hover .hoverThing {
+    opacity: 0;
+  }
+  .tabsHolder .tabItemActive:hover::after {
+    opacity: 0.5;
+  }
+
+  .imgHolderHolder {
+    flex-direction: column;
+  }
+}
