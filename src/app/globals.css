@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a0f1e;
+  --color-navy-light: #161d2f;
+  --color-primary: #0888ae;
+  --color-ice: #00d4ff;
+  --color-ember: #ff5722;
+  --color-ember-amber: #ff8c00;
+  --color-secondary: #161d2f;
+  --color-background: #0a0f1e;
+  --color-foreground: #fff;
+  --color-muted: #94a3b8;
+  --color-muted-foreground: #94a3b8;
+
+  --font-inter: "Inter", sans-serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-cormorant: "Cormorant Garamond", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: #0a0f1e;
+  color: #fff;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+.glass-dark {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Section watermark heading */
+.section-watermark {
+  font-family: var(--font-bebas);
+  font-size: clamp(3rem, 12vw, 12rem);
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Theme overrides */
+[data-theme="mocha"] { --color-primary: #8b5e3c; --color-ice: #d4a373; }
+[data-theme="sage"] { --color-primary: #4f7942; --color-ice: #8a9a5b; }
+[data-theme="beige"] { --color-primary: #d4b996; --color-ice: #a68a64; }
+[data-theme="terracotta"] { --color-primary: #aa4a44; --color-ice: #e38e7d; }
+[data-theme="teal"] { --color-primary: #004953; --color-ice: #20b2aa; }
+[data-theme="emerald"] { --color-primary: #046307; --color-ice: #c5a021; }
+[data-theme="amethyst"] { --color-primary: #6c244c; --color-ice: #9b59b6; }
+[data-theme="sunset"] { --color-primary: #ff8c00; --color-ice: #ff4500; }
