@@ -308,21 +308,6 @@ export default function Contact() {
                 <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">Schedule Call</span>
               </button>
             </div>
-
-            {/* Social Links */}
-            <div className="flex flex-wrap gap-4 mt-8">
-              {[
-                { name: "GitHub", url: "https://github.com/aliiqbal208" },
-                { name: "LinkedIn", url: "https://www.linkedin.com/in/aliiqbal208/" },
-                { name: "X", url: "https://x.com/aliiqbal208" },
-                { name: "Instagram", url: "https://www.instagram.com/aliiqbal208/" },
-                { name: "Discord", url: "https://discord.com/users/aliiqbal208" },
-              ].map((s) => (
-                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="text-xs font-orbitron text-muted-foreground hover:text-primary border border-white/10 hover:border-primary/30 px-3 py-2 rounded-full transition-all duration-300 uppercase tracking-widest">
-                  {s.name}
-                </a>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div
