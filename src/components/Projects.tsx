@@ -35,7 +35,7 @@ const PROJECTS = [
     description: "AI-powered cybersecurity anomaly detection platform integrated into a CSMS, providing end-to-end vehicle lifecycle coverage with continuous threat monitoring, real-time incident detection, ML-based cross-layer threat correlation, automated response workflows, and full system observability through centralized telemetry, structured logging, and security event tracking ensuring regulatory compliance.",
     tech: ["React", "NestJS", "TypeScript", "Python", "AI/ML", "Pandas", "Azure", "Docker", "XDR"], link: "https://cyberwissen.io/", image: "/assets/images/projects/vixa-identity-first.png"
   },
-  { title: "Adology AI", description: "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", tech: ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], link: "https://app.getadology.ai/", image: "/assets/images/projects/adology.png" },
+  { title: "Adology AI", description: "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", tech: ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], link: "https://adologyai.com/", image: "/assets/images/projects/adologyai.png" },
 ];
 
 export default function Projects() {
