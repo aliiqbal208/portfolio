@@ -33,12 +33,12 @@ export default function Hero() {
         className="relative flex-1 flex items-center justify-center"
       >
         <h1 className="absolute inset-0 flex items-center justify-center text-[45vw] font-bebas leading-none text-white/5 select-none pointer-events-none tracking-tighter">
-          Muhammad Ali
+          M. Ali
         </h1>
         <div className="relative z-10 w-full max-w-4xl aspect-4/3 flex items-center justify-center group mt-[25px]">
           <Image
             src="/assets/images/musman.jpg"
-            alt="Muhammad Ali"
+            alt="M. Ali"
             width={800}
             height={600}
             priority

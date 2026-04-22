@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="relative min-h-screen py-32 bg-navy">
+    <section id="about" className="relative min-h-screen py-20 bg-navy">
       <div className="max-w-[1400px] mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -18,7 +18,7 @@ export default function About() {
           {/* Photo card */}
           <div className="glass-dark border-t-2 border-primary/20 flex flex-col justify-between relative overflow-hidden group">
             <Image
-              src="/assets/images/usman-about.gif"
+              src="/assets/images/m.ali-about.png"
               alt="Muhammad Ali"
               width={400}
               height={600}
@@ -57,19 +57,19 @@ export default function About() {
                 The <br />
                 <span className="text-primary italic">Vision</span>
               </h2>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-inter">
-                Creating digital experiences that exist at the intersection of{" "}
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4 font-inter">
+                Building at the intersection of{" "}
                 <span className="text-white">precision engineering</span> and{" "}
-                <span className="text-white">user-centric design</span>.
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed font-inter">
-                I don&apos;t just write code; I architect ecosystems that scale, adapt, and perform under pressure.
+                <span className="text-white">human-centric design</span> — architecting{" "}
+                <span className="text-white">scalable systems</span>,{" "}
+                <span className="text-white">cloud-native platforms</span>, and{" "}
+                <span className="text-white">AI-driven ecosystems</span> that perform under real-world pressure.
               </p>
             </div>
             <div className="mt-8 pt-8 border-t border-white/5">
               <p className="text-[10px] font-orbitron text-ice uppercase tracking-widest mb-2">Specialization</p>
               <div className="flex flex-wrap gap-2">
-                {["AI/ML", "System Design", "Full Stack"].map((s) => (
+                {["AI/ML", "Full Stack", "Scalable Systems", "RAG Pipelines"].map((s) => (
                   <span key={s} className="text-[10px] px-2 py-1 bg-white/5 text-white/60 rounded border border-white/5">{s}</span>
                 ))}
               </div>
@@ -78,13 +78,13 @@ export default function About() {
 
           {/* Status + Cloud column */}
           <div className="flex flex-col gap-6 h-full">
-            <div className="glass-dark p-8 border border-ember/20 flex flex-col justify-center items-center text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-ember/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <div className="glass-dark p-8 border border-emerald-500/20 flex flex-col justify-center items-center text-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-emerald-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <div className="relative z-10">
-                <div className="w-16 h-16 rounded-full border border-ember/30 flex items-center justify-center animate-pulse-slow mx-auto mb-4">
-                  <div className="w-3 h-3 rounded-full bg-ember shadow-[0_0_15px_#FF5722]" />
+                <div className="w-16 h-16 rounded-full border border-emerald-500/30 flex items-center justify-center animate-pulse-slow mx-auto mb-4">
+                  <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981]" />
                 </div>
-                <p className="text-[10px] font-orbitron text-ember uppercase tracking-[0.3em] mb-1">Current Status</p>
+                <p className="text-[10px] font-orbitron text-emerald-500 uppercase tracking-[0.3em] mb-1">Current Status</p>
                 <p className="text-sm text-white font-bold uppercase tracking-widest">Available</p>
               </div>
             </div>
@@ -102,10 +102,10 @@ export default function About() {
           {/* Tech marquee */}
           <div className="md:col-span-4 glass-dark p-8 overflow-hidden relative">
             <div className="flex gap-12 animate-[marquee_30s_linear_infinite] whitespace-nowrap items-center opacity-30">
-              {["React", "Next.js", "Node.js", "TypeScript", "AWS", "Docker", "Python", "Tailwind", "PostgreSQL", "MongoDB"].map((t) => (
+              {["React", "Next.js", "Node.js", "TypeScript", "Python", "Golang", "AWS", "GCP", "Azure", "Docker", "NestJS", "FastAPI", "OpenAI", "RAG", "LLMs", "Kafka", "PostgreSQL", "MongoDB", "Redis", "WebSockets"].map((t) => (
                 <span key={t} className="text-4xl font-bebas text-white tracking-[0.2em] px-8">{t}</span>
               ))}
-              {["React", "Next.js", "Node.js", "TypeScript", "AWS", "Docker", "Python", "Tailwind", "PostgreSQL", "MongoDB"].map((t) => (
+              {["React", "Next.js", "Node.js", "TypeScript", "Python", "Golang", "AWS", "GCP", "Azure", "Docker", "NestJS", "FastAPI", "OpenAI", "RAG", "LLMs", "Kafka", "PostgreSQL", "MongoDB", "Redis", "WebSockets"].map((t) => (
                 <span key={t + "-dup"} className="text-4xl font-bebas text-white tracking-[0.2em] px-8">{t}</span>
               ))}
             </div>

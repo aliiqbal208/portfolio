@@ -61,7 +61,7 @@ export default function Services() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex flex-col items-center justify-center bg-navy py-32 overflow-hidden" id="services">
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col items-center justify-center bg-navy py-20 overflow-hidden" id="services">
       <div className="container mx-auto px-8 relative">
         <div className="relative mb-20">
           <h2 className="text-[15vw] font-bebas leading-none select-none tracking-tighter text-[#0000003d] text-center uppercase [webkit-text-stroke:1px_rgba(255,255,255,0.1)]">

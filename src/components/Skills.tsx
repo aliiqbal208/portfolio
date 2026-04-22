@@ -1,62 +1,80 @@
 "use client";
 
 import {
-  Code, Server, Cpu, Cloud, Terminal, Layers, Zap, Hexagon,
-  FileCode, Coffee, GitBranch, Brain, Flame, Settings,
-  CloudFog, Container, Repeat, Smartphone, Monitor, Database,
+  Code, Server, Cpu, Cloud, Database, Layers, Zap,
+  FileCode, GitBranch, Brain, Flame, Container,
   Wind, Atom, Boxes, RefreshCcw, FileBraces,
+  Radio, MessageSquare, Mic, Bot, Workflow, Network,
+  HardDrive, GitPullRequest, BarChart3, Globe, Plug,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const SKILL_CATEGORIES = [
   {
-    title: "Frontend", icon: Code, items: [
-      { name: "ReactJS", icon: Atom }, { name: "Next.js", icon: Boxes }, { name: "Angular", icon: Layers },
-      { name: "Redux", icon: RefreshCcw }, { name: "TypeScript", icon: FileBraces }, { name: "Tailwind", icon: Wind },
+    title: "Languages", icon: Code, items: [
+      { name: "JavaScript", icon: FileBraces }, { name: "TypeScript", icon: FileBraces },
+      { name: "Node.js", icon: Zap }, { name: "Python", icon: FileCode }, { name: "Golang", icon: Flame },
+    ],
+  },
+  {
+    title: "Frontend", icon: Atom, items: [
+      { name: "React", icon: Atom }, { name: "Next.js", icon: Boxes }, { name: "Angular", icon: Layers },
+      { name: "Redux", icon: RefreshCcw }, { name: "Tailwind", icon: Wind },
     ],
   },
   {
     title: "Backend", icon: Server, items: [
-      { name: "Node.js", icon: Zap }, { name: "NestJS", icon: Hexagon }, { name: "Express", icon: Terminal },
-      { name: "Django", icon: FileCode }, { name: "Flask", icon: Coffee }, { name: "Strapi", icon: Layers },
+      { name: "Express", icon: Zap }, { name: "Fastify", icon: Flame },
+      { name: "Go Fiber", icon: Wind }, { name: "Flask", icon: FileCode }, { name: "FastAPI", icon: Zap },
     ],
   },
   {
-    title: "Data & AI", icon: Cpu, items: [
-      { name: "LangChain", icon: GitBranch }, { name: "OpenAI", icon: Brain }, { name: "TensorFlow", icon: Cpu },
-      { name: "PyTorch", icon: Flame }, { name: "ML Ops", icon: Settings },
+    title: "AI & Data", icon: Brain, items: [
+      { name: "OpenAI", icon: Brain }, { name: "Hugging Face", icon: Bot },
+      { name: "LLMs", icon: Cpu }, { name: "RAG Pipelines", icon: GitBranch },
+      { name: "Semantic Search", icon: Globe }, { name: "Chatbot Dev", icon: MessageSquare },
+      { name: "Speech Processing", icon: Mic }, { name: "AI Automations", icon: Workflow },
+      { name: "Agentic AI", icon: Bot }, { name: "MCP", icon: Plug },
+      { name: "Vector DBs", icon: Database }, { name: "Prompt Engineering", icon: MessageSquare },
+      { name: "Data Pipelines", icon: Workflow }, { name: "LangChain", icon: GitBranch },
+      { name: "NLP", icon: Brain },
     ],
   },
   {
-    title: "Cloud / DevOps", icon: Cloud, items: [
-      { name: "AWS", icon: Cloud }, { name: "Azure", icon: CloudFog }, { name: "Docker", icon: Container },
-      { name: "Kubernetes", icon: Container }, { name: "CI/CD", icon: Repeat },
-    ],
-  },
-  {
-    title: "Mobile / Desktop", icon: Terminal, items: [
-      { name: "React Native", icon: Smartphone }, { name: "Ionic", icon: Smartphone }, { name: "ElectronJS", icon: Monitor },
+    title: "Cloud & Infra", icon: Cloud, items: [
+      { name: "AWS", icon: Cloud }, { name: "S3", icon: HardDrive }, { name: "Lambda", icon: Zap },
+      { name: "DynamoDB", icon: Database }, { name: "GCP", icon: Cloud },
+      { name: "Docker", icon: Container }, { name: "Redis", icon: Radio },
+      { name: "Azure", icon: Cloud }, { name: "GitHub Actions", icon: GitPullRequest },
     ],
   },
   {
     title: "Databases", icon: Database, items: [
-      { name: "PostgreSQL", icon: Database }, { name: "MongoDB", icon: Database }, { name: "MySQL", icon: Database },
-      { name: "Redis", icon: Zap }, { name: "Firebase", icon: Flame },
+      { name: "MongoDB", icon: Database }, { name: "PostgreSQL", icon: Database },
+      { name: "ORMs", icon: Layers }, { name: "Native Drivers", icon: Plug },
+    ],
+  },
+  {
+    title: "Architecture", icon: BarChart3, items: [
+      { name: "Scalable Systems", icon: Network }, { name: "Microservices", icon: Boxes },
+      { name: "Serverless", icon: Cloud }, { name: "Event-driven", icon: Zap },
+      { name: "Kafka", icon: Radio }, { name: "WebSockets", icon: Radio },
+      { name: "Pub/Sub", icon: Radio },
     ],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-32 px-8 bg-navy-light/30">
+    <section id="skills" className="relative py-20 px-8 bg-navy-light/30">
       <div className="max-w-7xl mx-auto">
         <SectionHeading title="Skills Matrix" subtitle="Technical Stack" className="mb-16" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SKILL_CATEGORIES.map((cat, i) => (
             <div key={i} className="glass-dark p-8 border-t-2 border-primary/20 hover:border-primary transition-all duration-500 group/card">
               <cat.icon className="w-8 h-8 text-primary mb-6 group-hover/card:scale-110 transition-transform" />
-              <h3 className="text-xl font-orbitron text-white mb-4 uppercase tracking-tighter">{cat.title}</h3>
+              <h3 className="text-2xl font-bebas text-white mb-4 uppercase tracking-widest">{cat.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {cat.items.map((item, j) => (
                   <div key={j} className="relative group/skill">

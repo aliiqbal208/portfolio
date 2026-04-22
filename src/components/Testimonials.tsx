@@ -59,7 +59,7 @@ export default function Testimonials() {
   const [radiusY, setRadiusY] = useState(220);
 
   return (
-    <section className="relative min-h-[150vh] bg-navy overflow-hidden flex items-center justify-center py-20 md:py-32" id="testimonials">
+    <section className="relative min-h-[150vh] bg-navy overflow-hidden flex items-center justify-center py-16 md:py-20" id="testimonials">
       <div className="absolute inset-0 opacity-15" style={{ backgroundImage: "radial-gradient(circle at center, var(--primary) 0%, transparent 70%)" }} />
 
       {/* Orbital ellipses */}

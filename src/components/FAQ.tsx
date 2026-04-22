@@ -22,7 +22,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-32 px-8 overflow-hidden bg-navy">
+    <section id="faq" className="relative py-20 px-8 overflow-hidden bg-navy">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/3 h-full bg-linear-to-r from-ice/5 to-transparent pointer-events-none" />
 

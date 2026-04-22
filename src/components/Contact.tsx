@@ -266,7 +266,7 @@ export default function Contact() {
   const webgl = useWebGL();
 
   return (
-    <section id="contact" className="relative py-32 px-8 overflow-hidden">
+    <section id="contact" className="relative py-20 px-8 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse delay-700" />
@@ -295,11 +295,11 @@ export default function Contact() {
             </p>
 
             <div className="flex flex-col gap-6">
-              <a href="mailto:mali@example.com" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
+              <a href="mailto:codewithmuhammadali@gmail.com" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
                 <div className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-colors">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">mali@example.com</span>
+                <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">codewithmuhammadali@gmail.com</span>
               </a>
               <button className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
                 <div className="w-12 h-12 rounded-full border border-secondary/30 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
@@ -307,6 +307,21 @@ export default function Contact() {
                 </div>
                 <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">Schedule Call</span>
               </button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex flex-wrap gap-4 mt-8">
+              {[
+                { name: "GitHub", url: "https://github.com/aliiqbal208" },
+                { name: "LinkedIn", url: "https://www.linkedin.com/in/aliiqbal208/" },
+                { name: "X", url: "https://x.com/aliiqbal208" },
+                { name: "Instagram", url: "https://www.instagram.com/aliiqbal208/" },
+                { name: "Discord", url: "https://discord.com/users/aliiqbal208" },
+              ].map((s) => (
+                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="text-xs font-orbitron text-muted-foreground hover:text-primary border border-white/10 hover:border-primary/30 px-3 py-2 rounded-full transition-all duration-300 uppercase tracking-widest">
+                  {s.name}
+                </a>
+              ))}
             </div>
           </motion.div>
 
