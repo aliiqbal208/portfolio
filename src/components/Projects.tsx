@@ -5,14 +5,7 @@ import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 
 const PROJECTS = [
-  { title: "ChaseLabs AI", description: "AI-powered meeting orchestration and scheduling platform. Features real-time transcription, automated action item extraction, and intelligent calendar optimization using various LLMs.", tech: ["React", "Python", "FastAPI", "MySQL", "OpenAI", "Whisper", "WebSockets"], link: "https://www.meetchase.ai/", image: "/assets/images/projects/chaselab.png" },
-  { title: "OneX Studio", description: "Advanced AI observability platform that goes beyond surface-level telemetry. It exposes a model's internal mechanics, activations, embeddings, and hidden states to provide deep visibility into the 'why' behind AI behavior.", tech: ["NestJS", "Python", "PyTorch", "React", "D3.js", "PostgreSQL", "Redis"], link: "https://getonex.ai", image: "/assets/images/projects/onex.png" },
-  {
-    title: "ViXa Identity-First Platform",
-    description: "AI-powered cybersecurity anomaly detection platform integrated into a CSMS, providing end-to-end vehicle lifecycle coverage with continuous threat monitoring, real-time incident detection, ML-based cross-layer threat correlation, automated response workflows, and full system observability through centralized telemetry, structured logging, and security event tracking ensuring regulatory compliance.",
-    tech: ["React", "NestJS", "TypeScript", "Python", "AI/ML", "Pandas", "Azure", "Docker", "XDR"], link: "https://cyberwissen.io/", image: "/assets/images/projects/vixa-identity-first.png"
-  },
-  { title: "Adology AI", description: "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", tech: ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], link: "https://app.getadology.ai/", image: "/assets/images/projects/adology.png" },
+  { title: "Arthur Vibe", description: "End-to-end AI transformation agent helping enterprises navigate complex change journeys. Features document ingestion, async stakeholder interviews, unbiased analysis, tailored recommendations, and implementation support — powered by Go backend, pgvector semantic search, and multi-cloud infrastructure.", tech: ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], link: "https://arthur.digital/vibe", image: "/assets/images/projects/arthur-vibe.png" },
   {
     title: "Arthur Web App", description: "React app for Arthur VR with User hierarchy management, RBAC/PBAC, onboarding flows, real-time AV and 3D/WebGL, built as a scalable monorepo deployed on AWS and GCP.", tech: ["TypeScript",
       "React",
@@ -29,7 +22,6 @@ const PROJECTS = [
       "AWS",
       "GCP"], link: "https://portal.arthur.digital/login", image: "/assets/images/projects/arthur.png"
   },
-  { title: "Arthur Vibe", description: "Intelligent, scalable communication and analytics platform processing speech, analyzing sentiment, and generating adaptive AI-driven insights. Go-powered backend with serverless AWS Lambda workflows, multi-cloud infrastructure (AWS/GCP), speech intelligence pipelines, and pgvector-based semantic search.", tech: ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], link: "https://arthur.digital/vibe", image: "/assets/images/projects/arthur-vibe.png" },
   { title: "Remar VT", description: "SaaS e-learning platform for nursing education delivering interactive video training. Built with React, TypeScript, Redux in a monorepo supporting students, admins, and institutions with Stripe payments.", tech: ["React", "TypeScript", "Redux", "Material-UI", "Nest.js", "Stripe", "Monorepo"], link: "https://vt.remarnurse.com/", image: "/assets/images/projects/remar.png" },
   { title: "Vyoo", description: "Community management platform for creators to build, engage, and monetize online communities with content creation, member management, event organization, and analytics.", tech: ["React", "TypeScript", "Redux", "TailwindCSS", "Nest.js", "MongoDB", "AWS", "Stripe"], link: "https://www.vyoo.me/", image: "/assets/images/projects/vyoo.png" },
   {
@@ -38,6 +30,12 @@ const PROJECTS = [
     ], link: "https://www.govava.com/", image: "/assets/images/projects/govava.png"
   },
   { title: "Arthur Companion", description: "Go-based platform enabling real-time group communication and peer chat within organizations. Designed connected architecture with real-time WebSocket pipelines, scalable backend services, Redis caching, and high-performance AWS deployment.", tech: ["Golang", "Gorilla WebSockets", "Redis", "PostgreSQL", "AWS"], link: "https://arthur.digital/", image: "/assets/images/projects/arthur-companion.png" },
+  {
+    title: "ViXa Identity-First Platform",
+    description: "AI-powered cybersecurity anomaly detection platform integrated into a CSMS, providing end-to-end vehicle lifecycle coverage with continuous threat monitoring, real-time incident detection, ML-based cross-layer threat correlation, automated response workflows, and full system observability through centralized telemetry, structured logging, and security event tracking ensuring regulatory compliance.",
+    tech: ["React", "NestJS", "TypeScript", "Python", "AI/ML", "Pandas", "Azure", "Docker", "XDR"], link: "https://cyberwissen.io/", image: "/assets/images/projects/vixa-identity-first.png"
+  },
+  { title: "Adology AI", description: "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", tech: ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], link: "https://app.getadology.ai/", image: "/assets/images/projects/adology.png" },
 ];
 
 export default function Projects() {
