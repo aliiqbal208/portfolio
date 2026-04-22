@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 
 const PROJECTS = [
-  { title: "Arthur Vibe", description: "End-to-end AI transformation agent helping enterprises navigate complex change journeys. Features document ingestion, async stakeholder interviews, unbiased analysis, tailored recommendations, and implementation support — powered by Go backend, pgvector semantic search, and multi-cloud infrastructure.", tech: ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], link: "https://arthur.digital/vibe", image: "/assets/images/projects/arthur-vibe.png" },
+  { title: "Arthur Vibe", description: "End-to-end AI transformation agent helping enterprises navigate complex change journeys. Features document ingestion, async stakeholder interviews, unbiased analysis, tailored recommendations, and implementation support — powered by Go backend, pgvector semantic search, and multi-cloud infrastructure.", tech: ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], link: "https://arthur.digital/vibe", image: "/assets/images/projects/arthurvibe.png" },
   {
     title: "Arthur Web App", description: "React app for Arthur VR with User hierarchy management, RBAC/PBAC, onboarding flows, real-time AV and 3D/WebGL, built as a scalable monorepo deployed on AWS and GCP.", tech: ["TypeScript",
       "React",
@@ -27,7 +27,7 @@ const PROJECTS = [
   {
     title: "Govava", description: "World's first AI-driven gift discovery platform curating personalized recommendations based on lifestyle, preferences, and interests. Built semantic search over millions of records with Elasticsearch, scalable microservices, and AI-based recommendation algorithms.",
     tech: ["React", "Node.js", "Redis", "PostgreSQL", "Elasticsearch", "DynamoDB", "BullMQ", "AWS", "AWS Lambda", "Nginx"
-    ], link: "https://www.govava.com/", image: "/assets/images/projects/govava.png"
+    ], link: "https://www.govava.com/", image: "/assets/images/projects/govava-ai.png"
   },
   { title: "Arthur Companion", description: "Go-based platform enabling real-time group communication and peer chat within organizations. Designed connected architecture with real-time WebSocket pipelines, scalable backend services, Redis caching, and high-performance AWS deployment.", tech: ["Golang", "Gorilla WebSockets", "Redis", "PostgreSQL", "AWS"], link: "https://arthur.digital/", image: "/assets/images/projects/arthur-companion.png" },
   {
@@ -62,6 +62,8 @@ export default function Projects() {
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="eager"
+                  priority
                   className="absolute inset-0 w-full h-full object-cover grayscale md:grayscale group-hover:grayscale-0 transition-all duration-700 opacity-100 md:opacity-50 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-40 transition-opacity flex items-center justify-center font-orbitron text-xs">

@@ -23,6 +23,8 @@ export default function About() {
               width={400}
               height={600}
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              loading="eager"
+              priority
               unoptimized
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/90 via-black/50 to-transparent">

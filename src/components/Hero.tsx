@@ -43,7 +43,7 @@ export default function Hero() {
             height={600}
             priority
             sizes="(max-width: 768px) 100vw, 800px"
-            className="h-full object-contain grayscale hover:grayscale-0 transition-all duration-700 brightness-75 hover:brightness-100"
+            className="h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-700 brightness-75 hover:brightness-100"
           />
           <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2">
             <span className="text-4xl font-bebas text-white tracking-widest">

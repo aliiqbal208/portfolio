@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0a0f1e;
-  --color-navy-light: #161d2f;
-  --color-primary: #0888ae;
-  --color-ice: #00d4ff;
+  --color-navy: #12182a;
+  --color-navy-light: #1a2235;
+  --color-primary: #0ea5c7;
+  --color-ice: #22d3ee;
   --color-ember: #ff5722;
   --color-ember-amber: #ff8c00;
-  --color-secondary: #161d2f;
-  --color-background: #0a0f1e;
+  --color-secondary: #1a2235;
+  --color-background: #12182a;
   --color-foreground: #fff;
   --color-muted: #94a3b8;
   --color-muted-foreground: #94a3b8;
@@ -38,7 +38,7 @@ html.lenis, html.lenis body {
 }
 
 body {
-  background-color: #0a0f1e;
+  background-color: #12182a;
   color: #fff;
   font-family: var(--font-inter);
   overflow-x: hidden;
