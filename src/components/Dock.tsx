@@ -117,8 +117,8 @@ export default function Dock() {
 
   const handleDownload = () => {
     const a = document.createElement("a");
-    a.href = "/assets/MAli_Resume.pdf";
-    a.download = "Muhammad_Ali_Resume.pdf";
+    a.href = "/assets/MuhammadAli_Iqbal.pdf";
+    a.download = "MuhammadAli_Iqbal_Resume.pdf";
     a.click();
   };
 

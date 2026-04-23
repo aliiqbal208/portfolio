@@ -19,7 +19,7 @@ const EXPERIENCES = [
     ],
   },
   {
-    company: "TazteqPk", role: "Software Engineer", date: "2018 – 2020",
+    company: "TazteqPk", role: "Senior Software Engineer", date: "2018 – 2020",
     desc: [
       "First engineering hire — designed scalable ERP architecture from scratch, establishing best practices that became the foundation for product growth.",
       "Built and optimized core ERP modules (Inventory, HRM, Sales/Purchase, Reporting) with real-time stock tracking, payroll management, and dynamic dashboards.",
