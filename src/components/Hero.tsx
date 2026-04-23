@@ -21,8 +21,8 @@ export default function Hero() {
           <span className="text-white">Lahore</span>
         </div>
         <div className="flex flex-col gap-1 text-right">
-          <span>Full Stack Architect</span>
-          <span className="text-white">Tech Lead</span>
+          <span>Tech Lead · AI Engineer</span>
+          <span className="text-white">Full Stack Architect</span>
         </div>
       </motion.div>
 
@@ -37,7 +37,7 @@ export default function Hero() {
         </h1>
         <div className="relative z-10 w-full max-w-4xl aspect-4/3 flex items-center justify-center group mt-[25px]">
           <Image
-            src="/assets/images/musman.jpg"
+            src="/assets/images/m-ali.png"
             alt="M. Ali"
             width={800}
             height={600}
@@ -61,10 +61,11 @@ export default function Hero() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] md:text-sm font-orbitron text-white/80 tracking-[0.4em] uppercase leading-relaxed max-w-3xl mx-auto">
-            Strategic Tech Lead{" "}
-            <span className="text-primary">Architecting</span> Scalable
+            Tech Lead &amp; <span className="text-primary font-semibold">Full Stack AI Engineer</span>
+            <br />
+            <span className="text-primary font-semibold">Architecting</span> Scalable
             Ecosystems, Crafting{" "}
-            <span className="text-secondary">High-Performance</span> AI
+            <span className="text-primary font-semibold">High-Performance</span> AI
             Solutions With Precision.
           </p>
         </div>
