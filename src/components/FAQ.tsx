@@ -6,16 +6,46 @@ import { Plus, ChevronRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const FAQ_DATA = [
-  { question: "What specific methodologies do you employ when designing systems for high availability and horizontal scalability?", answer: "I utilize a multi-layered approach incorporating Redis for distributed caching, round-robin DNS for load balancing, and database sharding for MariaDB/PostgreSQL time-series data. By adhering to the CAP theorem and implementing asynchronous message queues, I ensure the system remains fault-tolerant and responsive under peak traffic loads.", category: "Architecture" },
-  { question: "How do you handle technical disagreements within a team, particularly when your manager's decision differs from your architectural approach?", answer: "I facilitate resolution by presenting data-driven trade-offs between competing solutions, prioritizing the project's long-term health and technical debt over personal preference.", category: "Leadership" },
-  { question: "Can you describe your process for learning and deploying a new programming language or framework within a tight project deadline?", answer: "I employ an immersive research strategy, utilizing official documentation, community-vetted best practices, and AI-assisted prototyping to build a foundational understanding quickly.", category: "Learning" },
-  { question: "What is your systematic approach to diagnosing and resolving critical production bugs in a microservices environment?", answer: "I utilize distributed tracing and centralized logging to isolate the failure point, followed by an iterative debugging process that addresses the root cause rather than symptoms.", category: "Operations" },
-  { question: "How do you balance the requirement for shipping new features quickly with the need to refactor and manage technical debt?", answer: "I treat technical debt as a strategic variable, opting for 'pragmatism over technical purity' when speed-to-market is critical, while documenting all debt for scheduled refactoring.", category: "Strategy" },
-  { question: "What is your approach to mentoring junior developers and improving the overall code quality of an engineering team?", answer: "I focus on fostering a culture of rigorous code reviews, clear documentation, and pair programming to share institutional knowledge and technical expertise.", category: "Leadership" },
-  { question: "How do you apply the four pillars of object-oriented programming (OOP) to enhance the modularity of your system designs?", answer: "I use encapsulation to hide implementation details, inheritance for code reuse, polymorphism for flexible interfaces, and abstraction to simplify complex systems.", category: "Engineering" },
-  { question: "What metrics and tools do you use to proactively monitor and detect performance bottlenecks in high-traffic applications?", answer: "I use performance instrumentation and heat maps to track p99 latency, request throughput, and cache hit ratios, allowing for data-driven optimization of resource-intensive components.", category: "Optimization" },
-  { question: "Describe your methodology for scoping projects and defining system constraints when requirements are incomplete or ambiguous.", answer: "I employ the 'R-E-S-A-D-E' framework, starting with intensive problem scoping to clarify functional requirements and define non-functional constraints like scale and availability.", category: "Product" },
-  { question: "Why are you interested in this specific role, and how does your technical expertise align with our current challenges?", answer: "I am motivated by the opportunity to apply my expertise in scalable distributed systems and AI integration to solve your specific technical challenges.", category: "General" },
+  {
+    question: "What is your background and how many years of experience do you have?",
+    answer: "I'm Muhammad Ali — a Tech Lead and Senior Software Engineer with 8+ years of experience building scalable web platforms, cloud-native infrastructure, and AI-driven systems. I've been based in Lahore, Pakistan (GMT+5) and am currently a Tech Lead at Arthur Technologies, where I was among the first engineers and helped architect a platform now serving 10K+ users. Across 35+ projects and 25+ technologies, I've led cross-functional teams, designed enterprise SaaS products, and shipped production systems that handle real-world pressure.", category: "Background"
+  },
+  {
+    question: "What services do you offer and what is your primary tech stack?",
+    answer: "I offer Full Stack Development (React/Next.js, Node.js/NestJS, Golang, Python), AI & LLM Integration (RAG pipelines, vector DBs, intelligent agents), Cloud Architecture (AWS/GCP multi-cloud, Docker, serverless), Real-Time Systems (WebSockets, event-driven, sub-200ms latency), Cybersecurity & IAM (zero-trust, RBAC/PBAC, XDR), Data Engineering (Elasticsearch, pgvector, ETL), and Enterprise Solutions (ERP, SSO, SaaS). My core stack is TypeScript/JavaScript, Golang, Python, React, NestJS, PostgreSQL, MongoDB, Redis, and AWS/GCP.", category: "Services"
+  },
+  {
+    question: "How have you architected systems that handle millions of requests with near-perfect uptime?",
+    answer: "At Arthur Technologies I engineered high-throughput APIs that handle 1M+ requests/hour with 99.99% uptime — including during 10x traffic spikes. The approach combines multi-cloud infrastructure on AWS and GCP to eliminate single points of failure, Redis for distributed caching, asynchronous message queues to absorb burst load, and stateless microservices behind load balancers for horizontal scaling. Observability via distributed tracing and p99 latency monitoring allows proactive intervention before issues surface.", category: "Architecture"
+  },
+  {
+    question: "How do you build and integrate AI and LLM features into production applications?",
+    answer: "My most complete example is Arthur Vibe — an end-to-end AI transformation agent I built at Arthur Technologies using Golang, AWS Lambda, pgvector, and OpenAI. It performs document ingestion, runs async stakeholder interviews, and uses semantic search over pgvector to surface contextual answers. The resulting RAG pipeline improved query latency by 35% and answer accuracy by 40%. Beyond RAG, I've built real-time speech pipelines, AI-driven chatbot systems supporting 5K concurrent users at under 200ms latency, and agentic workflows with LangChain and Hugging Face models.", category: "AI & LLM"
+  },
+  {
+    question: "How do you approach real-time systems and what kind of scale have you tested them at?",
+    answer: "For Arthur Companion — a real-time group communication platform — I built the entire real-time layer in Golang using WebSockets and Redis Pub/Sub, sustaining 5K+ concurrent users at under 200ms latency. The architecture uses an event-driven model with BullMQ for job queues, Kafka for high-throughput event streams, and Redis for session state and channel routing. I've also built live audio/video streaming pipelines and AI speech processing systems under similar real-time constraints.", category: "Real-Time"
+  },
+  {
+    question: "What is your approach to cloud architecture and how do you avoid vendor lock-in?",
+    answer: "I design cloud-native solutions as provider-agnostic by default — abstracting infrastructure behind interfaces and favoring portable runtimes like Docker and Kubernetes over proprietary managed services where alternatives exist. At Arthur Technologies this multi-cloud strategy across AWS and GCP reduced vendor lock-in by 70%. I leverage AWS Lambda and GCP serverless for compute, S3 and equivalent object storage for assets, and DynamoDB or managed PostgreSQL depending on access patterns. Infrastructure is code-first via GitHub Actions CI/CD pipelines.", category: "Cloud"
+  },
+  {
+    question: "Are you available for new projects, and how do you prefer to collaborate?",
+    answer: "Yes — I'm currently available for new projects. I work effectively both as a solo technical lead on end-to-end builds and as an embedded engineer within larger teams. My timezone is GMT+5 (Lahore, Pakistan), and I'm comfortable with async-first collaboration. For new engagements I start with a scoping session to clarify functional requirements, non-functional constraints (scale, uptime, latency), and delivery milestones before writing a line of code. You can reach me directly at codewithmuhammadali@gmail.com.", category: "Availability"
+  },
+  {
+    question: "How do you lead engineering teams and what does your tech lead style look like?",
+    answer: "At Arthur Technologies I led the engineering team that delivered 20+ product features on schedule. My approach centers on clear technical ownership, structured code reviews, and pair programming to transfer institutional knowledge rather than gate-keep it. I write architecture decision records for significant design choices, break large milestones into testable increments, and treat disagreements as trade-off discussions grounded in data — not seniority. Mentoring junior engineers is deliberate: I identify where they're blocked, not just where they're wrong.", category: "Leadership"
+  },
+  {
+    question: "What types of projects have you shipped and which are you most proud of?",
+    answer: "I've shipped 35+ projects across enterprise SaaS, AI platforms, cybersecurity, e-learning, and community management. Stand-outs include: Arthur Vibe (AI enterprise transformation agent), Arthur Companion (real-time communication platform at scale), ViXa (AI-powered identity-first cybersecurity platform with XDR integration), Govava (AI gift discovery with Elasticsearch and DynamoDB), Adology AI (AI ad analysis pipeline in Python/Flask/AWS Batch), and Remar VT (SaaS e-learning platform for nursing). Each represented a distinct architectural challenge — from sub-millisecond latency to ML pipeline design to zero-trust security.", category: "Projects"
+  },
+  {
+    question: "How do you approach security in the systems you build?",
+    answer: "Security is structural, not a post-release checklist. For ViXa — an identity-first cybersecurity platform — I implemented zero-trust architecture, AI-powered threat detection, OAuth 2.0/OIDC flows, and XDR integration. Across all projects I enforce RBAC/PBAC at the API layer, validate all inputs at system boundaries, use parameterized queries to prevent injection, and apply least-privilege IAM policies in AWS/Azure. For authentication-critical systems I've worked with SSO, MFA, and session token standards that satisfy compliance requirements.", category: "Security"
+  },
 ];
 
 export default function FAQ() {
