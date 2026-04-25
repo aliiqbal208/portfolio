@@ -17,6 +17,16 @@ export const metadata: Metadata = {
   title: "Muhammad Ali | Tech Lead & Full Stack Architect",
   description: "Strategic Tech Lead architecting scalable ecosystems and high-performance AI solutions with precision.",
   metadataBase: new URL("https://themuhammadali.dev"),
+  icons: {
+    icon: [
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon/favicon.ico", sizes: "any" },
+    ],
+    apple: { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    shortcut: "/favicon/favicon.ico",
+  },
+  manifest: "/favicon/site.webmanifest",
   openGraph: {
     title: "Muhammad Ali | Tech Lead & Full Stack Architect",
     description: "Strategic Tech Lead architecting scalable ecosystems and high-performance AI solutions.",
