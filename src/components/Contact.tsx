@@ -301,12 +301,12 @@ export default function Contact() {
                 </div>
                 <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">codewithmuhammadali@gmail.com</span>
               </a>
-              <button className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
+              <a href="https://calendly.com/codewithmuhammadali" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
                 <div className="w-12 h-12 rounded-full border border-secondary/30 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
                   <Calendar className="w-5 h-5 text-secondary" />
                 </div>
                 <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">Schedule Call</span>
-              </button>
+              </a>
             </div>
           </motion.div>
 

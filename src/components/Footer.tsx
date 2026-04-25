@@ -17,17 +17,20 @@ const InstagramIcon = () => (
 const DiscordIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 12a1 1 0 1 0 2 0 1 1 0 1 0-2 0m6 0a1 1 0 1 0 2 0 1 1 0 1 0-2 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5 0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429 0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/><path d="M9 10l-1-2"/><path d="M15 10l1-2"/></svg>
 );
+// Actual Medium "M" logo (three overlapping circles)
 const MediumIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.342a2 2 0 0 0-.602-1.43l-4.44-4.342A2 2 0 0 0 13.56 2H6a2 2 0 0 0-2 2z"/><path d="M9 13h6"/><path d="M9 17h3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+  </svg>
 );
 
 const SOCIALS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/aliiqbal208/", icon: LinkedinIcon },
-  { label: "GitHub", href: "https://github.com/aliiqbal208", icon: GithubIcon },
-  { label: "X", href: "https://x.com/aliiqbal208", icon: XIcon },
-  { label: "Medium", href: "https://medium.com/@aliiqbal208", icon: MediumIcon },
-  { label: "Instagram", href: "https://www.instagram.com/aliiqbal208/", icon: InstagramIcon },
-  { label: "Discord", href: "https://discord.com/users/aliiqbal208", icon: DiscordIcon },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/aliiqbal208/",    icon: LinkedinIcon,  color: "hover:text-[#0a66c2]",  bg: "group-hover:bg-[#0a66c2]/15"  },
+  { label: "GitHub",    href: "https://github.com/aliiqbal208",               icon: GithubIcon,    color: "hover:text-white",       bg: "group-hover:bg-white/10"       },
+  { label: "X",         href: "https://x.com/aliiqbal208",                    icon: XIcon,         color: "hover:text-white",       bg: "group-hover:bg-white/10"       },
+  { label: "Medium",    href: "https://medium.com/@aliiqbal208",              icon: MediumIcon,    color: "hover:text-white",       bg: "group-hover:bg-white/10"       },
+  { label: "Instagram", href: "https://www.instagram.com/aliiqbal208/",       icon: InstagramIcon, color: "hover:text-[#e1306c]",   bg: "group-hover:bg-[#e1306c]/15"   },
+  { label: "Discord",   href: "https://discord.com/users/aliiqbal208",        icon: DiscordIcon,   color: "hover:text-[#5865f2]",   bg: "group-hover:bg-[#5865f2]/15"   },
 ];
 
 export default function Footer() {
@@ -46,11 +49,20 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-8">
-            {SOCIALS.map((s, i) => (
-              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="group relative p-3 text-muted-foreground hover:text-white transition-colors" aria-label={s.label}>
-                <div className="absolute inset-0 bg-white/5 scale-0 rounded-full group-hover:scale-100 transition-transform duration-300" />
-                <span className="relative z-10"><s.icon /></span>
+          <div className="flex gap-4">
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className={`group relative p-3 text-muted-foreground ${s.color} transition-all duration-300`}
+              >
+                <div className={`absolute inset-0 scale-0 rounded-full ${s.bg} group-hover:scale-100 transition-transform duration-300`} />
+                <span className="relative z-10 block transition-transform duration-300 group-hover:scale-110">
+                  <s.icon />
+                </span>
               </a>
             ))}
           </div>

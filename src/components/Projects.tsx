@@ -62,8 +62,7 @@ export default function Projects() {
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="eager"
-                  priority
+                  priority={i < 2}
                   className="absolute inset-0 w-full h-full object-cover grayscale md:grayscale group-hover:grayscale-0 transition-all duration-700 opacity-100 md:opacity-50 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-40 transition-opacity flex items-center justify-center font-orbitron text-xs">

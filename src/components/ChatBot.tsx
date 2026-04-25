@@ -26,7 +26,7 @@ export default function ChatBot() {
       return "Ali is proficient in: **Frontend** (React, Next.js, Angular, TypeScript, Tailwind), **Backend** (Node.js, NestJS, Django, Flask), **AI/ML** (LangChain, OpenAI, PyTorch, TensorFlow), **Cloud** (AWS, Azure, Docker, K8s), and **Databases** (PostgreSQL, MongoDB, Redis). Over 25+ frameworks mastered!";
     }
     if (msg.includes("project") || msg.includes("work") || msg.includes("portfolio")) {
-      return "Some notable projects include:\n• **ChaseLabs AI** – AI-powered meeting orchestration\n• **OneX Studio** – AI observability platform\n• **Memotar AI** – Real-time conversational avatars\n• **Demdikk** – National transit system for Senegal\n• **Ideawake** – Enterprise idea management\n• **Revbits** – Cybersecurity authentication suite";
+      return "Some notable projects include:\n• **Arthur Vibe** – AI transformation agent for enterprises (Go, pgvector, OpenAI)\n• **Arthur Web App** – React/WebGL platform with real-time AV and RBAC\n• **Govava** – World's first AI gift discovery engine (Elasticsearch, ML recommendations)\n• **ViXa Identity-First** – AI-powered cybersecurity anomaly detection platform\n• **Adology AI** – Ad intelligence platform processing millions of Facebook & TikTok ads\n• **Remar VT** – SaaS e-learning platform for nursing education with Stripe integration";
     }
     if (msg.includes("experience") || msg.includes("year") || msg.includes("career")) {
       return "Ali has 8+ years of experience as a Tech Lead & Full Stack Architect. He has delivered 35+ projects across AI, distributed systems, and cloud architecture, working with global teams and handling millions of users.";

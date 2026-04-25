@@ -45,8 +45,8 @@ body {
   transition: color 0.5s, background-color 0.5s;
 }
 
-/* Hide default cursor on desktop when custom cursor is active */
-@media (min-width: 768px) {
+/* Hide default cursor on desktop pointer devices when custom cursor is active */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   * {
     cursor: none !important;
   }
