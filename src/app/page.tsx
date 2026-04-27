@@ -13,6 +13,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 
 /* ── Lazy-load below-the-fold & heavy components ── */
+const Labs = dynamic(() => import("@/components/Labs"));
 const Skills = dynamic(() => import("@/components/Skills"));
 const Services = dynamic(() => import("@/components/Services"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
@@ -72,6 +73,7 @@ export default function Home() {
           <Hero />
           <About />
           <Projects />
+          <Labs />
           <Experience />
           <Skills />
           <Services />

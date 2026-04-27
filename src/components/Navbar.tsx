@@ -3,19 +3,21 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  House, User, Trophy, Briefcase, Cpu, LayoutGrid, Quote, CircleHelp, Mail, Menu, X,
+  House, User, Trophy, Briefcase, Cpu, LayoutGrid, Quote, CircleHelp, Mail, Menu, X, FlaskConical,
 } from "lucide-react";
+import { SHOW_LABS } from "./Labs";
 
 const NAV_ITEMS = [
-  { id: "hero", icon: House, label: "Home" },
-  { id: "about", icon: User, label: "About" },
-  { id: "portfolio", icon: Trophy, label: "Projects" },
-  { id: "experience", icon: Briefcase, label: "Experience" },
-  { id: "skills", icon: Cpu, label: "Skills" },
-  { id: "services", icon: LayoutGrid, label: "Services" },
-  { id: "testimonials", icon: Quote, label: "Testimonials" },
-  { id: "faq", icon: CircleHelp, label: "FAQ" },
-  { id: "contact", icon: Mail, label: "Contact" },
+  { id: "hero",         icon: House,        label: "Home"        },
+  { id: "about",        icon: User,         label: "About"       },
+  { id: "portfolio",    icon: Trophy,       label: "Projects"    },
+  ...(SHOW_LABS ? [{ id: "labs", icon: FlaskConical, label: "Labs" }] : []),
+  { id: "experience",   icon: Briefcase,    label: "Experience"  },
+  { id: "skills",       icon: Cpu,          label: "Skills"      },
+  { id: "services",     icon: LayoutGrid,   label: "Services"    },
+  { id: "testimonials", icon: Quote,        label: "Testimonials"},
+  { id: "faq",          icon: CircleHelp,   label: "FAQ"         },
+  { id: "contact",      icon: Mail,         label: "Contact"     },
 ];
 
 export default function Navbar() {

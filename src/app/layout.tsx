@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${bebas.variable} ${orbitron.variable} ${cormorant.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${bebas.variable} ${orbitron.variable} ${cormorant.variable} dark`} suppressHydrationWarning>
       <head>
         {/* Prevent flash of default theme before React hydrates */}
         <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('portfolio-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-theme',t);}catch(e){}` }} />
