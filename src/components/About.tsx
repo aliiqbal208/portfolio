@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { Code, Cloud } from "lucide-react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const GitHubGraph = dynamic(() => import("@/components/GitHubGraph"), {
+  ssr: false,
+  loading: () => <div className="h-[120px] animate-pulse bg-white/5 rounded" />,
+});
 
 export default function About() {
   return (
@@ -110,6 +116,26 @@ export default function About() {
                 <span key={t + "-dup"} className="text-4xl font-bebas text-white tracking-[0.2em] px-8">{t}</span>
               ))}
             </div>
+          </div>
+
+          {/* GitHub Contribution Graph */}
+          <div className="md:col-span-4 glass-dark p-8 relative overflow-hidden group">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="text-[10px] font-orbitron text-primary uppercase tracking-[0.3em] mb-1">Open Source Activity</p>
+                <h3 className="text-2xl font-bebas text-white tracking-widest">GitHub Contributions</h3>
+              </div>
+              <a
+                href="https://github.com/aliiqbal208"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-orbitron text-ice border-b border-ice/30 pb-1 hover:text-white hover:border-white transition-all"
+              >
+                @aliiqbal208 ↗
+              </a>
+            </div>
+            <GitHubGraph />
           </div>
         </motion.div>
       </div>

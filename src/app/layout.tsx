@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Bebas_Neue, Orbitron, Cormorant_Garamond } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -52,8 +54,6 @@ export default function RootLayout({
       <head>
         {/* Prevent flash of default theme before React hydrates */}
         <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('portfolio-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-theme',t);}catch(e){}` }} />
-      </head>
-      <body className="bg-navy text-foreground font-inter antialiased selection:bg-primary selection:text-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -72,7 +72,11 @@ export default function RootLayout({
             }),
           }}
         />
+      </head>
+      <body className="bg-navy text-foreground font-inter antialiased selection:bg-primary selection:text-white">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
