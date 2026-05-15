@@ -3,49 +3,18 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
+import content from "@/lib/content";
 
-const PROJECTS = [
-  { title: "Arthur Vibe", description: "End-to-end AI transformation agent helping enterprises navigate complex change journeys. Features document ingestion, async stakeholder interviews, unbiased analysis, tailored recommendations, and implementation support — powered by Go backend, pgvector semantic search, and multi-cloud infrastructure.", tech: ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], link: "https://arthur.digital/vibe", image: "/assets/images/projects/arthurvibe.png" },
-  {
-    title: "Arthur Web App", description: "React app for Arthur VR with User hierarchy management, RBAC/PBAC, onboarding flows, real-time AV and 3D/WebGL, built as a scalable monorepo deployed on AWS and GCP.", tech: ["TypeScript",
-      "React",
-      "Redux",
-      "Tailwind CSS",
-      "Monorepo",
-      "Three.js",
-      "Node.js",
-      "Express",
-      "Fastify",
-      "Golang",
-      "Python",
-      "FastAPI",
-      "AWS",
-      "GCP"], link: "https://portal.arthur.digital/login", image: "/assets/images/projects/arthur.png"
-  },
-  { title: "Remar VT", description: "SaaS e-learning platform for nursing education delivering interactive video training. Built with React, TypeScript, Redux in a monorepo supporting students, admins, and institutions with Stripe payments.", tech: ["React", "TypeScript", "Redux", "Material-UI", "Nest.js", "Stripe", "Monorepo"], link: "https://vt.remarnurse.com/", image: "/assets/images/projects/remar.png" },
-  { title: "Vyoo", description: "Community management platform for creators to build, engage, and monetize online communities with content creation, member management, event organization, and analytics.", tech: ["React", "TypeScript", "Redux", "TailwindCSS", "Nest.js", "MongoDB", "AWS", "Stripe"], link: "https://www.vyoo.me/", image: "/assets/images/projects/vyoo.png" },
-  {
-    title: "Govava", description: "World's first AI-driven gift discovery platform curating personalized recommendations based on lifestyle, preferences, and interests. Built semantic search over millions of records with Elasticsearch, scalable microservices, and AI-based recommendation algorithms.",
-    tech: ["React", "Node.js", "Redis", "PostgreSQL", "Elasticsearch", "DynamoDB", "BullMQ", "AWS", "AWS Lambda", "Nginx"
-    ], link: "https://www.govava.com/", image: "/assets/images/projects/govava-ai.png"
-  },
-  { title: "Arthur Companion", description: "Go-based platform enabling real-time group communication and peer chat within organizations. Designed connected architecture with real-time WebSocket pipelines, scalable backend services, Redis caching, and high-performance AWS deployment.", tech: ["Golang", "Gorilla WebSockets", "Redis", "PostgreSQL", "AWS"], link: "https://arthur.digital/", image: "/assets/images/projects/arthur-companion.png" },
-  {
-    title: "ViXa Identity-First Platform",
-    description: "AI-powered cybersecurity anomaly detection platform integrated into a CSMS, providing end-to-end vehicle lifecycle coverage with continuous threat monitoring, real-time incident detection, ML-based cross-layer threat correlation, automated response workflows, and full system observability through centralized telemetry, structured logging, and security event tracking ensuring regulatory compliance.",
-    tech: ["React", "NestJS", "TypeScript", "Python", "AI/ML", "Pandas", "Azure", "Docker", "XDR"], link: "https://cyberwissen.io/", image: "/assets/images/projects/vixa-identity-first.png"
-  },
-  { title: "Adology AI", description: "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", tech: ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], link: "https://adologyai.com/", image: "/assets/images/projects/adologyai.png" },
-];
+const { projects } = content;
 
 export default function Projects() {
   return (
     <section id="portfolio" className="relative py-20 px-8">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading title="Featured Projects" subtitle="Selected Works" className="mb-16" />
+        <SectionHeading title={projects.sectionTitle} subtitle={projects.sectionSubtitle} className="mb-16" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project, i) => (
+          {projects.items.map((project, i) => (
             <motion.a
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -66,7 +35,7 @@ export default function Projects() {
                   className="absolute inset-0 w-full h-full object-cover grayscale md:grayscale group-hover:grayscale-0 transition-all duration-700 opacity-100 md:opacity-50 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-40 transition-opacity flex items-center justify-center font-orbitron text-xs">
-                  <span className="bg-navy/80 px-4 py-2 border border-ice/30 backdrop-blur-sm">VISIT_PROJECT</span>
+                  <span className="bg-navy/80 px-4 py-2 border border-ice/30 backdrop-blur-sm">{projects.visitLabel}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 font-bebas text-2xl text-white tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   {project.title}

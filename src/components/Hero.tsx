@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import content from "@/lib/content";
+
+const { hero } = content;
 
 export default function Hero() {
   return (
@@ -17,12 +20,12 @@ export default function Hero() {
         className="relative z-20 flex justify-between items-start px-8 pt-20 text-[10px] md:text-sm font-orbitron tracking-[0.2em] text-muted-foreground uppercase"
       >
         <div className="flex flex-col gap-1">
-          <span>Based in Pakistan</span>
-          <span className="text-white">Lahore</span>
+          <span>{hero.location.region}</span>
+          <span className="text-white">{hero.location.city}</span>
         </div>
         <div className="flex flex-col gap-1 text-right">
-          <span>Tech Lead · AI Engineer</span>
-          <span className="text-white">Full Stack Architect</span>
+          <span>{hero.roles.primary}</span>
+          <span className="text-white">{hero.roles.secondary}</span>
         </div>
       </motion.div>
 
@@ -33,12 +36,12 @@ export default function Hero() {
         className="relative flex-1 flex items-center justify-center"
       >
         <h1 className="absolute inset-0 flex items-center justify-center text-[45vw] font-bebas leading-none text-white/5 select-none pointer-events-none tracking-tighter">
-          M. Ali
+          {hero.title}
         </h1>
         <div className="relative z-10 w-full max-w-4xl aspect-4/3 flex items-center justify-center group mt-[25px]">
           <Image
-            src="/assets/images/m-ali.png"
-            alt="M. Ali"
+            src={hero.image.src}
+            alt={hero.image.alt}
             width={800}
             height={600}
             priority
@@ -47,7 +50,7 @@ export default function Hero() {
           />
           <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2">
             <span className="text-4xl font-bebas text-white tracking-widest">
-              Portfolio<span className="text-primary">.</span>
+              {hero.portfolioLabel}<span className="text-primary">.</span>
             </span>
           </div>
         </div>
@@ -61,18 +64,20 @@ export default function Hero() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] md:text-sm font-orbitron text-white/80 tracking-[0.4em] uppercase leading-relaxed max-w-3xl mx-auto">
-            Tech Lead &amp; <span className="text-primary font-semibold">Full Stack AI Engineer</span>
+            {hero.tagline.prefix}{" "}
+            <span className="text-primary font-semibold">{hero.tagline.highlight1}</span>
             <br />
-              <span className="text-primary font-semibold">Building</span> things with
-              brains — <span className="text-primary font-semibold">Architecting</span>{" "}
-              Scalable Ecosystems, Crafting{" "}
-              <span className="text-primary font-semibold">High-Performance</span> AI
-              Solutions With Precision.
+            <span className="text-primary font-semibold">{hero.tagline.line2.highlight1}</span>{" "}
+            {hero.tagline.line2.text1}{" "}
+            <span className="text-primary font-semibold">{hero.tagline.line2.highlight2}</span>{" "}
+            {hero.tagline.line2.text2}{" "}
+            <span className="text-primary font-semibold">{hero.tagline.line2.highlight3}</span>{" "}
+            {hero.tagline.line2.text3}
           </p>
         </div>
         <div className="flex flex-col items-center gap-2 animate-bounce opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
           <span className="text-[8px] font-orbitron tracking-[0.3em] text-white uppercase">
-            Scroll
+            {hero.scrollLabel}
           </span>
           <ChevronDown className="w-4 h-4 text-primary" />
         </div>

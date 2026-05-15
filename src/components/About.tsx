@@ -4,11 +4,24 @@ import Image from "next/image";
 import { BrainCircuit, Code } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import content from "@/lib/content";
+
+const { about } = content;
 
 const GitHubGraph = dynamic(() => import("@/components/GitHubGraph"), {
   ssr: false,
   loading: () => <div className="h-[120px] animate-pulse bg-white/5 rounded" />,
 });
+
+// Helper to get Tailwind color class based on stat color
+const getStatColorClass = (color: string) => {
+  switch (color) {
+    case "ember": return "text-ember border-ember";
+    case "ice": return "text-ice border-ice";
+    case "white": return "text-white border-white";
+    default: return "text-white border-white";
+  }
+};
 
 export default function About() {
   return (
@@ -24,8 +37,8 @@ export default function About() {
           {/* Photo card */}
           <div className="glass-dark border-t-2 border-primary/20 flex flex-col justify-between relative overflow-hidden group">
             <Image
-              src="/assets/images/m.ali-about.png"
-              alt="Muhammad Ali"
+              src={about.profile.image.src}
+              alt={about.profile.image.alt}
               width={400}
               height={600}
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
@@ -33,25 +46,26 @@ export default function About() {
               priority
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/90 via-black/50 to-transparent">
-              <p className="font-bebas text-2xl text-white tracking-widest mb-1">Muhammad Ali</p>
-              <p className="text-[10px] font-orbitron text-ember uppercase tracking-[0.2em]">Tech Lead & Architect</p>
+              <p className="font-bebas text-2xl text-white tracking-widest mb-1">{about.profile.name}</p>
+              <p className="text-[10px] font-orbitron text-ember uppercase tracking-[0.2em]">{about.profile.title}</p>
             </div>
           </div>
 
           {/* Stats column */}
           <div className="flex flex-col gap-6 justify-between h-full">
-            <div className="glass-dark p-8 border-l-4 border-ember flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-white/5">
-              <h3 className="text-6xl font-bebas text-ember tracking-widest leading-none">8+</h3>
-              <p className="text-[10px] font-orbitron uppercase tracking-[0.3em] text-muted-foreground mt-2">Years Exp.</p>
-            </div>
-            <div className="glass-dark p-8 border-l-4 border-ice flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-white/5">
-              <h3 className="text-6xl font-bebas text-ice tracking-widest leading-none">35+</h3>
-              <p className="text-[10px] font-orbitron uppercase tracking-[0.3em] text-muted-foreground mt-2">Projects</p>
-            </div>
-            <div className="glass-dark p-8 border-l-4 border-white flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-white/5">
-              <h3 className="text-6xl font-bebas text-white tracking-widest leading-none">25+</h3>
-              <p className="text-[10px] font-orbitron uppercase tracking-[0.3em] text-muted-foreground mt-2">Frameworks</p>
-            </div>
+            {about.stats.map((stat, index) => (
+              <div
+                key={index}
+                className={`glass-dark p-8 border-l-4 ${getStatColorClass(stat.color).split(" ")[1]} flex-1 flex flex-col justify-center transition-all duration-500 hover:bg-white/5`}
+              >
+                <h3 className={`text-6xl font-bebas ${getStatColorClass(stat.color).split(" ")[0]} tracking-widest leading-none`}>
+                  {stat.value}
+                </h3>
+                <p className="text-[10px] font-orbitron uppercase tracking-[0.3em] text-muted-foreground mt-2">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Vision card */}
@@ -61,29 +75,34 @@ export default function About() {
             </div>
             <div>
               <h2 className="text-5xl font-bebas text-white mb-8 uppercase leading-[0.9]">
-                The <br />
-                <span className="text-primary italic">Vision</span>
+                {about.vision.headingLine1} <br />
+                <span className="text-primary italic">{about.vision.headingLine2}</span>
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4 font-inter">
-                Building at the intersection of{" "}
-                <span className="text-white">precision engineering</span> and{" "}
-                <span className="text-white">human-centric design</span> — architecting{" "}
-                <span className="text-white">scalable systems</span>,{" "}
-                <span className="text-white">cloud-native platforms</span>, and{" "}
-                <span className="text-white">AI-driven ecosystems</span> that perform under real-world pressure.
+                {about.vision.body.map((segment, i) =>
+                  segment.highlight ? (
+                    <span key={i} className="text-white">{segment.text}</span>
+                  ) : (
+                    <span key={i}>{segment.text} </span>
+                  )
+                )}
               </p>
             </div>
             <div className="mt-8 pt-8 border-t border-white/5">
-              <p className="text-[10px] font-orbitron text-ice uppercase tracking-widest mb-2">Specialization</p>
+              <p className="text-[10px] font-orbitron text-ice uppercase tracking-widest mb-2">
+                {about.vision.specializationLabel}
+              </p>
               <div className="flex flex-wrap gap-2">
-                {["AI/ML", "Full Stack", "Scalable Systems", "RAG Pipelines"].map((s) => (
-                  <span key={s} className="text-[10px] px-2 py-1 bg-white/5 text-white/60 rounded border border-white/5">{s}</span>
+                {about.vision.specializations.map((s) => (
+                  <span key={s} className="text-[10px] px-2 py-1 bg-white/5 text-white/60 rounded border border-white/5">
+                    {s}
+                  </span>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Status + Cloud column */}
+          {/* Status + Card column */}
           <div className="flex flex-col gap-6 h-full">
             <div className="glass-dark p-8 border border-emerald-500/20 flex flex-col justify-center items-center text-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-emerald-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -91,17 +110,22 @@ export default function About() {
                 <div className="w-16 h-16 rounded-full border border-emerald-500/30 flex items-center justify-center animate-pulse-slow mx-auto mb-4">
                   <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981]" />
                 </div>
-                <p className="text-[10px] font-orbitron text-emerald-500 uppercase tracking-[0.3em] mb-1">Current Status</p>
-                <p className="text-sm text-white font-bold uppercase tracking-widest">Available</p>
+                <p className="text-[10px] font-orbitron text-emerald-500 uppercase tracking-[0.3em] mb-1">
+                  {about.status.label}
+                </p>
+                <p className="text-sm text-white font-bold uppercase tracking-widest">{about.status.value}</p>
               </div>
             </div>
             <div className="glass-dark p-8 border border-ice/20 flex-1 flex flex-col justify-center items-center text-center relative overflow-hidden group hover:border-ice/50 transition-colors">
               <div className="absolute inset-0 bg-ice/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <BrainCircuit className="w-12 h-12 text-ice mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h4 className="text-2xl font-bebas text-white tracking-widest mb-2">AI Systems</h4>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Systems · LLMs · Cloud-Agnostic</p>
-              <a href="#contact" className="z-10 mt-6 text-[10px] font-orbitron text-ice border-b border-ice/30 pb-1 hover:text-white hover:border-white transition-all">
-                Let&apos;s Build
+              <h4 className="text-2xl font-bebas text-white tracking-widest mb-2">{about.card.title}</h4>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest">{about.card.subtitle}</p>
+              <a
+                href={about.card.ctaLink}
+                className="z-10 mt-6 text-[10px] font-orbitron text-ice border-b border-ice/30 pb-1 hover:text-white hover:border-white transition-all"
+              >
+                {about.card.cta}
               </a>
             </div>
           </div>
@@ -109,10 +133,10 @@ export default function About() {
           {/* Tech marquee */}
           <div className="md:col-span-4 glass-dark p-8 overflow-hidden relative">
             <div className="flex gap-12 animate-[marquee_30s_linear_infinite] whitespace-nowrap items-center opacity-30">
-              {["React", "Next.js", "Node.js", "TypeScript", "Python", "Golang", "AWS", "GCP", "Azure", "Docker", "NestJS", "FastAPI", "OpenAI", "RAG", "LLMs", "Kafka", "PostgreSQL", "MongoDB", "Redis", "WebSockets"].map((t) => (
+              {about.techStack.map((t) => (
                 <span key={t} className="text-4xl font-bebas text-white tracking-[0.2em] px-8">{t}</span>
               ))}
-              {["React", "Next.js", "Node.js", "TypeScript", "Python", "Golang", "AWS", "GCP", "Azure", "Docker", "NestJS", "FastAPI", "OpenAI", "RAG", "LLMs", "Kafka", "PostgreSQL", "MongoDB", "Redis", "WebSockets"].map((t) => (
+              {about.techStack.map((t) => (
                 <span key={t + "-dup"} className="text-4xl font-bebas text-white tracking-[0.2em] px-8">{t}</span>
               ))}
             </div>
@@ -123,16 +147,18 @@ export default function About() {
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
             <div className="flex items-center justify-between mb-6">
               <div>
-                <p className="text-[10px] font-orbitron text-primary uppercase tracking-[0.3em] mb-1">Open Source Activity</p>
-                <h3 className="text-2xl font-bebas text-white tracking-widest">GitHub Contributions</h3>
+                <p className="text-[10px] font-orbitron text-primary uppercase tracking-[0.3em] mb-1">
+                  {about.github.label}
+                </p>
+                <h3 className="text-2xl font-bebas text-white tracking-widest">{about.github.heading}</h3>
               </div>
               <a
-                href="https://github.com/aliiqbal208"
+                href={about.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[10px] font-orbitron text-ice border-b border-ice/30 pb-1 hover:text-white hover:border-white transition-all"
               >
-                @aliiqbal208 ↗
+                {about.github.username} ↗
               </a>
             </div>
             <GitHubGraph />

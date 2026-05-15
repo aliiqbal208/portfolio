@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, Html } from "@react-three/drei";
 import * as THREE from "three";
+import content from "@/lib/content";
+
+const { contact } = content;
 
 /* ── WebGL availability check (hydration-safe) ── */
 let webglResult: boolean | null = null;
@@ -284,28 +287,28 @@ export default function Contact() {
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-7xl md:text-9xl font-bebas text-white mb-6 uppercase leading-none">
-              Let&apos;s <br />
+              {contact.heading.line1} <br />
               <span className="text-primary italic relative">
-                Collaborate
+                {contact.heading.line2}
                 <span className="absolute -bottom-2 left-0 w-full h-2 bg-primary/30 -skew-x-12" />
               </span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground font-inter mb-12 max-w-md leading-relaxed mt-10">
-              Ready to architect the next big thing? Whether it&apos;s AI, Scalable Ecosystems, or high-performance web solutions, let&apos;s build the future together.
+              {contact.description}
             </p>
 
             <div className="flex flex-col gap-6">
-              <a href="mailto:codewithmuhammadali@gmail.com" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
+              <a href={`mailto:${contact.email}`} className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
                 <div className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-colors">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">codewithmuhammadali@gmail.com</span>
+                <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">{contact.email}</span>
               </a>
-              <a href="https://calendly.com/codewithmuhammadali" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
+              <a href={contact.calendlyUrl} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
                 <div className="w-12 h-12 rounded-full border border-secondary/30 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
                   <Calendar className="w-5 h-5 text-secondary" />
                 </div>
-                <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">Schedule Call</span>
+                <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">{contact.calendlyLabel}</span>
               </a>
             </div>
           </motion.div>
@@ -338,24 +341,24 @@ export default function Contact() {
                 )}
                 <div className="absolute inset-x-0 bottom-4 flex justify-center pointer-events-none">
                   <div className="px-4 py-1 bg-black/40 backdrop-blur-md rounded-full border border-white/10 text-[8px] font-orbitron text-white/50 tracking-widest uppercase">
-                    Drag to Reorient
+                    {contact.globe.dragHint}
                   </div>
                 </div>
               </div>
               <div className="absolute top-8 left-8 flex flex-col gap-1">
-                <span className="text-[10px] font-orbitron text-primary uppercase tracking-widest">Location</span>
-                <span className="text-sm text-white font-bebas tracking-wider">Lahore, Pakistan</span>
+                <span className="text-[10px] font-orbitron text-primary uppercase tracking-widest">{contact.globe.locationLabel}</span>
+                <span className="text-sm text-white font-bebas tracking-wider">{contact.globe.location}</span>
               </div>
               <div className="absolute bottom-8 right-8 flex flex-col items-end gap-1">
-                <span className="text-[10px] font-orbitron text-secondary uppercase tracking-widest">Availability</span>
-                <span className="text-sm text-white font-bebas tracking-wider">Open for Projects</span>
+                <span className="text-[10px] font-orbitron text-secondary uppercase tracking-widest">{contact.globe.availabilityLabel}</span>
+                <span className="text-sm text-white font-bebas tracking-wider">{contact.globe.availability}</span>
               </div>
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-3xl" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-secondary/30 rounded-br-3xl" />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-background/80 backdrop-blur-xl border border-white/10 p-6 rounded-2xl shadow-2xl hidden md:block animate-bounce-slow">
-              <p className="text-[10px] font-orbitron text-muted-foreground uppercase tracking-widest mb-1">Global Time</p>
-              <p className="text-2xl font-bebas text-white tracking-widest">GMT +5:00</p>
+              <p className="text-[10px] font-orbitron text-muted-foreground uppercase tracking-widest mb-1">{contact.globe.timezoneLabel}</p>
+              <p className="text-2xl font-bebas text-white tracking-widest">{contact.globe.timezone}</p>
             </div>
           </motion.div>
         </div>

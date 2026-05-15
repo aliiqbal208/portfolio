@@ -1,0 +1,242 @@
+{
+  "hero": {
+    "title": "M. Ali",
+    "portfolioLabel": "Portfolio",
+    "location": {
+      "region": "Based in Pakistan",
+      "city": "Lahore"
+    },
+    "roles": {
+      "primary": "Tech Lead · AI Engineer",
+      "secondary": "Full Stack Architect"
+    },
+    "tagline": {
+      "prefix": "Tech Lead &",
+      "highlight1": "Full Stack AI Engineer",
+      "line2": {
+        "highlight1": "Building",
+        "text1": "things with brains —",
+        "highlight2": "Architecting",
+        "text2": "Scalable Ecosystems, Crafting",
+        "highlight3": "High-Performance",
+        "text3": "AI Solutions With Precision."
+      }
+    },
+    "scrollLabel": "Scroll",
+    "image": {
+      "src": "/assets/images/m-ali.png",
+      "alt": "M. Ali"
+    }
+  },
+  "about": {
+    "profile": {
+      "name": "Muhammad Ali",
+      "title": "Tech Lead & Architect",
+      "image": {
+        "src": "/assets/images/m.ali-about.png",
+        "alt": "Muhammad Ali"
+      }
+    },
+    "stats": [
+      { "value": "8+", "label": "Years Exp.", "color": "ember" },
+      { "value": "35+", "label": "Projects", "color": "ice" },
+      { "value": "25+", "label": "Frameworks", "color": "white" }
+    ],
+    "vision": {
+      "headingLine1": "The",
+      "headingLine2": "Vision",
+      "body": [
+        { "text": "Building at the intersection of", "highlight": false },
+        { "text": "precision engineering", "highlight": true },
+        { "text": "and", "highlight": false },
+        { "text": "human-centric design", "highlight": true },
+        { "text": "— architecting", "highlight": false },
+        { "text": "scalable systems", "highlight": true },
+        { "text": ",", "highlight": false },
+        { "text": "cloud-native platforms", "highlight": true },
+        { "text": ", and", "highlight": false },
+        { "text": "AI-driven ecosystems", "highlight": true },
+        { "text": "that perform under real-world pressure.", "highlight": false }
+      ],
+      "specializationLabel": "Specialization",
+      "specializations": ["AI/ML", "Full Stack", "Scalable Systems", "RAG Pipelines"]
+    },
+    "status": {
+      "label": "Current Status",
+      "value": "Available"
+    },
+    "card": {
+      "title": "AI Systems",
+      "subtitle": "Systems · LLMs · Cloud-Agnostic",
+      "cta": "Let's Build",
+      "ctaLink": "#contact"
+    },
+    "techStack": [
+      "React", "Next.js", "Node.js", "TypeScript", "Python", "Golang",
+      "AWS", "GCP", "Azure", "Docker", "NestJS", "FastAPI",
+      "OpenAI", "RAG", "LLMs", "Kafka", "PostgreSQL", "MongoDB", "Redis", "WebSockets"
+    ],
+    "github": {
+      "label": "Open Source Activity",
+      "heading": "GitHub Contributions",
+      "username": "@aliiqbal208",
+      "url": "https://github.com/aliiqbal208"
+    }
+  },
+  "services": {
+    "sectionTitle": "Services",
+    "modalLabel": "Service Details",
+    "ctaButton": "Get Started",
+    "items": [
+      { "title": "Full Stack Development", "desc": "Building robust, scalable web applications from frontend to backend. Expertise in React/Next.js, Node.js/NestJS, Golang, and Python — delivering high-performance monorepos, real-time features, and enterprise-grade APIs handling 1M+ requests/hour.", "features": ["React & Next.js", "Node.js, NestJS & Fastify", "Golang & Python", "TypeScript Monorepos"] },
+      { "title": "AI & LLM Integration", "desc": "Empowering products with cutting-edge AI capabilities. From custom RAG pipelines and vector databases to real-time speech systems and intelligent agents — transforming how enterprises leverage AI for automation and insights.", "features": ["Custom RAG Pipelines", "LLM & OpenAI Integration", "Vector DBs (Pinecone, pgvector)", "AI Agents & Chatbots"] },
+      { "title": "Machine Learning", "desc": "Designing and deploying production-grade ML systems. From data preprocessing and model training to inference pipelines and predictive analytics — delivering intelligent solutions that drive business decisions and automate complex workflows.", "features": ["ML Pipeline Development", "Model Training & Fine-Tuning", "Predictive Analytics", "NLP & Computer Vision"] },
+      { "title": "Cloud Architecture", "desc": "Designing multi-cloud ecosystems on AWS and GCP with 99.99% uptime. Expertise in serverless computing, container orchestration, and cloud-native patterns that scale effortlessly while reducing vendor lock-in by 70%.", "features": ["AWS & GCP", "Serverless & Lambda", "Docker & Kubernetes", "High Availability Design"] },
+      { "title": "Cybersecurity & IAM", "desc": "Building identity-first security platforms with zero-trust architecture. Experience developing AI-powered threat detection, XDR integration, and compliance-ready systems with continuous monitoring, anomaly detection, and automated incident response.", "features": ["Zero-Trust Architecture", "AI-Powered Threat Detection", "OAuth 2.0 & OIDC", "XDR & SIEM Integration"] },
+      { "title": "Real-Time Systems", "desc": "Architecting low-latency, high-throughput systems for real-time collaboration. WebSocket pipelines, live audio/video streaming, and event-driven architectures supporting 5K+ concurrent users at <200ms latency.", "features": ["WebSocket Pipelines", "Real-Time AV Streaming", "Event-Driven Architecture", "Redis & Message Queues"] },
+      { "title": "Data Engineering & Search", "desc": "Building intelligent data pipelines and semantic search systems. From ETL processes handling millions of records to Elasticsearch and vector search implementations powering AI-driven recommendations and discovery.", "features": ["Elasticsearch & pgvector", "ETL & Data Pipelines", "Semantic Search", "Analytics Dashboards"] },
+      { "title": "Enterprise Solutions", "desc": "Delivering end-to-end enterprise platforms with RBAC/PBAC, SSO, and scalable module architectures. Experience building ERP systems, SaaS platforms, and identity-first applications ensuring security and compliance.", "features": ["RBAC & PBAC Systems", "OAuth 2.0 & SSO", "SaaS & Multi-Tenant", "ERP & Workflow Automation"] }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Work History",
+    "sectionSubtitle": "Career Path",
+    "items": [
+      {
+        "company": "Arthur Technologies",
+        "role": "Tech Lead / Senior Software Engineer",
+        "date": "2020 – Present",
+        "desc": [
+          "Among first engineers hired — architected Web XR App, backend, and scalable infrastructure for Arthur platform, enabling 100K+ users to collaborate seamlessly.",
+          "Led engineering team to deliver 20+ features on schedule, boosting productivity and fostering a high-performing culture.",
+          "Built Arthur Vibe — an end-to-end AI transformation agent with document ingestion, async stakeholder interviews, and pgvector semantic search guiding enterprises through discovery, analysis, and implementation.",
+          "Deployed custom LLMs with RAG pipelines and vector databases (Pinecone, pgvector), improving query latency by 35% and accuracy by 40%.",
+          "Built real-time speech pipelines and chatbot systems supporting 5K concurrent users at <200ms latency, increasing engagement by 55%.",
+          "Developed AI-driven collaboration workflows reducing meeting time by 40% through automated opinion clustering and actionable insights.",
+          "Engineered high-throughput APIs handling 1M+ requests/hour with 99.99% uptime during 10x traffic spikes.",
+          "Architected cloud-native solutions on AWS/GCP achieving high availability and fault tolerance, reducing vendor lock-in by 70%."
+        ]
+      },
+      {
+        "company": "TazteqPk",
+        "role": "Senior Software Engineer",
+        "date": "2018 – 2020",
+        "desc": [
+          "First engineering hire — designed scalable ERP architecture from scratch, establishing best practices that became the foundation for product growth.",
+          "Built and optimized core ERP modules (Inventory, HRM, Sales/Purchase, Reporting) with real-time stock tracking, payroll management, and dynamic dashboards.",
+          "Developed reusable Angular components, pipes, and directives, ensuring consistency and reducing development effort across the platform.",
+          "Implemented role-based access control (RBAC) and SSE-based real-time notifications for secure, instant updates across modules.",
+          "Optimized performance with lazy loading, change detection tuning, and code splitting, achieving faster load times and improved scalability.",
+          "Delivered comprehensive unit/integration tests using Jasmine & Karma, reducing regressions and maintaining high code quality."
+        ]
+      },
+      {
+        "company": "Whitehats",
+        "role": "Software Engineer",
+        "date": "2016 – 2018",
+        "desc": [
+          "Delivered pixel-perfect, responsive Angular applications, translating complex UI/UX designs into polished interfaces.",
+          "Architected reusable, modular components, reducing code duplication and accelerating development cycles.",
+          "Worked with cross-functional teams to integrate RESTful APIs, ensuring seamless data flow and optimal performance.",
+          "Implemented performance optimizations and profiling techniques, achieving fast load times and high responsiveness.",
+          "Led code reviews to enforce coding standards, share best practices, and drive team-wide quality improvements.",
+          "Enhanced accessibility and cross-browser compatibility, delivering consistent experiences across all devices."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "sectionTitle": "Featured Projects",
+    "sectionSubtitle": "Selected Works",
+    "visitLabel": "VISIT_PROJECT",
+    "items": [
+      { "title": "Arthur Vibe", "description": "End-to-end AI transformation agent helping enterprises navigate complex change journeys. Features document ingestion, async stakeholder interviews, unbiased analysis, tailored recommendations, and implementation support — powered by Go backend, pgvector semantic search, and multi-cloud infrastructure.", "tech": ["Golang", "AWS Lambda", "MongoDB", "PostgreSQL", "pgvector", "GCP", "OpenAI"], "link": "https://arthur.digital/vibe", "image": "/assets/images/projects/arthurvibe.png" },
+      { "title": "Arthur Web App", "description": "React app for Arthur VR with User hierarchy management, RBAC/PBAC, onboarding flows, real-time AV and 3D/WebGL, built as a scalable monorepo deployed on AWS and GCP.", "tech": ["TypeScript", "React", "Redux", "Tailwind CSS", "Monorepo", "Three.js", "Node.js", "Express", "Fastify", "Golang", "Python", "FastAPI", "AWS", "GCP"], "link": "https://portal.arthur.digital/login", "image": "/assets/images/projects/arthur.png" },
+      { "title": "Remar VT", "description": "SaaS e-learning platform for nursing education delivering interactive video training. Built with React, TypeScript, Redux in a monorepo supporting students, admins, and institutions with Stripe payments.", "tech": ["React", "TypeScript", "Redux", "Material-UI", "Nest.js", "Stripe", "Monorepo"], "link": "https://vt.remarnurse.com/", "image": "/assets/images/projects/remar.png" },
+      { "title": "Vyoo", "description": "Community management platform for creators to build, engage, and monetize online communities with content creation, member management, event organization, and analytics.", "tech": ["React", "TypeScript", "Redux", "TailwindCSS", "Nest.js", "MongoDB", "AWS", "Stripe"], "link": "https://www.vyoo.me/", "image": "/assets/images/projects/vyoo.png" },
+      { "title": "Govava", "description": "World's first AI-driven gift discovery platform curating personalized recommendations based on lifestyle, preferences, and interests. Built semantic search over millions of records with Elasticsearch, scalable microservices, and AI-based recommendation algorithms.", "tech": ["React", "Node.js", "Redis", "PostgreSQL", "Elasticsearch", "DynamoDB", "BullMQ", "AWS", "AWS Lambda", "Nginx"], "link": "https://www.govava.com/", "image": "/assets/images/projects/govava-ai.png" },
+      { "title": "Arthur Companion", "description": "Go-based platform enabling real-time group communication and peer chat within organizations. Designed connected architecture with real-time WebSocket pipelines, scalable backend services, Redis caching, and high-performance AWS deployment.", "tech": ["Golang", "Gorilla WebSockets", "Redis", "PostgreSQL", "AWS"], "link": "https://arthur.digital/", "image": "/assets/images/projects/arthur-companion.png" },
+      { "title": "ViXa Identity-First Platform", "description": "AI-powered cybersecurity anomaly detection platform integrated into a CSMS, providing end-to-end vehicle lifecycle coverage with continuous threat monitoring, real-time incident detection, ML-based cross-layer threat correlation, automated response workflows, and full system observability through centralized telemetry, structured logging, and security event tracking ensuring regulatory compliance.", "tech": ["React", "NestJS", "TypeScript", "Python", "AI/ML", "Pandas", "Azure", "Docker", "XDR"], "link": "https://cyberwissen.io/", "image": "/assets/images/projects/vixa-identity-first.png" },
+      { "title": "Adology AI", "description": "AI-driven platform that analyzes digital ads to uncover creative and performance insights for brands. Built scalable Python data pipelines on AWS, integrated OpenAI for ad labeling and trend detection across millions of Facebook and TikTok ads, with an interactive React dashboard for campaign intelligence.", "tech": ["Python", "Flask", "React", "OpenAI", "Pandas", "AWS Lambda", "AWS Batch", "Docker", "Apify"], "link": "https://adologyai.com/", "image": "/assets/images/projects/adologyai.png" }
+    ]
+  },
+  "skills": {
+    "sectionTitle": "Skills Matrix",
+    "sectionSubtitle": "Technical Stack",
+    "categories": [
+      { "title": "Languages", "icon": "Code", "items": ["JavaScript", "TypeScript", "Node.js", "Python", "Golang"] },
+      { "title": "Frontend", "icon": "Atom", "items": ["React", "Next.js", "Angular", "Redux", "RxJS", "Redux Toolkit", "Redux-Saga", "Tailwind CSS", "Styled Components", "Ant Design", "Angular Material", "WebGL", "SSE", "Web Audio API", "SASS / LESS"] },
+      { "title": "Backend", "icon": "Server", "items": ["NestJS", "Express", "Fastify", "Go Fiber", "FastAPI", "Prisma", "Mongoose", "Zod", "Kysely", "Stripe", "REST APIs", "3rd Party APIs"] },
+      { "title": "AI & Data", "icon": "Brain", "items": ["OpenAI", "Hugging Face", "LLMs", "RAG Pipelines", "Semantic Search", "Chatbot Dev", "Speech Processing", "AI Automations", "Agentic AI", "MCP", "Vector DBs", "Prompt Engineering", "Data Pipelines", "LangChain", "NLP"] },
+      { "title": "Cloud & Infra", "icon": "Cloud", "items": ["AWS", "S3", "Lambda", "EC2", "API Gateway", "GCP", "Cloud Run", "Cloud Functions", "Eventarc", "Azure", "Docker", "Redis", "Sentry", "GitHub Actions", "Bitbucket"] },
+      { "title": "Databases", "icon": "Database", "items": ["PostgreSQL", "MongoDB", "MySQL", "DynamoDB", "Vector DBs"] },
+      { "title": "Testing", "icon": "GitPullRequest", "items": ["Jest", "Playwright", "Cypress", "React Testing Lib", "Mocha / Chai", "Jasmine / Karma", "TDD", "e2e Testing", "AB Testing", "Unit & Integration"] },
+      { "title": "Security", "icon": "Shield", "items": ["OAuth 2.0", "SSO", "2FA", "JWT", "DDoS Mitigation", "SQL Injection", "MitM Prevention", "XSS / CSRF"] },
+      { "title": "Architecture & Patterns", "icon": "BarChart3", "items": ["Microservices", "Micro-frontends", "Scalable Systems", "Serverless", "Event-driven", "MVC / MVVM", "SOLID", "Flux", "Kafka", "WebSockets", "Pub/Sub", "Agile / Scrum"] }
+    ]
+  },
+  "testimonials": {
+    "heading": {
+      "line1": "You win.",
+      "line2": "We grin."
+    },
+    "items": [
+      { "company": "Arthur Technologies", "icon": "Brain", "headline": "Excellent Full-Stack Developer", "content": "Muhammad Ali was an excellent Full-Stack Developer on our team, consistently demonstrating strong technical skills, great problem-solving ability, and an impressive work ethic. He approached every task with diligence and dedication, often going the extra mile to ensure high-quality results. Beyond his technical strengths, Ali was a fantastic team player — collaborative, positive, and always contributing to a supportive team spirit.", "author": "Christoph Fleischmann", "role": "Founder" },
+      { "company": "Arthur Technologies", "icon": "CodeXml", "headline": "Vital to Our Core Team", "content": "Ali had been a vital part of our core team at Arthur — he led efforts to optimise and scale many of our core backend services successfully. He brought several optimisations that improved our performance and scalability. His ability to manage a cross-functional team and take up responsibilities played a vital role in the timely completion of mission-critical projects.", "author": "Dinesh Babu", "role": "Head of Cloud Engineering" },
+      { "company": "Remar Nurse", "icon": "Building2", "headline": "E-Learning Done Right", "content": "Ali delivered Remar VT on time and to spec — a full SaaS e-learning platform supporting students, admins, and institutions in a single monorepo. The Stripe integration is clean, the video delivery is reliable, and the multi-role architecture scales effortlessly. Our nursing students finally have a platform built for them.", "author": "Claire Bennett", "role": "Director of Digital Learning" },
+      { "company": "Govava", "icon": "Rocket", "headline": "AI Discovery at Scale", "content": "Ali built the world's first AI-driven gift discovery engine for us — semantic search over millions of product records using Elasticsearch, personalized recommendations via ML algorithms, and a microservices backend that handles real traffic without breaking a sweat. The quality of engineering matched the ambition of the vision.", "author": "Carl Richards", "role": "CEO" },
+      { "company": "Cyberwissen", "icon": "CodeXml", "headline": "Security at Every Layer", "content": "ViXa is a demanding product — AI anomaly detection, ML-based cross-layer threat correlation, XDR integration, and full regulatory compliance, all inside a CSMS. Ali delivered every piece with precision. The real-time incident detection pipeline and centralized telemetry gave us observability we never had before.", "author": "Shadrack Xavier", "role": "Chief Technology Officer" },
+      { "company": "Adology", "icon": "Brain", "headline": "Ad Intelligence Unlocked", "content": "Ali built our entire data backbone — scalable Python pipelines on AWS Batch processing millions of Facebook and TikTok ads, OpenAI integration for labeling and trend detection, and a React dashboard that makes the insights actionable. The platform went from concept to production in record time and hasn't missed a beat since.", "author": "James Donner", "role": "Head of Product" }
+    ]
+  },
+  "faq": {
+    "sectionTitle": "Curated Insights",
+    "sectionSubtitle": "Frequently Asked Questions",
+    "diveDeeper": "Dive Deeper into this Topic",
+    "items": [
+      { "question": "What is your background and how many years of experience do you have?", "answer": "I'm Muhammad Ali — a Tech Lead and Senior Software Engineer with 8+ years of experience building scalable web platforms, cloud-native infrastructure, and AI-driven systems. I've been based in Lahore, Pakistan (GMT+5) and am currently a Tech Lead at Arthur Technologies, where I was among the first engineers and helped architect a platform now serving 10K+ users. Across 35+ projects and 25+ technologies, I've led cross-functional teams, designed enterprise SaaS products, and shipped production systems that handle real-world pressure.", "category": "Background" },
+      { "question": "What services do you offer and what is your primary tech stack?", "answer": "I offer Full Stack Development (React/Next.js, Node.js/NestJS, Golang, Python), AI & LLM Integration (RAG pipelines, vector DBs, intelligent agents), Cloud Architecture (AWS/GCP multi-cloud, Docker, serverless), Real-Time Systems (WebSockets, event-driven, sub-200ms latency), Cybersecurity & IAM (zero-trust, RBAC/PBAC, XDR), Data Engineering (Elasticsearch, pgvector, ETL), and Enterprise Solutions (ERP, SSO, SaaS). My core stack is TypeScript/JavaScript, Golang, Python, React, NestJS, PostgreSQL, MongoDB, Redis, and AWS/GCP.", "category": "Services" },
+      { "question": "How have you architected systems that handle millions of requests with near-perfect uptime?", "answer": "At Arthur Technologies I engineered high-throughput APIs that handle 1M+ requests/hour with 99.99% uptime — including during 10x traffic spikes. The approach combines multi-cloud infrastructure on AWS and GCP to eliminate single points of failure, Redis for distributed caching, asynchronous message queues to absorb burst load, and stateless microservices behind load balancers for horizontal scaling. Observability via distributed tracing and p99 latency monitoring allows proactive intervention before issues surface.", "category": "Architecture" },
+      { "question": "How do you build and integrate AI and LLM features into production applications?", "answer": "My most complete example is Arthur Vibe — an end-to-end AI transformation agent I built at Arthur Technologies using Golang, AWS Lambda, pgvector, and OpenAI. It performs document ingestion, runs async stakeholder interviews, and uses semantic search over pgvector to surface contextual answers. The resulting RAG pipeline improved query latency by 35% and answer accuracy by 40%. Beyond RAG, I've built real-time speech pipelines, AI-driven chatbot systems supporting 5K concurrent users at under 200ms latency, and agentic workflows with LangChain and Hugging Face models.", "category": "AI & LLM" },
+      { "question": "How do you approach real-time systems and what kind of scale have you tested them at?", "answer": "For Arthur Companion — a real-time group communication platform — I built the entire real-time layer in Golang using WebSockets and Redis Pub/Sub, sustaining 5K+ concurrent users at under 200ms latency. The architecture uses an event-driven model with BullMQ for job queues, Kafka for high-throughput event streams, and Redis for session state and channel routing. I've also built live audio/video streaming pipelines and AI speech processing systems under similar real-time constraints.", "category": "Real-Time" },
+      { "question": "What is your approach to cloud architecture and how do you avoid vendor lock-in?", "answer": "I design cloud-native solutions as provider-agnostic by default — abstracting infrastructure behind interfaces and favoring portable runtimes like Docker and Kubernetes over proprietary managed services where alternatives exist. At Arthur Technologies this multi-cloud strategy across AWS and GCP reduced vendor lock-in by 70%. I leverage AWS Lambda and GCP serverless for compute, S3 and equivalent object storage for assets, and DynamoDB or managed PostgreSQL depending on access patterns. Infrastructure is code-first via GitHub Actions CI/CD pipelines.", "category": "Cloud" },
+      { "question": "Are you available for new projects, and how do you prefer to collaborate?", "answer": "Yes — I'm currently available for new projects. I work effectively both as a solo technical lead on end-to-end builds and as an embedded engineer within larger teams. My timezone is GMT+5 (Lahore, Pakistan), and I'm comfortable with async-first collaboration. For new engagements I start with a scoping session to clarify functional requirements, non-functional constraints (scale, uptime, latency), and delivery milestones before writing a line of code. You can reach me directly at codewithmuhammadali@gmail.com.", "category": "Availability" },
+      { "question": "How do you lead engineering teams and what does your tech lead style look like?", "answer": "At Arthur Technologies I led the engineering team that delivered 20+ product features on schedule. My approach centers on clear technical ownership, structured code reviews, and pair programming to transfer institutional knowledge rather than gate-keep it. I write architecture decision records for significant design choices, break large milestones into testable increments, and treat disagreements as trade-off discussions grounded in data — not seniority. Mentoring junior engineers is deliberate: I identify where they're blocked, not just where they're wrong.", "category": "Leadership" },
+      { "question": "What types of projects have you shipped and which are you most proud of?", "answer": "I've shipped 35+ projects across enterprise SaaS, AI platforms, cybersecurity, e-learning, and community management. Stand-outs include: Arthur Vibe (AI enterprise transformation agent), Arthur Companion (real-time communication platform at scale), ViXa (AI-powered identity-first cybersecurity platform with XDR integration), Govava (AI gift discovery with Elasticsearch and DynamoDB), Adology AI (AI ad analysis pipeline in Python/Flask/AWS Batch), and Remar VT (SaaS e-learning platform for nursing). Each represented a distinct architectural challenge — from sub-millisecond latency to ML pipeline design to zero-trust security.", "category": "Projects" },
+      { "question": "How do you approach security in the systems you build?", "answer": "Security is structural, not a post-release checklist. For ViXa — an identity-first cybersecurity platform — I implemented zero-trust architecture, AI-powered threat detection, OAuth 2.0/OIDC flows, and XDR integration. Across all projects I enforce RBAC/PBAC at the API layer, validate all inputs at system boundaries, use parameterized queries to prevent injection, and apply least-privilege IAM policies in AWS/Azure. For authentication-critical systems I've worked with SSO, MFA, and session token standards that satisfy compliance requirements.", "category": "Security" }
+    ]
+  },
+  "contact": {
+    "heading": {
+      "line1": "Let's",
+      "line2": "Collaborate"
+    },
+    "description": "Ready to architect the next big thing? Whether it's AI, Scalable Ecosystems, or high-performance web solutions, let's build the future together.",
+    "email": "codewithmuhammadali@gmail.com",
+    "calendlyUrl": "https://calendly.com/codewithmuhammadali",
+    "calendlyLabel": "Schedule Call",
+    "globe": {
+      "locationLabel": "Location",
+      "location": "Lahore, Pakistan",
+      "availabilityLabel": "Availability",
+      "availability": "Open for Projects",
+      "dragHint": "Drag to Reorient",
+      "timezone": "GMT +5:00",
+      "timezoneLabel": "Global Time"
+    }
+  },
+  "footer": {
+    "name": "Muhammad Ali",
+    "copyright": "© 2026 Architecting the Future",
+    "bottomText": "ALL RIGHTS RESERVED • MUHAMMAD ALI",
+    "topButtonLabel": "Top",
+    "socials": [
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/aliiqbal208/", "icon": "linkedin" },
+      { "label": "GitHub", "href": "https://github.com/aliiqbal208", "icon": "github" },
+      { "label": "X", "href": "https://x.com/aliiqbal208", "icon": "x" },
+      { "label": "Medium", "href": "https://medium.com/@aliiqbal208", "icon": "medium" },
+      { "label": "Instagram", "href": "https://www.instagram.com/aliiqbal208/", "icon": "instagram" },
+      { "label": "Discord", "href": "https://discord.com/users/aliiqbal208", "icon": "discord" }
+    ]
+  }
+}

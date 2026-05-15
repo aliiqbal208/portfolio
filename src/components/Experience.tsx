@@ -3,53 +3,18 @@
 import { Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
+import content from "@/lib/content";
 
-const EXPERIENCES = [
-  {
-    company: "Arthur Technologies", role: "Tech Lead / Senior Software Engineer", date: "2020 – Present",
-    desc: [
-      "Among first engineers hired — architected Web XR App, backend, and scalable infrastructure for Arthur platform, enabling 100K+ users to collaborate seamlessly.",
-      "Led engineering team to deliver 20+ features on schedule, boosting productivity and fostering a high-performing culture.",
-      "Built Arthur Vibe — an end-to-end AI transformation agent with document ingestion, async stakeholder interviews, and pgvector semantic search guiding enterprises through discovery, analysis, and implementation.",
-      "Deployed custom LLMs with RAG pipelines and vector databases (Pinecone, pgvector), improving query latency by 35% and accuracy by 40%.",
-      "Built real-time speech pipelines and chatbot systems supporting 5K concurrent users at <200ms latency, increasing engagement by 55%.",
-      "Developed AI-driven collaboration workflows reducing meeting time by 40% through automated opinion clustering and actionable insights.",
-      "Engineered high-throughput APIs handling 1M+ requests/hour with 99.99% uptime during 10x traffic spikes.",
-      "Architected cloud-native solutions on AWS/GCP achieving high availability and fault tolerance, reducing vendor lock-in by 70%.",
-    ],
-  },
-  {
-    company: "TazteqPk", role: "Senior Software Engineer", date: "2018 – 2020",
-    desc: [
-      "First engineering hire — designed scalable ERP architecture from scratch, establishing best practices that became the foundation for product growth.",
-      "Built and optimized core ERP modules (Inventory, HRM, Sales/Purchase, Reporting) with real-time stock tracking, payroll management, and dynamic dashboards.",
-      "Developed reusable Angular components, pipes, and directives, ensuring consistency and reducing development effort across the platform.",
-      "Implemented role-based access control (RBAC) and SSE-based real-time notifications for secure, instant updates across modules.",
-      "Optimized performance with lazy loading, change detection tuning, and code splitting, achieving faster load times and improved scalability.",
-      "Delivered comprehensive unit/integration tests using Jasmine & Karma, reducing regressions and maintaining high code quality.",
-    ],
-  },
-  {
-    company: "Whitehats", role: "Software Engineer", date: "2016 – 2018",
-    desc: [
-      "Delivered pixel-perfect, responsive Angular applications, translating complex UI/UX designs into polished interfaces.",
-      "Architected reusable, modular components, reducing code duplication and accelerating development cycles.",
-      "Worked with cross-functional teams to integrate RESTful APIs, ensuring seamless data flow and optimal performance.",
-      "Implemented performance optimizations and profiling techniques, achieving fast load times and high responsiveness.",
-      "Led code reviews to enforce coding standards, share best practices, and drive team-wide quality improvements.",
-      "Enhanced accessibility and cross-browser compatibility, delivering consistent experiences across all devices.",
-    ],
-  },
-];
+const { experience } = content;
 
 export default function Experience() {
   return (
     <section id="experience" className="relative py-20 px-8">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading title="Work History" subtitle="Career Path" align="right" className="mb-16" />
+        <SectionHeading title={experience.sectionTitle} subtitle={experience.sectionSubtitle} align="right" className="mb-16" />
 
         <div className="space-y-12">
-          {EXPERIENCES.map((exp, i) => (
+          {experience.items.map((exp, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
