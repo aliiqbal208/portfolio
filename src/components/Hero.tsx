@@ -63,10 +63,11 @@ export default function Hero() {
           <p className="text-[10px] md:text-sm font-orbitron text-white/80 tracking-[0.4em] uppercase leading-relaxed max-w-3xl mx-auto">
             Tech Lead &amp; <span className="text-primary font-semibold">Full Stack AI Engineer</span>
             <br />
-            <span className="text-primary font-semibold">Architecting</span> Scalable
-            Ecosystems, Crafting{" "}
-            <span className="text-primary font-semibold">High-Performance</span> AI
-            Solutions With Precision.
+              <span className="text-primary font-semibold">Building</span> things with
+              brains — <span className="text-primary font-semibold">Architecting</span>{" "}
+              Scalable Ecosystems, Crafting{" "}
+              <span className="text-primary font-semibold">High-Performance</span> AI
+              Solutions With Precision.
           </p>
         </div>
         <div className="flex flex-col items-center gap-2 animate-bounce opacity-50 hover:opacity-100 transition-opacity cursor-pointer">

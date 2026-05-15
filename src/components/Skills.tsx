@@ -5,7 +5,7 @@ import {
   FileCode, GitBranch, Brain, Flame, Container,
   Wind, Atom, Boxes, RefreshCcw, FileBraces,
   Radio, MessageSquare, Mic, Bot, Workflow, Network,
-  HardDrive, GitPullRequest, BarChart3, Globe, Plug,
+  HardDrive, GitPullRequest, BarChart3, Globe, Plug, Shield,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
@@ -19,13 +19,22 @@ const SKILL_CATEGORIES = [
   {
     title: "Frontend", icon: Atom, items: [
       { name: "React", icon: Atom }, { name: "Next.js", icon: Boxes }, { name: "Angular", icon: Layers },
-      { name: "Redux", icon: RefreshCcw }, { name: "Tailwind", icon: Wind },
+      { name: "Redux", icon: RefreshCcw }, { name: "RxJS", icon: Radio },
+      { name: "Redux Toolkit", icon: RefreshCcw }, { name: "Redux-Saga", icon: Workflow },
+      { name: "Tailwind CSS", icon: Wind }, { name: "Styled Components", icon: FileCode },
+      { name: "Ant Design", icon: Layers }, { name: "Angular Material", icon: Layers },
+      { name: "WebGL", icon: Cpu }, { name: "SSE", icon: Radio },
+      { name: "Web Audio API", icon: Mic }, { name: "SASS / LESS", icon: FileCode },
     ],
   },
   {
     title: "Backend", icon: Server, items: [
-      { name: "Express", icon: Zap }, { name: "Fastify", icon: Flame },
-      { name: "Go Fiber", icon: Wind }, { name: "Flask", icon: FileCode }, { name: "FastAPI", icon: Zap },
+      { name: "NestJS", icon: Server }, { name: "Express", icon: Zap }, { name: "Fastify", icon: Flame },
+      { name: "Go Fiber", icon: Wind }, { name: "FastAPI", icon: Zap },
+      { name: "Prisma", icon: Database }, { name: "Mongoose", icon: Database },
+      { name: "Zod", icon: FileBraces }, { name: "Kysely", icon: Database },
+      { name: "Stripe", icon: Plug }, { name: "REST APIs", icon: Network },
+      { name: "3rd Party APIs", icon: Plug },
     ],
   },
   {
@@ -43,23 +52,46 @@ const SKILL_CATEGORIES = [
   {
     title: "Cloud & Infra", icon: Cloud, items: [
       { name: "AWS", icon: Cloud }, { name: "S3", icon: HardDrive }, { name: "Lambda", icon: Zap },
-      { name: "DynamoDB", icon: Database }, { name: "GCP", icon: Cloud },
-      { name: "Docker", icon: Container }, { name: "Redis", icon: Radio },
-      { name: "Azure", icon: Cloud }, { name: "GitHub Actions", icon: GitPullRequest },
+      { name: "EC2", icon: Server }, { name: "API Gateway", icon: Network },
+      { name: "GCP", icon: Cloud }, { name: "Cloud Run", icon: Container },
+      { name: "Cloud Functions", icon: Zap }, { name: "Eventarc", icon: Radio },
+      { name: "Azure", icon: Cloud }, { name: "Docker", icon: Container },
+      { name: "Redis", icon: Radio }, { name: "Sentry", icon: BarChart3 },
+      { name: "GitHub Actions", icon: GitPullRequest }, { name: "Bitbucket", icon: GitBranch },
     ],
   },
   {
     title: "Databases", icon: Database, items: [
-      { name: "MongoDB", icon: Database }, { name: "PostgreSQL", icon: Database },
-      { name: "ORMs", icon: Layers }, { name: "Native Drivers", icon: Plug },
+      { name: "PostgreSQL", icon: Database }, { name: "MongoDB", icon: Database },
+      { name: "MySQL", icon: Database }, { name: "DynamoDB", icon: Database },
+      { name: "Vector DBs", icon: HardDrive },
     ],
   },
   {
-    title: "Architecture", icon: BarChart3, items: [
-      { name: "Scalable Systems", icon: Network }, { name: "Microservices", icon: Boxes },
-      { name: "Serverless", icon: Cloud }, { name: "Event-driven", icon: Zap },
+    title: "Testing", icon: GitPullRequest, items: [
+      { name: "Jest", icon: Zap }, { name: "Playwright", icon: Globe },
+      { name: "Cypress", icon: Layers }, { name: "React Testing Lib", icon: Atom },
+      { name: "Mocha / Chai", icon: FileCode }, { name: "Jasmine / Karma", icon: Flame },
+      { name: "TDD", icon: RefreshCcw }, { name: "e2e Testing", icon: Network },
+      { name: "AB Testing", icon: BarChart3 }, { name: "Unit & Integration", icon: Boxes },
+    ],
+  },
+  {
+    title: "Security", icon: Shield, items: [
+      { name: "OAuth 2.0", icon: Plug }, { name: "SSO", icon: Network },
+      { name: "2FA", icon: Zap }, { name: "JWT", icon: FileBraces },
+      { name: "DDoS Mitigation", icon: Layers }, { name: "SQL Injection", icon: Database },
+      { name: "MitM Prevention", icon: Radio }, { name: "XSS / CSRF", icon: Code },
+    ],
+  },
+  {
+    title: "Architecture & Patterns", icon: BarChart3, items: [
+      { name: "Microservices", icon: Boxes }, { name: "Micro-frontends", icon: Layers },
+      { name: "Scalable Systems", icon: Network }, { name: "Serverless", icon: Cloud },
+      { name: "Event-driven", icon: Zap }, { name: "MVC / MVVM", icon: RefreshCcw },
+      { name: "SOLID", icon: Code }, { name: "Flux", icon: Workflow },
       { name: "Kafka", icon: Radio }, { name: "WebSockets", icon: Radio },
-      { name: "Pub/Sub", icon: Radio },
+      { name: "Pub/Sub", icon: Radio }, { name: "Agile / Scrum", icon: GitPullRequest },
     ],
   },
 ];
