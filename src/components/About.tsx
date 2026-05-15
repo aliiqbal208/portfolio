@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Code, Cloud } from "lucide-react";
+import { BrainCircuit, Code } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
@@ -97,11 +97,11 @@ export default function About() {
             </div>
             <div className="glass-dark p-8 border border-ice/20 flex-1 flex flex-col justify-center items-center text-center relative overflow-hidden group hover:border-ice/50 transition-colors">
               <div className="absolute inset-0 bg-ice/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <Cloud className="w-12 h-12 text-ice mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h4 className="text-2xl font-bebas text-white tracking-widest mb-2">Cloud Native</h4>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Solutions Architect</p>
+              <BrainCircuit className="w-12 h-12 text-ice mb-4 group-hover:scale-110 transition-transform duration-500" />
+              <h4 className="text-2xl font-bebas text-white tracking-widest mb-2">AI Systems</h4>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Systems · LLMs · Cloud-Agnostic</p>
               <a href="#contact" className="z-10 mt-6 text-[10px] font-orbitron text-ice border-b border-ice/30 pb-1 hover:text-white hover:border-white transition-all">
-                Let&apos;s Discuss
+                Let&apos;s Build
               </a>
             </div>
           </div>
