@@ -186,7 +186,8 @@
       { "company": "Remar Nurse", "icon": "Building2", "headline": "E-Learning Done Right", "content": "Ali delivered Remar VT on time and to spec — a full SaaS e-learning platform supporting students, admins, and institutions in a single monorepo. The Stripe integration is clean, the video delivery is reliable, and the multi-role architecture scales effortlessly. Our nursing students finally have a platform built for them.", "author": "Claire Bennett", "role": "Director of Digital Learning" },
       { "company": "Govava", "icon": "Rocket", "headline": "AI Discovery at Scale", "content": "Ali built the world's first AI-driven gift discovery engine for us — semantic search over millions of product records using Elasticsearch, personalized recommendations via ML algorithms, and a microservices backend that handles real traffic without breaking a sweat. The quality of engineering matched the ambition of the vision.", "author": "Carl Richards", "role": "CEO" },
       { "company": "Cyberwissen", "icon": "CodeXml", "headline": "Security at Every Layer", "content": "ViXa is a demanding product — AI anomaly detection, ML-based cross-layer threat correlation, XDR integration, and full regulatory compliance, all inside a CSMS. Ali delivered every piece with precision. The real-time incident detection pipeline and centralized telemetry gave us observability we never had before.", "author": "Shadrack Xavier", "role": "Chief Technology Officer" },
-      { "company": "Adology", "icon": "Brain", "headline": "Ad Intelligence Unlocked", "content": "Ali built our entire data backbone — scalable Python pipelines on AWS Batch processing millions of Facebook and TikTok ads, OpenAI integration for labeling and trend detection, and a React dashboard that makes the insights actionable. The platform went from concept to production in record time and hasn't missed a beat since.", "author": "James Donner", "role": "Head of Product" }
+      { "company": "Adology", "icon": "Brain", "headline": "Ad Intelligence Unlocked", "content": "Ali built our entire data backbone — scalable Python pipelines on AWS Batch processing millions of Facebook and TikTok ads, OpenAI integration for labeling and trend detection, and a React dashboard that makes the insights actionable. The platform went from concept to production in record time and hasn't missed a beat since.", "author": "James Donner", "role": "Head of Product" },
+      { "company": "Arthur Technologies", "icon": "Shield", "headline": "Trusted With Mission-Critical Systems", "content": "Ali is one of those rare engineers who quietly hold a company together. Over five+ years at Arthur he grew from a nervous early hire into one of our most trusted engineers, owning some of our most customer-critical infrastructure — particularly our SSO and authentication stack. He'd join live customer calls, troubleshoot complex OAuth and SAML integrations in real time, trace root causes across systems, and often ship fixes within hours. Humble, dependable, and always first to step up on a late-night release or weekend escalation — I'd hire Ali back in a heartbeat.", "author": "Shohair Sajid", "role": "CTO" }
     ]
   },
   "faq": {
@@ -205,6 +206,18 @@
       { "question": "What types of projects have you shipped and which are you most proud of?", "answer": "I've shipped 35+ projects across enterprise SaaS, AI platforms, cybersecurity, e-learning, and community management. Stand-outs include: Arthur Vibe (AI enterprise transformation agent), Arthur Companion (real-time communication platform at scale), ViXa (AI-powered identity-first cybersecurity platform with XDR integration), Govava (AI gift discovery with Elasticsearch and DynamoDB), Adology AI (AI ad analysis pipeline in Python/Flask/AWS Batch), and Remar VT (SaaS e-learning platform for nursing). Each represented a distinct architectural challenge — from sub-millisecond latency to ML pipeline design to zero-trust security.", "category": "Projects" },
       { "question": "How do you approach security in the systems you build?", "answer": "Security is structural, not a post-release checklist. For ViXa — an identity-first cybersecurity platform — I implemented zero-trust architecture, AI-powered threat detection, OAuth 2.0/OIDC flows, and XDR integration. Across all projects I enforce RBAC/PBAC at the API layer, validate all inputs at system boundaries, use parameterized queries to prevent injection, and apply least-privilege IAM policies in AWS/Azure. For authentication-critical systems I've worked with SSO, MFA, and session token standards that satisfy compliance requirements.", "category": "Security" }
     ]
+  },
+  "consultation": {
+    "label": "Book the Call",
+    "heading": "Free Product Consultation",
+    "description": "A 30-minute call, no pitch. Bring your idea, your stack, or your roadblock — leave with a clear technical direction.",
+    "points": [
+      "Architecture review",
+      "Tech-stack guidance",
+      "Scope & estimate"
+    ],
+    "ctaLabel": "Reserve a Slot",
+    "ctaUrl": "https://calendly.com/codewithmuhammadali"
   },
   "contact": {
     "heading": {

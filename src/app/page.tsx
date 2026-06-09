@@ -18,6 +18,7 @@ const Skills = dynamic(() => import("@/components/Skills"));
 const Services = dynamic(() => import("@/components/Services"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
+const Consultation = dynamic(() => import("@/components/Consultation"));
 const Contact = dynamic(() => import("@/components/Contact")); // Three.js heavy
 const Footer = dynamic(() => import("@/components/Footer"));
 const ChatBot = dynamic(() => import("@/components/ChatBot"), { ssr: false });
@@ -79,6 +80,7 @@ export default function Home() {
           <Services />
           <Testimonials />
           <FAQ />
+          <Consultation />
           <Contact />
           <Footer />
         </main>

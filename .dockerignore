@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.claude
+ai-portfolio-old
+npm-debug.log*
+.DS_Store
+.vscode
+.idea
+.env*
+.vercel
+coverage
+Dockerfile
+.dockerignore
+README.md
+*.tsbuildinfo

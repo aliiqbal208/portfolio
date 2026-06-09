@@ -180,6 +180,15 @@ export interface ContactContent {
   };
 }
 
+export interface ConsultationContent {
+  label: string;
+  heading: string;
+  description: string;
+  points: string[];
+  ctaLabel: string;
+  ctaUrl: string;
+}
+
 export interface SocialItem {
   label: string;
   href: string;
@@ -203,6 +212,7 @@ export interface SiteContent {
   skills: SkillsContent;
   testimonials: TestimonialsContent;
   faq: FAQContent;
+  consultation: ConsultationContent;
   contact: ContactContent;
   footer: FooterContent;
 }

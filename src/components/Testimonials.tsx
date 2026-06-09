@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Building2, Rocket, Brain, User, Globe, CodeXml } from "lucide-react";
+import { Building2, Rocket, Brain, User, Globe, CodeXml, Shield } from "lucide-react";
 import content from "@/lib/content";
 import type { TestimonialItem } from "@/types/content";
 
@@ -10,7 +10,7 @@ const { testimonials } = content;
 
 // Icon mapping from string to component
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Building2, Rocket, Brain, User, Globe, CodeXml,
+  Building2, Rocket, Brain, User, Globe, CodeXml, Shield,
 };
 
 function CardContent({ data }: { data: TestimonialItem }) {
