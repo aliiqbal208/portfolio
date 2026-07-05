@@ -7,6 +7,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, Html } from "@react-three/drei";
 import * as THREE from "three";
 import content from "@/lib/content";
+import { openCalendlyPopup } from "@/lib/calendly";
 
 const { contact } = content;
 
@@ -304,7 +305,18 @@ export default function Contact() {
                 </div>
                 <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">{contact.email}</span>
               </a>
-              <a href={contact.calendlyUrl} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
+              <a
+                href={contact.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openCalendlyPopup(contact.calendlyUrl).then((ok) => {
+                    if (!ok) window.open(contact.calendlyUrl, "_blank", "noopener,noreferrer");
+                  });
+                }}
+                className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2"
+              >
                 <div className="w-12 h-12 rounded-full border border-secondary/30 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
                   <Calendar className="w-5 h-5 text-secondary" />
                 </div>

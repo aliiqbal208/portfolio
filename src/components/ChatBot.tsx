@@ -46,19 +46,55 @@ export default function ChatBot() {
     return "That's a great question! Ali is a Tech Lead with 8+ years building scalable AI-driven platforms. Feel free to ask about his specific skills, projects, services, or experience — I'm here to help!";
   };
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = async () => {
+    if (!input.trim() || isTyping) return;
 
     const userMsg: Message = { role: "user", content: input.trim() };
-    setMessages((prev) => [...prev, userMsg]);
+    const history = [...messages, userMsg];
+    setMessages(history);
     setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: history }),
+      });
+
+      if (!res.ok || !res.body) throw new Error(`Request failed: ${res.status}`);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let acc = "";
+      let started = false;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        acc += decoder.decode(value, { stream: true });
+
+        if (!started) {
+          // First token arrived — swap the "Thinking..." indicator for the message.
+          started = true;
+          setIsTyping(false);
+          setMessages((prev) => [...prev, { role: "assistant", content: acc }]);
+        } else {
+          setMessages((prev) => {
+            const next = [...prev];
+            next[next.length - 1] = { role: "assistant", content: acc };
+            return next;
+          });
+        }
+      }
+
+      // Empty stream — fall back so the visitor always gets a reply.
+      if (!started) throw new Error("Empty response");
+    } catch {
       const response = generateResponse(userMsg.content);
       setMessages((prev) => [...prev, { role: "assistant", content: response }]);
       setIsTyping(false);
-    }, 800 + Math.random() * 700);
+    }
   };
 
   return (
@@ -114,14 +150,16 @@ export default function ChatBot() {
           <div className="p-4 border-t border-white/5 flex gap-2">
             <input
               placeholder="Type your message..."
-              className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors"
+              disabled={isTyping}
+              className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
             />
             <button
               onClick={handleSend}
-              className="p-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors"
+              disabled={isTyping || !input.trim()}
+              className="p-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-4 h-4" />
             </button>

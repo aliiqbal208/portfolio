@@ -9,7 +9,6 @@ export default function CustomCursor() {
   const mouse = useRef({ x: 0, y: 0 });
   const smoothMouse = useRef({ x: 0, y: 0 });
   const [cursorText, setCursorText] = useState("");
-  const [isHovering, setIsHovering] = useState(false);
   const [isListItem, setIsListItem] = useState(false);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement;
       const text = target.getAttribute("data-cursor-text");
       const isLi = target.tagName.toLowerCase() === "li" || !!target.closest("li");
-      setIsHovering(true);
       setIsListItem(isLi);
       if (text) setCursorText(text);
 
@@ -65,7 +63,6 @@ export default function CustomCursor() {
     };
 
     const onLeave = () => {
-      setIsHovering(false);
       setIsListItem(false);
       setCursorText("");
 

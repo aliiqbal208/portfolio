@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight, CalendarCheck } from "lucide-react";
 import content from "@/lib/content";
+import { openCalendlyPopup } from "@/lib/calendly";
 
 const { consultation } = content;
 
@@ -56,6 +57,12 @@ export default function Consultation() {
             href={consultation.ctaUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              openCalendlyPopup(consultation.ctaUrl).then((ok) => {
+                if (!ok) window.open(consultation.ctaUrl, "_blank", "noopener,noreferrer");
+              });
+            }}
             className="relative z-10 group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-white font-orbitron text-sm md:text-base uppercase tracking-widest font-bold transition-all duration-300 hover:gap-5 hover:shadow-[0_0_40px_rgba(8,136,174,0.45)] hover:scale-[1.03]"
           >
             <CalendarCheck className="w-5 h-5" />

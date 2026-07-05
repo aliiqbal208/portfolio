@@ -35,9 +35,16 @@ export default function Hero() {
         transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="relative flex-1 flex items-center justify-center"
       >
-        <h1 className="absolute inset-0 flex items-center justify-center text-[45vw] font-bebas leading-none text-white/5 select-none pointer-events-none tracking-tighter">
-          {hero.title}
+        {/* Semantic heading for SEO & screen readers; the watermark below is decorative. */}
+        <h1 className="sr-only">
+          {content.about.profile.name} — {hero.roles.primary}, {hero.roles.secondary}
         </h1>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-center text-[45vw] font-bebas leading-none text-white/5 select-none pointer-events-none tracking-tighter"
+        >
+          {hero.title}
+        </div>
         <div className="relative z-10 w-full max-w-4xl aspect-4/3 flex items-center justify-center group mt-[25px]">
           <Image
             src={hero.image.src}
