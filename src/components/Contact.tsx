@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useSyncExternalStore } from "react";
+import { useRef, useMemo, useState, useEffect, useLayoutEffect, useSyncExternalStore } from "react";
 import { Mail, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -97,9 +97,52 @@ function Atmosphere() {
   );
 }
 
+/* ── Instanced dot field — all dots in a single draw call ── */
+function DotField({ positions }: { positions: THREE.Vector3[] }) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+
+  useLayoutEffect(() => {
+    const mesh = ref.current;
+    if (!mesh) return;
+    const m = new THREE.Matrix4();
+    positions.forEach((p, i) => {
+      m.setPosition(p);
+      mesh.setMatrixAt(i, m);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+  }, [positions]);
+
+  return (
+    <instancedMesh key={positions.length} ref={ref} args={[undefined, undefined, positions.length]}>
+      <sphereGeometry args={[0.012, 6, 6]} />
+      <meshBasicMaterial color="#0888ae" transparent opacity={0.55} />
+    </instancedMesh>
+  );
+}
+
+/* ── Bright dot traveling along a connection arc ── */
+function ArcPulse({ points, offset }: { points: THREE.Vector3[]; offset: number }) {
+  const ref = useRef<THREE.Mesh>(null);
+
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = (clock.elapsedTime * 0.15 + offset) % 1;
+    const idx = t * (points.length - 1);
+    const i = Math.floor(idx);
+    const next = points[Math.min(i + 1, points.length - 1)];
+    ref.current.position.lerpVectors(points[i], next, idx - i);
+  });
+
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[0.022, 8, 8]} />
+      <meshBasicMaterial color="#00d4ff" transparent opacity={0.9} />
+    </mesh>
+  );
+}
+
 /* ── Dots on sphere surface ── */
 function DotGlobe({ radius = 1.85 }: { radius?: number }) {
-  const groupRef = useRef<THREE.Group>(null);
   const ringRef = useRef<THREE.Mesh>(null);
   const ring2Ref = useRef<THREE.Mesh>(null);
 
@@ -142,20 +185,25 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
     return lines;
   }, [radius]);
 
-  /* connection arcs from Lahore to cities */
+  /* great-circle connection arcs from Lahore to cities */
   const connectionArcs = useMemo(() => {
+    const start = latLngToVec3(LAHORE.lat, LAHORE.lng, 1).normalize();
     return CITIES.map((t) => {
-      const pts: number[] = [];
+      const end = latLngToVec3(t.lat, t.lng, 1).normalize();
+      const pts: THREE.Vector3[] = [];
+      const flat: number[] = [];
       const steps = 60;
       for (let s = 0; s <= steps; s++) {
         const frac = s / steps;
-        const lat = LAHORE.lat + (t.lat - LAHORE.lat) * frac;
-        const lng = LAHORE.lng + (t.lng - LAHORE.lng) * frac;
         const arcHeight = 0.35 * Math.sin(frac * Math.PI);
-        const v = latLngToVec3(lat, lng, radius + arcHeight);
-        pts.push(v.x, v.y, v.z);
+        const v = new THREE.Vector3()
+          .lerpVectors(start, end, frac)
+          .normalize()
+          .multiplyScalar(radius + arcHeight);
+        pts.push(v);
+        flat.push(v.x, v.y, v.z);
       }
-      return new Float32Array(pts);
+      return { pts, flat: new Float32Array(flat) };
     });
   }, [radius]);
 
@@ -168,19 +216,26 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
   const lahorePos = useMemo(() => latLngToVec3(LAHORE.lat, LAHORE.lng, radius + 0.02), [radius]);
   const lahoreLabelPos = useMemo(() => latLngToVec3(LAHORE.lat, LAHORE.lng, radius + 0.14), [radius]);
 
-  useFrame(() => {
-    if (ringRef.current) {
-      const s = 1 + 0.35 * Math.sin(Date.now() * 0.003);
-      ringRef.current.scale.set(s, s, s);
-    }
-    if (ring2Ref.current) {
-      const s = 1 + 0.5 * Math.sin(Date.now() * 0.002 + 1);
-      ring2Ref.current.scale.set(s, s, s);
-    }
+  /* orient pulse rings tangent to the sphere surface at Lahore */
+  const lahoreQuat = useMemo(
+    () => new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), lahorePos.clone().normalize()),
+    [lahorePos]
+  );
+
+  /* radar pulse — rings grow while fading out, phases offset */
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    const animate = (mesh: THREE.Mesh | null, phase: number) => {
+      if (!mesh) return;
+      const p = (t * 0.45 + phase) % 1;
+      const s = 1 + p * 1.8;
+      mesh.scale.set(s, s, s);
+      (mesh.material as THREE.MeshBasicMaterial).opacity = 0.5 * (1 - p);
+    };
+    animate(ringRef.current, 0);
+    animate(ring2Ref.current, 0.5);
   });
 
-  const dotGeo = useMemo(() => new THREE.SphereGeometry(0.012, 6, 6), []);
-  const dotMat = useMemo(() => new THREE.MeshBasicMaterial({ color: "#0888ae", transparent: true, opacity: 0.55 }), []);
   const cityDotGeo = useMemo(() => new THREE.SphereGeometry(0.025, 12, 12), []);
   const cityDotMat = useMemo(() => new THREE.MeshBasicMaterial({ color: "#ff5722", transparent: true, opacity: 0.9 }), []);
 
@@ -188,16 +243,14 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
   const yRot = useMemo(() => lngToYRotation(LAHORE.lng), []);
 
   return (
-    <group ref={groupRef} rotation={[0.15, yRot, 0]}>
+    <group rotation={[0.15, yRot, 0]}>
       {/* Dark core sphere */}
       <Sphere args={[radius - 0.03, 64, 64]}>
         <meshStandardMaterial color="#070d1a" roughness={0.9} metalness={0.1} />
       </Sphere>
 
       {/* Dot field */}
-      {dots.map((pos, i) => (
-        <mesh key={i} position={pos} geometry={dotGeo} material={dotMat} />
-      ))}
+      <DotField positions={dots} />
 
       {/* Grid arcs */}
       {arcs.map((arr, i) => (
@@ -210,13 +263,18 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
       ))}
 
       {/* Connection arcs */}
-      {connectionArcs.map((arr, i) => (
+      {connectionArcs.map((arc, i) => (
         <line key={`conn-${i}`}>
           <bufferGeometry>
-            <bufferAttribute attach="attributes-position" args={[arr, 3]} />
+            <bufferAttribute attach="attributes-position" args={[arc.flat, 3]} />
           </bufferGeometry>
           <lineBasicMaterial color="#00d4ff" transparent opacity={0.3} />
         </line>
+      ))}
+
+      {/* Pulses traveling along the arcs */}
+      {connectionArcs.map((arc, i) => (
+        <ArcPulse key={`pulse-${i}`} points={arc.pts} offset={i * 0.2} />
       ))}
 
       {/* City endpoint dots */}
@@ -230,18 +288,15 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
         <meshBasicMaterial color="#00d4ff" />
       </mesh>
 
-      {/* Lahore glow */}
-      <pointLight position={lahorePos} color="#00d4ff" intensity={1.5} distance={0.6} />
-
       {/* Lahore pulse ring 1 */}
-      <mesh position={lahorePos} ref={ringRef}>
+      <mesh position={lahorePos} quaternion={lahoreQuat} ref={ringRef}>
         <ringGeometry args={[0.07, 0.1, 32]} />
         <meshBasicMaterial color="#00d4ff" transparent opacity={0.45} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Lahore pulse ring 2 (outer, offset timing) */}
-      <mesh position={lahorePos} ref={ring2Ref}>
-        <ringGeometry args={[0.11, 0.13, 32]} />
+      <mesh position={lahorePos} quaternion={lahoreQuat} ref={ring2Ref}>
+        <ringGeometry args={[0.09, 0.11, 32]} />
         <meshBasicMaterial color="#00d4ff" transparent opacity={0.2} side={THREE.DoubleSide} />
       </mesh>
 
@@ -268,6 +323,21 @@ function DotGlobe({ radius = 1.85 }: { radius?: number }) {
 
 export default function Contact() {
   const webgl = useWebGL();
+  const globeWrapRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const [interacting, setInteracting] = useState(false);
+
+  /* only render frames while the globe is on screen */
+  useEffect(() => {
+    const el = globeWrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "120px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section id="contact" className="relative py-20 px-8 overflow-hidden">
@@ -334,10 +404,12 @@ export default function Contact() {
           >
             <div className="aspect-square glass-dark rounded-3xl relative flex items-center justify-center p-8 overflow-hidden border border-white/10 group cursor-grab active:cursor-grabbing backdrop-blur-3xl">
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="w-full h-full min-h-[300px] md:min-h-[400px] flex items-center justify-center relative">
+              <div ref={globeWrapRef} className="w-full h-full min-h-[300px] md:min-h-[400px] flex items-center justify-center relative">
                 {webgl ? (
                   <Canvas
                     camera={{ position: [0, 0.5, 4.8], fov: 45 }}
+                    dpr={[1, 1.5]}
+                    frameloop={inView ? "always" : "never"}
                     style={{ width: "100%", height: "100%" }}
                   >
                     <DotGlobe />
@@ -345,7 +417,10 @@ export default function Contact() {
                       enableZoom={false}
                       enablePan={false}
                       rotateSpeed={0.5}
-                      autoRotate={false}
+                      autoRotate={!interacting}
+                      autoRotateSpeed={0.4}
+                      onStart={() => setInteracting(true)}
+                      onEnd={() => setInteracting(false)}
                     />
                   </Canvas>
                 ) : (

@@ -19,7 +19,9 @@ const Services = dynamic(() => import("@/components/Services"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const Consultation = dynamic(() => import("@/components/Consultation"));
-const Contact = dynamic(() => import("@/components/Contact")); // Three.js heavy
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <section id="contact" className="min-h-[70vh]" />,
+}); // Three.js heavy
 const Footer = dynamic(() => import("@/components/Footer"));
 const ChatBot = dynamic(() => import("@/components/ChatBot"), { ssr: false });
 const Dock = dynamic(() => import("@/components/Dock"), { ssr: false });

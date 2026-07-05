@@ -65,8 +65,12 @@ export default function Testimonials() {
   const [radiusX, setRadiusX] = useState(480);
   const [radiusY, setRadiusY] = useState(220);
   const [isMobile, setIsMobile] = useState(false);
+  /* orbital cards render client-only — their motion styles are computed
+     floats that never serialize identically on the server */
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const update = () => {
       const w = window.innerWidth;
       const mobile = w < 768;
@@ -128,7 +132,7 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
-      ) : (
+      ) : mounted ? (
         /* Desktop: orbital drag carousel */
         <motion.div
           onPan={(_, info) => { rotationValue.set(rotationValue.get() + info.delta.x * 0.4); }}
@@ -138,7 +142,7 @@ export default function Testimonials() {
             <OrbitalCard key={i} data={t} index={i} total={testimonials.items.length} radiusX={radiusX} radiusY={radiusY} rotation={rotation} />
           ))}
         </motion.div>
-      )}
+      ) : null}
     </section>
   );
 }
