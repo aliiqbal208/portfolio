@@ -357,24 +357,17 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h2 className="text-7xl md:text-9xl font-bebas text-white mb-6 uppercase leading-none">
-              {contact.heading.line1} <br />
-              <span className="text-primary italic relative">
+            <h2 className="font-bebas text-white mb-6 uppercase leading-[0.85]">
+              <span className="block text-6xl md:text-8xl tracking-tight">{contact.heading.line1}</span>
+              <span className="mt-2 inline-block bg-primary text-navy text-5xl md:text-7xl px-4 pb-1 tracking-tight">
                 {contact.heading.line2}
-                <span className="absolute -bottom-2 left-0 w-full h-2 bg-primary/30 -skew-x-12" />
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground font-inter mb-12 max-w-md leading-relaxed mt-10">
+            <p className="text-lg md:text-xl text-muted-foreground font-inter mb-10 max-w-md leading-relaxed mt-8">
               {contact.description}
             </p>
 
-            <div className="flex flex-col gap-6">
-              <a href={`mailto:${contact.email}`} className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2">
-                <div className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-colors">
-                  <Mail className="w-5 h-5 text-primary" />
-                </div>
-                <span className="border-b border-white/10 pb-1 group-hover:border-primary/50">{contact.email}</span>
-              </a>
+            <div className="flex flex-col sm:flex-row gap-5">
               <a
                 href={contact.calendlyUrl}
                 target="_blank"
@@ -385,12 +378,17 @@ export default function Contact() {
                     if (!ok) window.open(contact.calendlyUrl, "_blank", "noopener,noreferrer");
                   });
                 }}
-                className="group flex items-center gap-4 text-white font-orbitron text-lg transition-all hover:pl-2"
+                className="group inline-flex items-center justify-center gap-2 bg-primary text-navy font-orbitron font-bold text-xs md:text-sm uppercase tracking-[0.15em] px-6 py-4 border-2 border-primary shadow-[6px_6px_0_0_rgba(255,255,255,0.9)] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_rgba(255,255,255,0.9)]"
               >
-                <div className="w-12 h-12 rounded-full border border-secondary/30 flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary/10 transition-colors">
-                  <Calendar className="w-5 h-5 text-secondary" />
-                </div>
-                <span className="border-b border-white/10 pb-1 group-hover:border-secondary/50">{contact.calendlyLabel}</span>
+                <Calendar className="w-4 h-4" />
+                {contact.calendlyLabel}
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-orbitron font-bold text-xs md:text-sm uppercase tracking-[0.15em] px-6 py-4 border-2 border-white shadow-[6px_6px_0_0_rgba(14,165,199,0.9)] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_rgba(14,165,199,0.9)]"
+              >
+                <Mail className="w-4 h-4" />
+                Email Me
               </a>
             </div>
           </motion.div>
