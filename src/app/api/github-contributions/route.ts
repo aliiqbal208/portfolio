@@ -73,7 +73,11 @@ export async function GET() {
         }))
       );
 
-    return NextResponse.json({ total: calendar.totalContributions as number, contributions });
+    /* Cache successful responses at the edge; errors fall through uncached. */
+    return NextResponse.json(
+      { total: calendar.totalContributions as number, contributions },
+      { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
+    );
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Failed to fetch" },

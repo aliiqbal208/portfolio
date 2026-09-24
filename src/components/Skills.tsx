@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Code, Server, Cpu, Cloud, Database, Layers, Zap,
   FileCode, GitBranch, Brain, Flame, Container,
@@ -70,7 +72,13 @@ const SKILL_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   "Pub/Sub": Radio, "Agile / Scrum": GitPullRequest,
 };
 
+// Mirrors the old Tailwind transition-all duration-500 (default ease).
+const TOOLTIP_TRANSITION = { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const };
+
 export default function Skills() {
+  // Only the hovered skill renders its tooltip, instead of one hidden tooltip per skill.
+  const [hovered, setHovered] = useState<string | null>(null);
+
   return (
     <section id="skills" className="relative py-20 px-8 bg-navy-light/30">
       <div className="max-w-7xl mx-auto">
@@ -86,16 +94,32 @@ export default function Skills() {
                 <div className="flex flex-wrap gap-2">
                   {cat.items.map((item, j) => {
                     const ItemIcon = SKILL_ICON_MAP[item] || Code;
+                    const key = `${i}-${j}`;
                     return (
-                      <div key={j} className="relative group/skill">
+                      <div
+                        key={j}
+                        className="relative group/skill"
+                        onMouseEnter={() => setHovered(key)}
+                        onMouseLeave={() => setHovered((h) => (h === key ? null : h))}
+                      >
                         <span className="cursor-default block text-xs font-inter text-muted-foreground group-hover/skill:text-primary transition-colors duration-300 px-2 py-1 border border-white/5 bg-white/5 rounded relative z-10">
                           {item}
                         </span>
-                        <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-28 h-28 bg-primary rounded-xl opacity-0 translate-y-4 scale-75 invisible group-hover/skill:opacity-100 group-hover/skill:translate-y-0 group-hover/skill:scale-100 group-hover/skill:visible transition-all duration-500 z-50 pointer-events-none shadow-[0_20px_50px_rgba(8,136,174,0.4)] flex flex-col items-center justify-center">
-                          <ItemIcon className="w-10 h-10 text-white mb-2" />
-                          <span className="text-[10px] text-white font-bold uppercase tracking-widest text-center px-1 leading-tight">{item}</span>
-                          <div className="absolute inset-0 bg-white/10 blur-xl -z-10 rounded-xl" />
-                        </div>
+                        <AnimatePresence>
+                          {hovered === key && (
+                            <motion.div
+                              initial={{ opacity: 0, x: "-50%", y: 16, scale: 0.75 }}
+                              animate={{ opacity: 1, x: "-50%", y: 0, scale: 1 }}
+                              exit={{ opacity: 0, x: "-50%", y: 16, scale: 0.75 }}
+                              transition={TOOLTIP_TRANSITION}
+                              className="absolute bottom-full mb-3 left-1/2 w-28 h-28 bg-primary rounded-xl z-50 pointer-events-none shadow-[0_20px_50px_rgba(8,136,174,0.4)] flex flex-col items-center justify-center"
+                            >
+                              <ItemIcon className="w-10 h-10 text-white mb-2" />
+                              <span className="text-[10px] text-white font-bold uppercase tracking-widest text-center px-1 leading-tight">{item}</span>
+                              <div className="absolute inset-0 bg-white/10 blur-xl -z-10 rounded-xl" />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     );
                   })}
