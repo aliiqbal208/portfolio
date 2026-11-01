@@ -72,7 +72,6 @@ export default function Services() {
                   setSelected(svc);
                 }
               }}>
-              <span className="text-primary font-orbitron text-xs mb-4 block opacity-50">0{i + 1}</span>
               <h3 className="text-2xl font-bebas text-white tracking-widest group-hover:text-primary transition-colors">{svc.title}</h3>
               <p className="text-sm text-muted-foreground mt-4 font-inter leading-relaxed line-clamp-3">
                 {svc.desc}

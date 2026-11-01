@@ -2,26 +2,27 @@
 
 export interface HeroContent {
   title: string;
-  portfolioLabel: string;
+  headline: {
+    name: string;
+    title: string;
+  };
+  cta: {
+    primary: string;
+    secondary: string;
+  };
+  proof: { value: string; label: string }[];
   location: {
     region: string;
     city: string;
   };
-  roles: {
-    primary: string;
-    secondary: string;
+  specialty: {
+    label: string;
+    value: string;
   };
   tagline: {
-    prefix: string;
-    highlight1: string;
-    line2: {
-      highlight1: string;
-      text1: string;
-      highlight2: string;
-      text2: string;
-      highlight3: string;
-      text3: string;
-    };
+    before: string;
+    highlight: string;
+    after: string;
   };
   scrollLabel: string;
   image: {

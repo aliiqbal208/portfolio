@@ -46,7 +46,6 @@ function buildKnowledge(): string {
   lines.push(
     `Name: ${c.about.profile.name} ("${c.hero.title}"). Title: ${c.about.profile.title}.`
   );
-  lines.push(`Roles: ${c.hero.roles.primary}; ${c.hero.roles.secondary}.`);
   lines.push(`Location: ${c.contact.globe.location} (${c.contact.globe.timezone}).`);
   lines.push(`Stats: ${c.about.stats.map((s) => `${s.value} ${s.label}`).join(", ")}.`);
   lines.push(`Specializations: ${c.about.vision.specializations.join(", ")}.`);
