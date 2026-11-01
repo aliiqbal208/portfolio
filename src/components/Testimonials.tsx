@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Building2, Rocket, Brain, User, Globe, CodeXml, Shield } from "lucide-react";
 import content from "@/lib/content";
@@ -67,10 +67,13 @@ export default function Testimonials() {
   const [isMobile, setIsMobile] = useState(false);
   /* orbital cards render client-only — their motion styles are computed
      floats that never serialize identically on the server */
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
     const update = () => {
       const w = window.innerWidth;
       const mobile = w < 768;
@@ -105,14 +108,14 @@ export default function Testimonials() {
 
       {/* Center heading */}
       <div className={`relative z-10 text-center ${isMobile ? "" : "pointer-events-none"}`}>
-        <motion.h1
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-5xl md:text-8xl lg:text-[10rem] font-cormorant italic select-none leading-none tracking-tighter bg-linear-to-b from-white to-white/20 bg-clip-text text-transparent"
         >
           {testimonials.heading.line1}<br /><span className="z-0"> {testimonials.heading.line2}</span>
-        </motion.h1>
+        </motion.h2>
       </div>
 
       {isMobile ? (

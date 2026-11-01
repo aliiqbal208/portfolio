@@ -51,7 +51,10 @@ function DockItem({
   const springSize = useSpring(size, { mass: 0.1, stiffness: 120, damping: 20 });
 
   return (
-    <div
+    <button
+      type="button"
+      aria-label={item.label}
+      aria-pressed={item.isSettings ? isActive : undefined}
       className="relative flex items-end justify-center cursor-pointer group"
       onClick={onClick}
     >
@@ -80,7 +83,7 @@ function DockItem({
       <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-background/80 backdrop-blur px-3 py-1 rounded text-xs font-bold whitespace-nowrap border border-white/10 uppercase tracking-widest pointer-events-none shadow-xl">
         {item.label}
       </span>
-    </div>
+    </button>
   );
 }
 
@@ -143,6 +146,7 @@ export default function Dock() {
                     </h3>
                     <button
                       onClick={() => setSettingsOpen(false)}
+                      aria-label="Close appearance settings"
                       className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all group/close"
                     >
                       <X size={14} className="group-hover/close:rotate-90 transition-transform" />

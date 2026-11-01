@@ -28,6 +28,7 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                aria-expanded={openIndex === i}
                 className="w-full py-10 md:py-12 flex items-start gap-6 md:gap-12 text-left"
               >
                 <div className="flex flex-col items-center pt-2">

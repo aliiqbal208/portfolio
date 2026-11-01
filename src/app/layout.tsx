@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Bebas_Neue, Orbitron, Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -16,9 +17,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Muhammad Ali | Tech Lead & Full Stack Architect",
-  description: "Strategic Tech Lead architecting scalable ecosystems and high-performance AI solutions with precision.",
-  metadataBase: new URL("https://themuhammadali.dev"),
+  title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
+  description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/favicon/favicon.svg", type: "image/svg+xml" },
@@ -30,16 +32,16 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
   openGraph: {
-    title: "Muhammad Ali | Tech Lead & Full Stack Architect",
-    description: "Strategic Tech Lead architecting scalable ecosystems and high-performance AI solutions.",
+    title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
+    description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
     type: "website",
-    url: "https://themuhammadali.dev",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Muhammad Ali — Tech Lead & Full Stack Architect" }],
+    url: SITE_URL,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Muhammad Ali Iqbal — Lead Full Stack AI Engineer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Ali | Tech Lead & Full Stack | AI Solutions Architect",
-    description: "Strategic Tech Lead architecting scalable ecosystems and high-performance AI solutions.",
+    title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
+    description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
     images: ["/opengraph-image"],
   },
 };
@@ -61,8 +63,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Muhammad Ali Iqbal",
-              jobTitle: "Tech Lead & Full Stack | AI Solutions Architect",
-              url: "https://themuhammadali.dev",
+              jobTitle: "Lead Full Stack AI Engineer",
+              url: SITE_URL,
               email: "codewithmuhammadali@gmail.com",
               address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
               sameAs: [

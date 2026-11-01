@@ -28,6 +28,8 @@ export default function Navbar() {
       <div className="fixed top-8 right-8 z-[100] md:hidden">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
           className="w-12 h-12 rounded-full glass-dark flex items-center justify-center text-primary border border-white/10"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

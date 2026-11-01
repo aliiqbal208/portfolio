@@ -29,7 +29,7 @@ export default function ChatBot() {
       return "Some notable projects include:\n• **Arthur Vibe** – AI transformation agent for enterprises (Go, pgvector, OpenAI)\n• **Arthur Web App** – React/WebGL platform with real-time AV and RBAC\n• **Govava** – World's first AI gift discovery engine (Elasticsearch, ML recommendations)\n• **ViXa Identity-First** – AI-powered cybersecurity anomaly detection platform\n• **Adology AI** – Ad intelligence platform processing millions of Facebook & TikTok ads\n• **Remar VT** – SaaS e-learning platform for nursing education with Stripe integration";
     }
     if (msg.includes("experience") || msg.includes("year") || msg.includes("career")) {
-      return "Ali has 8+ years of experience as a Tech Lead & Full Stack Architect. He has delivered 35+ projects across AI, distributed systems, and cloud architecture, working with global teams and handling millions of users.";
+      return "Ali has 8+ years of experience as a Lead Full Stack AI Engineer. He has delivered 35+ projects across AI, distributed systems, and cloud architecture, working with global teams and handling millions of users.";
     }
     if (msg.includes("contact") || msg.includes("hire") || msg.includes("available")) {
       return "Ali is currently **available for projects**! You can reach out via the Contact section below, or scroll down to schedule a call. He's based in Lahore, Pakistan (GMT+5).";
@@ -114,7 +114,7 @@ export default function ChatBot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4" role="log" aria-live="polite" aria-label="Chat messages">
             {messages.length === 0 && (
               <div className="text-center text-muted-foreground text-xs mt-10 font-inter">
                 Hi! I am Ali&apos;s AI assistant. Ask me anything about his projects, skills, or experience!
@@ -150,6 +150,7 @@ export default function ChatBot() {
           <div className="p-4 border-t border-white/5 flex gap-2">
             <input
               placeholder="Type your message..."
+              aria-label="Message"
               disabled={isTyping}
               className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
               value={input}
@@ -158,6 +159,7 @@ export default function ChatBot() {
             />
             <button
               onClick={handleSend}
+              aria-label="Send message"
               disabled={isTyping || !input.trim()}
               className="p-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -170,6 +172,8 @@ export default function ChatBot() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-expanded={isOpen}
         className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 cursor-pointer"
         style={{ transform: "none" }}
       >

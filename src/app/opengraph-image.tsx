@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
+import { SITE_HOST } from "@/lib/site";
 
-export const runtime = "edge";
-export const alt = "Muhammad Ali | Tech Lead & Full Stack Architect";
+export const alt = "Muhammad Ali Iqbal | Lead Full Stack AI Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -96,7 +96,7 @@ export default async function Image() {
               fontFamily: "monospace",
             }}
           >
-            muhammadali.dev
+            {SITE_HOST}
           </p>
 
           <h1
@@ -110,7 +110,7 @@ export default async function Image() {
               letterSpacing: "-0.02em",
             }}
           >
-            Muhammad Ali
+            Muhammad Ali Iqbal
           </h1>
 
           <p
@@ -122,7 +122,7 @@ export default async function Image() {
               margin: "0 0 48px 0",
             }}
           >
-            Tech Lead & Full Stack Architect
+            Lead Full Stack AI Engineer
           </p>
 
           <div style={{ display: "flex", gap: 12 }}>

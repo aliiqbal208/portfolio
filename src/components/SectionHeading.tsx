@@ -126,6 +126,7 @@ export default function SectionHeading({
         </h2>
         <div
           ref={glowRef}
+          aria-hidden="true"
           className="absolute inset-0 pointer-events-none select-none transition-opacity"
           style={{
             maskImage: maskValue,

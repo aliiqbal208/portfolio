@@ -7,6 +7,30 @@ export const maxDuration = 30;
 const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 const MODEL = "gpt-4o-mini";
 const MAX_HISTORY = 12;
+const MAX_BODY_BYTES = 32_000;
+const RATE_LIMIT = 10; // requests per window, per client
+const RATE_WINDOW_MS = 60_000;
+
+/* Best-effort limiter: state is per server instance, so on serverless it
+   slows casual abuse of the paid OpenAI key but isn't a hard guarantee. */
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(req: NextRequest): boolean {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+  const now = Date.now();
+
+  if (hits.size > 1000) {
+    for (const [key, entry] of hits) if (entry.resetAt <= now) hits.delete(key);
+  }
+
+  const entry = hits.get(ip);
+  if (!entry || entry.resetAt <= now) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > RATE_LIMIT;
+}
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -70,7 +94,20 @@ ${KNOWLEDGE}`;
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return Response.json({ error: "OPENAI_API_KEY not set" }, { status: 500 });
+    console.error("OPENAI_API_KEY not set");
+    return Response.json({ error: "Chat is unavailable" }, { status: 503 });
+  }
+
+  if (isRateLimited(req)) {
+    return Response.json(
+      { error: "Too many requests" },
+      { status: 429, headers: { "Retry-After": String(RATE_WINDOW_MS / 1000) } }
+    );
+  }
+
+  const length = Number(req.headers.get("content-length") ?? 0);
+  if (length > MAX_BODY_BYTES) {
+    return Response.json({ error: "Request too large" }, { status: 413 });
   }
 
   let body: { messages?: unknown };
@@ -96,27 +133,32 @@ export async function POST(req: NextRequest) {
     return Response.json({ error: "No messages provided" }, { status: 400 });
   }
 
-  const upstream = await fetch(OPENAI_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      stream: true,
-      temperature: 0.4,
-      max_tokens: 500,
-      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...history],
-    }),
-  });
+  let upstream: Response;
+  try {
+    upstream = await fetch(OPENAI_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        stream: true,
+        temperature: 0.4,
+        max_tokens: 500,
+        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...history],
+      }),
+      signal: req.signal,
+    });
+  } catch {
+    return Response.json({ error: "Chat is unavailable" }, { status: 502 });
+  }
 
   if (!upstream.ok || !upstream.body) {
+    /* Log the upstream detail server-side; never echo it to the client. */
     const detail = await upstream.text().catch(() => "");
-    return Response.json(
-      { error: `Upstream error ${upstream.status}`, detail: detail.slice(0, 500) },
-      { status: 502 }
-    );
+    console.error(`OpenAI error ${upstream.status}: ${detail.slice(0, 500)}`);
+    return Response.json({ error: "Chat is unavailable" }, { status: 502 });
   }
 
   /* Parse the OpenAI SSE stream and re-emit only the text deltas as a

@@ -109,6 +109,18 @@ body {
   pointer-events: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-pulse-slow,
+  .animate-bounce,
+  .animate-ping {
+    animation: none;
+  }
+}
+
 /* Theme overrides */
 [data-theme="mocha"] { --color-primary: #8b5e3c; --color-ice: #d4a373; }
 [data-theme="sage"] { --color-primary: #4f7942; --color-ice: #8a9a5b; }

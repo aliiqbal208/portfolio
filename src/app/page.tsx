@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import Loader from "@/components/Loader";
 import CustomCursor from "@/components/CustomCursor";
@@ -63,7 +63,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <AnimatePresence mode="wait">
         {loading && <Loader key="loader" />}
       </AnimatePresence>
@@ -87,6 +87,6 @@ export default function Home() {
       </SmoothScroll>
       <ChatBot />
       <Dock />
-    </>
+    </MotionConfig>
   );
 }

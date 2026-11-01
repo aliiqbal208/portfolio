@@ -34,7 +34,8 @@ export async function GET() {
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) {
-    return NextResponse.json({ error: "GITHUB_TOKEN not set" }, { status: 500 });
+    console.error("GITHUB_TOKEN not set");
+    return NextResponse.json({ error: "Contributions unavailable" }, { status: 503 });
   }
 
   const to = new Date();
@@ -79,9 +80,7 @@ export async function GET() {
       { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
     );
   } catch (err) {
-    return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Failed to fetch" },
-      { status: 500 }
-    );
+    console.error("GitHub contributions fetch failed:", err);
+    return NextResponse.json({ error: "Contributions unavailable" }, { status: 502 });
   }
 }
