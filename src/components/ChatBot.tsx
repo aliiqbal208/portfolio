@@ -1,11 +1,122 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { Bot, Send, X, MessageCircle } from "lucide-react";
+import content from "@/lib/content";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
+}
+
+const BULLET = /^\s*[-*•]\s+/;
+
+/* **bold** → <strong>. Built as React nodes, so nothing is injected as HTML. */
+function renderInline(text: string): ReactNode[] {
+  return text.split(/(\*\*[^*\n]+\*\*)/).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
+      <strong key={i} className="font-semibold text-white">{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    )
+  );
+}
+
+/* Minimal markdown for assistant replies: paragraphs, bullet lists, bold. */
+function RichText({ text }: { text: string }) {
+  const blocks: ReactNode[] = [];
+  let bullets: string[] = [];
+
+  const flush = () => {
+    if (!bullets.length) return;
+    blocks.push(
+      <ul key={`ul-${blocks.length}`} className="list-disc pl-4 space-y-1">
+        {bullets.map((b, i) => <li key={i}>{renderInline(b)}</li>)}
+      </ul>
+    );
+    bullets = [];
+  };
+
+  for (const line of text.split("\n")) {
+    if (BULLET.test(line)) {
+      bullets.push(line.replace(BULLET, ""));
+    } else {
+      flush();
+      if (line.trim()) blocks.push(<p key={`p-${blocks.length}`}>{renderInline(line)}</p>);
+    }
+  }
+  flush();
+
+  return <div className="space-y-2">{blocks}</div>;
+}
+
+const { about, contact, services, skills, projects, experience } = content;
+
+/* Fallback answers, used when /api/chat is unavailable. Every fact is read
+   from site-content.json so these never drift from the rest of the site. */
+const stat = (label: RegExp) => about.stats.find((s) => label.test(s.label))?.value;
+const list = (lines: string[]) => lines.map((l) => `- ${l}`).join("\n");
+
+const REPLIES: { match: RegExp; reply: () => string }[] = [
+  {
+    match: /\b(skills?|tech|technolog(y|ies)|stack|tools?)\b/,
+    reply: () => {
+      const frameworks = stat(/framework/i);
+      const rows = skills.categories
+        .slice(0, 6)
+        .map((c) => `**${c.title}**: ${c.items.slice(0, 5).join(", ")}`);
+      return `Ali's core skills:\n${list(rows)}${frameworks ? `\n\nAcross ${frameworks} frameworks and tools.` : ""}`;
+    },
+  },
+  {
+    match: /\b(experience|years?|career|background)\b/,
+    reply: () => {
+      const years = stat(/year/i);
+      const delivered = stat(/project/i);
+      const summary = [years && `${years} years of experience`, delivered && `${delivered} projects delivered`]
+        .filter(Boolean)
+        .join(" and ");
+      const current = experience.items[0];
+      return `${summary ? `Ali has ${summary}. ` : ""}Most recently he's ${current.role} at ${current.company} (${current.date}).`;
+    },
+  },
+  {
+    match: /\b(projects?|portfolio|work|built)\b/,
+    reply: () => {
+      const rows = projects.items.slice(0, 6).map((p) => `**${p.title}** (${p.tech.slice(0, 3).join(", ")})`);
+      return `Featured projects:\n${list(rows)}\n\nThe Projects section has the details.`;
+    },
+  },
+  {
+    match: /\b(contact|hire|hiring|available|availability|email|book|call|reach)\b/,
+    reply: () =>
+      `Ali is ${contact.globe.availability.toLowerCase()}. Email ${contact.email} or book a call: ${contact.calendlyUrl}. He's based in ${contact.globe.location} (${contact.globe.timezone}).`,
+  },
+  {
+    match: /\b(services?|offers?)\b/,
+    reply: () => `Ali offers:\n${list(services.items.map((s) => s.title))}`,
+  },
+  {
+    match: /\b(ai|machine learning|ml|llm|rag)\b/,
+    reply: () => {
+      const service = services.items.find((s) => /\bai\b/i.test(s.title));
+      const tools = skills.categories.find((c) => /\bai\b/i.test(c.title));
+      if (!service) return DEFAULT_REPLY;
+      return `AI is Ali's main focus. He works on:\n${list(service.features)}${tools ? `\n\nTools include ${tools.items.slice(0, 6).join(", ")}.` : ""}`;
+    },
+  },
+  {
+    match: /\b(hi|hello|hey)\b/,
+    reply: () => "Hi! I'm Ali's AI assistant. Ask me about his skills, projects, experience, or services.",
+  },
+];
+
+const DEFAULT_REPLY =
+  "That one's outside what this assistant covers. Ask about Ali's skills, projects, services, experience, or availability, or use the Contact section to reach him.";
+
+function generateResponse(userMessage: string): string {
+  const msg = userMessage.toLowerCase();
+  return REPLIES.find((r) => r.match.test(msg))?.reply() ?? DEFAULT_REPLY;
 }
 
 export default function ChatBot() {
@@ -13,47 +124,34 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  /* Locked from send until the whole reply has streamed in. The ref also
+     blocks a second send in the same tick (e.g. a held Enter key). */
+  const [isBusy, setIsBusy] = useState(false);
+  const busyRef = useRef(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  const generateResponse = (userMessage: string): string => {
-    const msg = userMessage.toLowerCase();
-
-    if (msg.includes("skill") || msg.includes("tech") || msg.includes("stack")) {
-      return "Ali is proficient in: **Frontend** (React, Next.js, Angular, TypeScript, Tailwind), **Backend** (Node.js, NestJS, Django, Flask), **AI/ML** (LangChain, OpenAI, PyTorch, TensorFlow), **Cloud** (AWS, Azure, Docker, K8s), and **Databases** (PostgreSQL, MongoDB, Redis). Over 25+ frameworks mastered!";
-    }
-    if (msg.includes("project") || msg.includes("work") || msg.includes("portfolio")) {
-      return "Some notable projects include:\n• **Arthur Vibe** – AI transformation agent for enterprises (Go, pgvector, OpenAI)\n• **Arthur Web App** – React/WebGL platform with real-time AV and RBAC\n• **Govava** – World's first AI gift discovery engine (Elasticsearch, ML recommendations)\n• **ViXa Identity-First** – AI-powered cybersecurity anomaly detection platform\n• **Adology AI** – Ad intelligence platform processing millions of Facebook & TikTok ads\n• **Remar VT** – SaaS e-learning platform for nursing education with Stripe integration";
-    }
-    if (msg.includes("experience") || msg.includes("year") || msg.includes("career")) {
-      return "Ali has 8+ years of experience as a Lead Full Stack AI Engineer. He has delivered 35+ projects across AI, distributed systems, and cloud architecture, working with global teams and handling millions of users.";
-    }
-    if (msg.includes("contact") || msg.includes("hire") || msg.includes("available")) {
-      return "Ali is currently **available for projects**! You can reach out via the Contact section below, or scroll down to schedule a call. He's based in Lahore, Pakistan (GMT+5).";
-    }
-    if (msg.includes("hello") || msg.includes("hi") || msg.includes("hey")) {
-      return "Hey there! 👋 I'm Ali's AI assistant. Ask me about his skills, projects, experience, or services!";
-    }
-    if (msg.includes("service")) {
-      return "Ali offers: Creative Design, Full Stack Development, AI Integration, Cloud Architecture, Cybersecurity & IAM, Distributed Systems, IoT & Edge Solutions, and Data Engineering.";
-    }
-    if (msg.includes("ai") || msg.includes("machine learning") || msg.includes("ml")) {
-      return "Ali specializes in AI/ML integration using LangChain, OpenAI, TensorFlow, and PyTorch. He's built AI chat platforms, real-time transcription systems, image-to-3D pipelines, and conversational avatar systems with sub-200ms latency.";
-    }
-    return "That's a great question! Ali is a Tech Lead with 8+ years building scalable AI-driven platforms. Feel free to ask about his specific skills, projects, services, or experience — I'm here to help!";
-  };
+  /* Keep the cursor in the input: on open, and after each reply finishes. */
+  useEffect(() => {
+    if (isOpen && !isBusy) inputRef.current?.focus();
+  }, [isOpen, isBusy]);
 
   const handleSend = async () => {
-    if (!input.trim() || isTyping) return;
+    if (!input.trim() || busyRef.current) return;
+    busyRef.current = true;
+    setIsBusy(true);
 
     const userMsg: Message = { role: "user", content: input.trim() };
     const history = [...messages, userMsg];
     setMessages(history);
     setInput("");
     setIsTyping(true);
+
+    let started = false;
 
     try {
       const res = await fetch("/api/chat", {
@@ -67,7 +165,6 @@ export default function ChatBot() {
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let acc = "";
-      let started = false;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -91,9 +188,16 @@ export default function ChatBot() {
       // Empty stream — fall back so the visitor always gets a reply.
       if (!started) throw new Error("Empty response");
     } catch {
-      const response = generateResponse(userMsg.content);
-      setMessages((prev) => [...prev, { role: "assistant", content: response }]);
+      /* If the stream broke midway, keep the partial answer instead of
+         appending a second, unrelated canned reply. */
+      if (!started) {
+        const response = generateResponse(userMsg.content);
+        setMessages((prev) => [...prev, { role: "assistant", content: response }]);
+      }
+    } finally {
       setIsTyping(false);
+      busyRef.current = false;
+      setIsBusy(false);
     }
   };
 
@@ -103,7 +207,7 @@ export default function ChatBot() {
       {isOpen && (
         <div
           className="absolute bottom-16 left-0 w-[calc(100vw-4rem)] sm:w-[350px] h-[60vh] sm:h-[500px] glass-dark flex flex-col border border-white/10 overflow-hidden rounded-2xl origin-bottom-left"
-          style={{ opacity: 1, transform: "none" }}
+          style={{ opacity: 1, transform: "none", backgroundColor: "rgba(18, 24, 42, 0.98)" }}
         >
           {/* Header */}
           <div className="p-4 border-b border-white/5 bg-primary/10 flex items-center gap-2">
@@ -126,13 +230,13 @@ export default function ChatBot() {
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[80%] px-3 py-2 rounded-lg text-sm whitespace-pre-wrap ${
+                  className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
                     msg.role === "user"
-                      ? "bg-primary text-white rounded-br-none"
+                      ? "bg-primary text-white rounded-br-none whitespace-pre-wrap"
                       : "bg-white/5 text-white/80 border border-white/10 rounded-bl-none"
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === "user" ? msg.content : <RichText text={msg.content} />}
                 </div>
               </div>
             ))}
@@ -150,8 +254,9 @@ export default function ChatBot() {
           <div className="p-4 border-t border-white/5 flex gap-2">
             <input
               placeholder="Type your message..."
+              ref={inputRef}
               aria-label="Message"
-              disabled={isTyping}
+              disabled={isBusy}
               className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -160,7 +265,7 @@ export default function ChatBot() {
             <button
               onClick={handleSend}
               aria-label="Send message"
-              disabled={isTyping || !input.trim()}
+              disabled={isBusy || !input.trim()}
               className="p-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-4 h-4" />

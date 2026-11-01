@@ -24,9 +24,9 @@ export default function Hero() {
           <span>{hero.location.region}</span>
           <span className="text-white">{hero.location.city}</span>
         </div>
-        <div className="flex flex-col gap-1 text-right">
+        <div className="flex flex-col gap-1 text-right max-w-[55%] sm:max-w-none">
           <span>{hero.specialty.label}</span>
-          <span className="text-white whitespace-nowrap tracking-[0.1em] sm:tracking-[0.2em]">{hero.specialty.value}</span>
+          <span className="text-white tracking-[0.1em] sm:tracking-[0.2em] sm:whitespace-nowrap">{hero.specialty.value}</span>
         </div>
       </motion.div>
 

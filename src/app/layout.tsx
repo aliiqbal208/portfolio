@@ -16,9 +16,12 @@ export const viewport: Viewport = {
   themeColor: "#0a0f1e",
 };
 
+const DESCRIPTION =
+  "Engineering software with a brain. Lead Full Stack AI Engineer";
+
 export const metadata: Metadata = {
-  title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
-  description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
+  title: "Muhammad Ali | Lead Full Stack AI Engineer",
+  description: DESCRIPTION,
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   icons: {
@@ -32,8 +35,8 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
   openGraph: {
-    title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
-    description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
+    title: "Muhammad Ali | Lead Full Stack AI Engineer",
+    description: DESCRIPTION,
     type: "website",
     url: SITE_URL,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Muhammad Ali Iqbal — Lead Full Stack AI Engineer" }],
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
-    description: "Lead Full Stack AI Engineer building RAG pipelines, LLM products, and cloud platforms for enterprises.",
+    description: DESCRIPTION,
     images: ["/opengraph-image"],
   },
 };
