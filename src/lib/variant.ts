@@ -44,7 +44,7 @@ const CONFIG: Record<Variant, VariantConfig> = {
     indexable: false,
   },
   job: {
-    sections: ["about", "experience", "skills", "portfolio", "labs", "testimonials", "faq", "contact"],
+    sections: ["about", "experience", "skills", "portfolio", "labs", "contact"],
     primaryAction: "resume",
     indexable: true,
   },
