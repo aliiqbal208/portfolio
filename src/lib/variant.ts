@@ -8,7 +8,7 @@
    NEXT_PUBLIC_SITE_VARIANT overrides it for local previews. */
 export type Variant = "job" | "independent";
 
-const PINNED: Variant = "independent";
+const PINNED: Variant = "job";
 
 const fromEnv = process.env.NEXT_PUBLIC_SITE_VARIANT;
 export const VARIANT: Variant =
