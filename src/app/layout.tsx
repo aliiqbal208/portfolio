@@ -18,20 +18,42 @@ export const viewport: Viewport = {
   themeColor: "#0a0f1e",
 };
 
-const { meta, contact, footer } = content;
+const { meta, contact, footer, about, skills, experience } = content;
 const DESCRIPTION = meta.description;
 
 /* Public profiles for the Person schema; the booking link only where calls are offered. */
 const SAME_AS = [
-  ...footer.socials.filter((s) => s.icon === "linkedin" || s.icon === "github").map((s) => s.href),
+  ...footer.socials
+    .filter((s) => ["linkedin", "github", "x", "medium"].includes(s.icon))
+    .map((s) => s.href),
   ...(variantConfig.primaryAction === "calendly" ? [contact.calendlyUrl] : []),
 ];
+
+const current = experience.items.find((e) => /present/i.test(e.date));
+const aiSkills = skills.categories.find((c) => /\bai\b/i.test(c.title))?.items ?? [];
+
+const PERSON_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Muhammad Ali Iqbal",
+  alternateName: "Muhammad Ali",
+  jobTitle: meta.jobTitle,
+  description: DESCRIPTION,
+  url: SITE_URL,
+  image: `${SITE_URL}${about.profile.image.src}`,
+  email: contact.email,
+  address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+  ...(current && { worksFor: { "@type": "Organization", name: current.company } }),
+  knowsAbout: [...new Set([...about.vision.specializations, ...aiSkills.slice(0, 10)])],
+  sameAs: SAME_AS,
+};
 
 export const metadata: Metadata = {
   title: meta.title,
   description: DESCRIPTION,
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
+  robots: { index: variantConfig.indexable, follow: true },
   icons: {
     icon: [
       { url: "/favicon/favicon.svg", type: "image/svg+xml" },
@@ -70,16 +92,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Muhammad Ali Iqbal",
-              jobTitle: meta.jobTitle,
-              url: SITE_URL,
-              email: contact.email,
-              address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
-              sameAs: SAME_AS,
-            }),
+            __html: JSON.stringify(PERSON_SCHEMA),
           }}
         />
       </head>
