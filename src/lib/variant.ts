@@ -32,16 +32,21 @@ interface VariantConfig {
   /* Sections between Hero and Footer, in render order. Also drives the nav. */
   sections: SectionId[];
   primaryAction: PrimaryAction;
+  /* Only one variant should be in search results: both sites share most of
+     their content, so the other is noindex and shared by direct link. */
+  indexable: boolean;
 }
 
 const CONFIG: Record<Variant, VariantConfig> = {
   independent: {
     sections: ["about", "portfolio", "labs", "experience", "skills", "services", "testimonials", "faq", "contact"],
     primaryAction: "calendly",
+    indexable: false,
   },
   job: {
     sections: ["about", "experience", "skills", "portfolio", "labs", "testimonials", "faq", "contact"],
     primaryAction: "resume",
+    indexable: true,
   },
 };
 
