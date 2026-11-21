@@ -1,5 +1,7 @@
 import type { NextRequest } from "next/server";
 import content from "@/lib/content";
+import { hasSection, variantConfig } from "@/lib/variant";
+import { SITE_URL, RESUME_URL } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -50,15 +52,19 @@ function buildKnowledge(): string {
   lines.push(`Stats: ${c.about.stats.map((s) => `${s.value} ${s.label}`).join(", ")}.`);
   lines.push(`Specializations: ${c.about.vision.specializations.join(", ")}.`);
   lines.push(
-    `Availability: ${c.contact.globe.availability}. Email: ${c.contact.email}. Book a call: ${c.contact.calendlyUrl}.`
+    variantConfig.primaryAction === "calendly"
+      ? `Availability: ${c.contact.globe.availability}. Email: ${c.contact.email}. Book a call: ${c.contact.calendlyUrl}.`
+      : `Availability: ${c.contact.globe.availability}. Email: ${c.contact.email}. Résumé: ${SITE_URL}${RESUME_URL}.`
   );
   lines.push(`Core tech stack: ${c.about.techStack.join(", ")}.`);
 
   lines.push("\nSkills by category:");
   c.skills.categories.forEach((cat) => lines.push(`- ${cat.title}: ${cat.items.join(", ")}`));
 
-  lines.push("\nServices offered:");
-  c.services.items.forEach((s) => lines.push(`- ${s.title}: ${s.desc}`));
+  if (hasSection("services")) {
+    lines.push("\nServices offered:");
+    c.services.items.forEach((s) => lines.push(`- ${s.title}: ${s.desc}`));
+  }
 
   lines.push("\nWork experience:");
   c.experience.items.forEach((e) =>
@@ -78,13 +84,26 @@ function buildKnowledge(): string {
 
 const KNOWLEDGE = buildKnowledge();
 
-const SYSTEM_PROMPT = `You are MA-Assistant, the assistant embedded on Muhammad Ali's portfolio site. You help visitors learn about Muhammad Ali (Ali) — his background, skills, projects, experience, services, and availability.
+const AUDIENCE =
+  variantConfig.primaryAction === "calendly"
+    ? {
+        intro: "his background, skills, projects, experience, services, and availability",
+        hiring: "When a visitor shows hiring intent, point them to the contact email or the booking link.",
+      }
+    : {
+        intro:
+          "his background, AI engineering skills, projects, and experience. Most visitors are recruiters and hiring managers evaluating him for AI engineering roles",
+        hiring:
+          "Present Ali as a candidate for AI engineering roles, not as a freelancer or agency. When a visitor shows hiring intent, point them to the contact email or the résumé link.",
+      };
+
+const SYSTEM_PROMPT = `You are MA-Assistant, the assistant embedded on Muhammad Ali's portfolio site. You help visitors learn about Muhammad Ali (Ali) — ${AUDIENCE.intro}.
 
 Rules:
 - Answer only from the knowledge base below. If a question falls outside it, say you focus on Ali's work and offer to connect the visitor with him.
 - Refer to Muhammad Ali in the third person ("Ali", "he").
 - Be concise and helpful: 2-4 sentences by default. Use short markdown bullet lists only when listing multiple items.
-- When a visitor shows hiring intent, point them to the contact email or the booking link.
+- ${AUDIENCE.hiring}
 - Never invent facts, metrics, clients, or links that are not in the knowledge base.
 
 KNOWLEDGE BASE:

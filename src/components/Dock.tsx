@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Download, Settings, X } from "lucide-react";
+import { RESUME_URL, RESUME_FILENAME } from "@/lib/site";
 
 const THEMES = [
   { name: "Default", id: "default", primary: "#0888ae", accent: "#00d4ff" },
@@ -120,8 +121,8 @@ export default function Dock() {
 
   const handleDownload = () => {
     const a = document.createElement("a");
-    a.href = "/assets/MuhammadAli_Iqbal.pdf";
-    a.download = "MuhammadAli_Iqbal_Resume.pdf";
+    a.href = RESUME_URL;
+    a.download = RESUME_FILENAME;
     a.click();
   };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ComponentType } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -11,6 +11,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import { variantConfig, type SectionId } from "@/lib/variant";
 
 /* ── Lazy-load below-the-fold & heavy components ── */
 const Labs = dynamic(() => import("@/components/Labs"));
@@ -24,6 +25,19 @@ const Contact = dynamic(() => import("@/components/Contact"), {
 const Footer = dynamic(() => import("@/components/Footer"));
 const ChatBot = dynamic(() => import("@/components/ChatBot"), { ssr: false });
 const Dock = dynamic(() => import("@/components/Dock"), { ssr: false });
+
+/* Order and visibility come from the active variant (lib/variant.ts). */
+const SECTIONS: Record<SectionId, ComponentType> = {
+  about: About,
+  portfolio: Projects,
+  labs: Labs,
+  experience: Experience,
+  skills: Skills,
+  services: Services,
+  testimonials: Testimonials,
+  faq: FAQ,
+  contact: Contact,
+};
 
 function LogoMark() {
   const [hovered, setHovered] = useState(false);
@@ -73,15 +87,10 @@ export default function Home() {
           <LogoMark />
           <Navbar />
           <Hero />
-          <About />
-          <Projects />
-          <Labs />
-          <Experience />
-          <Skills />
-          <Services />
-          <Testimonials />
-          <FAQ />
-          <Contact />
+          {variantConfig.sections.map((id) => {
+            const Section = SECTIONS[id];
+            return <Section key={id} />;
+          })}
           <Footer />
         </main>
       </SmoothScroll>

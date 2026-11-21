@@ -2,7 +2,7 @@
 
 Personal portfolio for **Muhammad Ali Iqbal**, Lead Full Stack AI Engineer. Built with Next.js 16 App Router, Tailwind CSS v4, Three.js, Framer Motion, and GSAP.
 
-**Live:** [code-with-ali.vercel.app](https://code-with-ali.vercel.app)
+**Live:** [aliwithai.vercel.app](https://aliwithai.vercel.app)
 
 ---
 

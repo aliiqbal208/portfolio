@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, Calendar, ChevronDown } from "lucide-react";
+import { ArrowDown, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import content from "@/lib/content";
-import { openCalendlyPopup } from "@/lib/calendly";
+import PrimaryAction from "@/components/PrimaryAction";
 
 const { hero, contact } = content;
 
@@ -80,23 +80,12 @@ export default function Hero() {
           </h1>
 
           <div className="order-last lg:order-none flex flex-wrap justify-center gap-3 lg:justify-start">
-            <a
-              href={contact.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                e.preventDefault();
-                openCalendlyPopup(contact.calendlyUrl).then((ok) => {
-                  if (!ok) window.open(contact.calendlyUrl, "_blank", "noopener,noreferrer");
-                });
-              }}
+            <PrimaryAction
+              label={hero.cta.primary}
               className="inline-flex items-center justify-center gap-2 bg-primary text-navy font-orbitron font-bold text-[11px] uppercase tracking-[0.12em] px-4 py-3 border-2 border-primary shadow-[4px_4px_0_0_rgba(255,255,255,0.9)] transition-all duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_rgba(255,255,255,0.9)]"
-            >
-              <Calendar className="w-4 h-4" />
-              {hero.cta.primary}
-            </a>
+            />
             <a
-              href="#portfolio"
+              href={hero.cta.secondaryHref ?? "#portfolio"}
               className="inline-flex items-center justify-center gap-2 bg-transparent text-white font-orbitron font-bold text-[11px] uppercase tracking-[0.12em] px-4 py-3 border-2 border-white shadow-[4px_4px_0_0_rgba(14,165,199,0.9)] transition-all duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_rgba(14,165,199,0.9)]"
             >
               <ArrowDown className="w-4 h-4" />

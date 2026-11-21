@@ -1,0 +1,50 @@
+/* Which version of the portfolio this build is.
+
+   - "independent": portfolio + freelance services + booking calls.
+   - "job":         candidate profile for AI engineering roles.
+
+   The `job` and `independent` branches each pin PINNED below; that line is
+   the only thing they change, so merging master into them never conflicts.
+   NEXT_PUBLIC_SITE_VARIANT overrides it for local previews. */
+export type Variant = "job" | "independent";
+
+const PINNED: Variant = "independent";
+
+const fromEnv = process.env.NEXT_PUBLIC_SITE_VARIANT;
+export const VARIANT: Variant =
+  fromEnv === "job" || fromEnv === "independent" ? fromEnv : PINNED;
+
+export type SectionId =
+  | "about"
+  | "portfolio"
+  | "labs"
+  | "experience"
+  | "skills"
+  | "services"
+  | "testimonials"
+  | "faq"
+  | "contact";
+
+/* "calendly" opens the booking popup; "resume" downloads the PDF. */
+export type PrimaryAction = "calendly" | "resume";
+
+interface VariantConfig {
+  /* Sections between Hero and Footer, in render order. Also drives the nav. */
+  sections: SectionId[];
+  primaryAction: PrimaryAction;
+}
+
+const CONFIG: Record<Variant, VariantConfig> = {
+  independent: {
+    sections: ["about", "portfolio", "labs", "experience", "skills", "services", "testimonials", "faq", "contact"],
+    primaryAction: "calendly",
+  },
+  job: {
+    sections: ["about", "experience", "skills", "portfolio", "labs", "testimonials", "faq", "contact"],
+    primaryAction: "resume",
+  },
+};
+
+export const variantConfig = CONFIG[VARIANT];
+
+export const hasSection = (id: SectionId) => variantConfig.sections.includes(id);

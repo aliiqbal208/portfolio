@@ -1,7 +1,10 @@
 import { ImageResponse } from "next/og";
 import { SITE_HOST } from "@/lib/site";
+import content from "@/lib/content";
 
-export const alt = "Muhammad Ali Iqbal | Lead Full Stack AI Engineer";
+const { meta } = content;
+
+export const alt = `Muhammad Ali Iqbal | ${meta.jobTitle}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -122,11 +125,11 @@ export default async function Image() {
               margin: "0 0 48px 0",
             }}
           >
-            Lead Full Stack AI Engineer
+            {meta.jobTitle}
           </p>
 
           <div style={{ display: "flex", gap: 12 }}>
-            {["8+ Years", "AI / ML", "Cloud", "Full Stack"].map((tag) => (
+            {meta.ogTags.map((tag) => (
               <div
                 key={tag}
                 style={{

@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useMemo, useState, useEffect, useLayoutEffect, useSyncExternalStore } from "react";
-import { Mail, Calendar } from "lucide-react";
+import { Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, Html } from "@react-three/drei";
 import * as THREE from "three";
 import content from "@/lib/content";
-import { openCalendlyPopup } from "@/lib/calendly";
+import PrimaryAction from "@/components/PrimaryAction";
+import { variantConfig } from "@/lib/variant";
 
 const { contact } = content;
 
@@ -368,21 +369,10 @@ export default function Contact() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5">
-              <a
-                href={contact.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openCalendlyPopup(contact.calendlyUrl).then((ok) => {
-                    if (!ok) window.open(contact.calendlyUrl, "_blank", "noopener,noreferrer");
-                  });
-                }}
+              <PrimaryAction
+                label={variantConfig.primaryAction === "resume" ? contact.resumeLabel : contact.calendlyLabel}
                 className="group inline-flex items-center justify-center gap-2 bg-primary text-navy font-orbitron font-bold text-xs md:text-sm uppercase tracking-[0.15em] px-6 py-4 border-2 border-primary shadow-[6px_6px_0_0_rgba(255,255,255,0.9)] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_rgba(255,255,255,0.9)]"
-              >
-                <Calendar className="w-4 h-4" />
-                {contact.calendlyLabel}
-              </a>
+              />
               <a
                 href={`mailto:${contact.email}`}
                 className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-orbitron font-bold text-xs md:text-sm uppercase tracking-[0.15em] px-6 py-4 border-2 border-white shadow-[6px_6px_0_0_rgba(14,165,199,0.9)] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_rgba(14,165,199,0.9)]"

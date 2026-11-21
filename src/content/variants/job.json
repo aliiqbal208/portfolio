@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "title": "Muhammad Ali Iqbal | Lead AI Engineer",
+    "description": "Lead AI Engineer with 8+ years building production LLM, RAG, and agentic systems on AWS and GCP. Open to senior and lead AI engineering roles.",
+    "jobTitle": "Lead AI Engineer",
+    "ogTags": ["8+ Years", "LLMs & RAG", "AI Agents", "AWS / GCP"]
+  },
+  "hero": {
+    "headline": {
+      "title": "Lead AI Engineer"
+    },
+    "cta": {
+      "primary": "Download Résumé",
+      "secondary": "View Experience",
+      "secondaryHref": "#experience"
+    },
+    "specialty": {
+      "value": "Production LLM & RAG Systems"
+    },
+    "tagline": {
+      "before": "AI engineer who takes",
+      "highlight": "LLM, RAG, and agent systems",
+      "after": "from prototype to production, and keeps them fast at scale."
+    }
+  },
+  "about": {
+    "profile": {
+      "title": "Lead AI Engineer"
+    },
+    "vision": {
+      "specializations": ["LLM Applications", "RAG Pipelines", "AI Agents", "Scalable Systems"]
+    },
+    "status": {
+      "value": "Open to AI Engineering Roles"
+    },
+    "card": {
+      "title": "AI Engineering",
+      "subtitle": "LLMs · RAG · Agents · Cloud",
+      "cta": "See Experience",
+      "ctaLink": "#experience"
+    }
+  },
+  "projects": {
+    "sectionTitle": "Selected Work",
+    "sectionSubtitle": "Employer & Independent Projects"
+  },
+  "testimonials": {
+    "heading": {
+      "line1": "In their",
+      "line2": "words."
+    }
+  },
+  "contact": {
+    "heading": {
+      "line1": "Hiring for AI?",
+      "line2": "Let's Talk."
+    },
+    "description": "I'm open to senior and lead AI engineering roles: building LLM, RAG, and agent systems that hold up in production. Reach me by email, or download my résumé.",
+    "globe": {
+      "availability": "Open to AI Roles"
+    }
+  }
+}

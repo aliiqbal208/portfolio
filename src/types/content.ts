@@ -1,5 +1,19 @@
 // TypeScript types for site content
 
+import type { Variant } from "@/lib/variant";
+
+/* Array items tagged with `only` appear in that variant alone (see lib/content.ts). */
+interface VariantScoped {
+  only?: Variant;
+}
+
+export interface MetaContent {
+  title: string;
+  description: string;
+  jobTitle: string;
+  ogTags: string[];
+}
+
 export interface HeroContent {
   title: string;
   headline: {
@@ -9,6 +23,8 @@ export interface HeroContent {
   cta: {
     primary: string;
     secondary: string;
+    /* Anchor the secondary button scrolls to; defaults to #portfolio. */
+    secondaryHref?: string;
   };
   proof: { value: string; label: string }[];
   location: {
@@ -78,7 +94,7 @@ export interface AboutContent {
   };
 }
 
-export interface ServiceItem {
+export interface ServiceItem extends VariantScoped {
   title: string;
   desc: string;
   features: string[];
@@ -91,7 +107,7 @@ export interface ServicesContent {
   items: ServiceItem[];
 }
 
-export interface ExperienceItem {
+export interface ExperienceItem extends VariantScoped {
   company: string;
   role: string;
   date: string;
@@ -104,7 +120,7 @@ export interface ExperienceContent {
   items: ExperienceItem[];
 }
 
-export interface ProjectItem {
+export interface ProjectItem extends VariantScoped {
   title: string;
   description: string;
   tech: string[];
@@ -131,7 +147,7 @@ export interface SkillsContent {
   categories: SkillCategory[];
 }
 
-export interface TestimonialItem {
+export interface TestimonialItem extends VariantScoped {
   company: string;
   icon: string;
   headline: string;
@@ -148,7 +164,7 @@ export interface TestimonialsContent {
   items: TestimonialItem[];
 }
 
-export interface FAQItem {
+export interface FAQItem extends VariantScoped {
   question: string;
   answer: string;
   category: string;
@@ -170,6 +186,7 @@ export interface ContactContent {
   email: string;
   calendlyUrl: string;
   calendlyLabel: string;
+  resumeLabel: string;
   globe: {
     locationLabel: string;
     location: string;
@@ -205,6 +222,7 @@ export interface FooterContent {
 }
 
 export interface SiteContent {
+  meta: MetaContent;
   hero: HeroContent;
   about: AboutContent;
   services: ServicesContent;

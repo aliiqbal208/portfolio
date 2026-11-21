@@ -6,8 +6,9 @@ import {
   House, User, Trophy, Briefcase, Cpu, LayoutGrid, Quote, CircleHelp, Mail, Menu, X, FlaskConical,
 } from "lucide-react";
 import { SHOW_LABS } from "./Labs";
+import { hasSection, type SectionId } from "@/lib/variant";
 
-const NAV_ITEMS = [
+const ALL_NAV_ITEMS = [
   { id: "hero",         icon: House,        label: "Home"        },
   { id: "about",        icon: User,         label: "About"       },
   { id: "portfolio",    icon: Trophy,       label: "Projects"    },
@@ -19,6 +20,11 @@ const NAV_ITEMS = [
   { id: "faq",          icon: CircleHelp,   label: "FAQ"         },
   { id: "contact",      icon: Mail,         label: "Contact"     },
 ];
+
+/* Hero is always shown; everything else follows the variant's section list. */
+const NAV_ITEMS = ALL_NAV_ITEMS.filter(
+  (item) => item.id === "hero" || hasSection(item.id as SectionId)
+);
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

@@ -1,6 +1,10 @@
 /* Single source of truth for the public site URL.
-   Change it here and metadata, sitemap, robots, structured data, and the
-   OG image all follow. The README link is plain text and updated by hand. */
-export const SITE_URL = "https://code-with-ali.vercel.app";
+   Metadata, sitemap, robots, structured data, and the OG image all follow it.
+   Each Vercel project sets NEXT_PUBLIC_SITE_URL to its own domain so the job
+   and independent sites don't canonicalize to each other. */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://aliwithai.vercel.app").replace(/\/$/, "");
 
 export const SITE_HOST = new URL(SITE_URL).host;
+
+export const RESUME_URL = "/assets/MuhammadAli_Iqbal.pdf";
+export const RESUME_FILENAME = "MuhammadAli_Iqbal_Resume.pdf";

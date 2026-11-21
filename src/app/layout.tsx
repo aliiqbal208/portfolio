@@ -3,6 +3,8 @@ import { Inter, Bebas_Neue, Orbitron, Cormorant_Garamond } from "next/font/googl
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL } from "@/lib/site";
+import content from "@/lib/content";
+import { variantConfig } from "@/lib/variant";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -16,11 +18,17 @@ export const viewport: Viewport = {
   themeColor: "#0a0f1e",
 };
 
-const DESCRIPTION =
-  "Engineering software with a brain. Lead Full Stack AI Engineer";
+const { meta, contact, footer } = content;
+const DESCRIPTION = meta.description;
+
+/* Public profiles for the Person schema; the booking link only where calls are offered. */
+const SAME_AS = [
+  ...footer.socials.filter((s) => s.icon === "linkedin" || s.icon === "github").map((s) => s.href),
+  ...(variantConfig.primaryAction === "calendly" ? [contact.calendlyUrl] : []),
+];
 
 export const metadata: Metadata = {
-  title: "Muhammad Ali | Lead Full Stack AI Engineer",
+  title: meta.title,
   description: DESCRIPTION,
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
@@ -35,15 +43,15 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
   openGraph: {
-    title: "Muhammad Ali | Lead Full Stack AI Engineer",
+    title: meta.title,
     description: DESCRIPTION,
     type: "website",
     url: SITE_URL,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Muhammad Ali Iqbal — Lead Full Stack AI Engineer" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `Muhammad Ali Iqbal — ${meta.jobTitle}` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Ali Iqbal | Lead Full Stack AI Engineer",
+    title: meta.title,
     description: DESCRIPTION,
     images: ["/opengraph-image"],
   },
@@ -66,14 +74,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Muhammad Ali Iqbal",
-              jobTitle: "Lead Full Stack AI Engineer",
+              jobTitle: meta.jobTitle,
               url: SITE_URL,
-              email: "codewithmuhammadali@gmail.com",
+              email: contact.email,
               address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
-              sameAs: [
-                "https://github.com/aliiqbal208",
-                "https://calendly.com/codewithmuhammadali",
-              ],
+              sameAs: SAME_AS,
             }),
           }}
         />

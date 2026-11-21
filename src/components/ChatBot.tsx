@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, type ReactNode } from "react";
 import { Bot, Send, X, MessageCircle } from "lucide-react";
 import content from "@/lib/content";
+import { hasSection, variantConfig } from "@/lib/variant";
+import { RESUME_URL } from "@/lib/site";
 
 interface Message {
   role: "user" | "assistant";
@@ -89,30 +91,39 @@ const REPLIES: { match: RegExp; reply: () => string }[] = [
   },
   {
     match: /\b(contact|hire|hiring|available|availability|email|book|call|reach)\b/,
-    reply: () =>
-      `Ali is ${contact.globe.availability.toLowerCase()}. Email ${contact.email} or book a call: ${contact.calendlyUrl}. He's based in ${contact.globe.location} (${contact.globe.timezone}).`,
+    reply: () => {
+      const next =
+        variantConfig.primaryAction === "calendly"
+          ? `book a call: ${contact.calendlyUrl}`
+          : `download his résumé: ${RESUME_URL}`;
+      return `Ali is ${contact.globe.availability.toLowerCase()}. Email ${contact.email} or ${next}. He's based in ${contact.globe.location} (${contact.globe.timezone}).`;
+    },
   },
-  {
-    match: /\b(services?|offers?)\b/,
-    reply: () => `Ali offers:\n${list(services.items.map((s) => s.title))}`,
-  },
+  ...(hasSection("services")
+    ? [{
+        match: /\b(services?|offers?)\b/,
+        reply: () => `Ali offers:\n${list(services.items.map((s) => s.title))}`,
+      }]
+    : []),
   {
     match: /\b(ai|machine learning|ml|llm|rag)\b/,
     reply: () => {
-      const service = services.items.find((s) => /\bai\b/i.test(s.title));
+      const focus = hasSection("services")
+        ? services.items.find((s) => /\bai\b/i.test(s.title))?.features
+        : about.vision.specializations;
       const tools = skills.categories.find((c) => /\bai\b/i.test(c.title));
-      if (!service) return DEFAULT_REPLY;
-      return `AI is Ali's main focus. He works on:\n${list(service.features)}${tools ? `\n\nTools include ${tools.items.slice(0, 6).join(", ")}.` : ""}`;
+      if (!focus) return DEFAULT_REPLY;
+      return `AI is Ali's main focus. He works on:\n${list(focus)}${tools ? `\n\nTools include ${tools.items.slice(0, 6).join(", ")}.` : ""}`;
     },
   },
   {
     match: /\b(hi|hello|hey)\b/,
-    reply: () => "Hi! I'm Ali's AI assistant. Ask me about his skills, projects, experience, or services.",
+    reply: () =>
+      `Hi! I'm Ali's AI assistant. Ask me about his skills, projects, experience${hasSection("services") ? ", or services" : ", or availability"}.`,
   },
 ];
 
-const DEFAULT_REPLY =
-  "That one's outside what this assistant covers. Ask about Ali's skills, projects, services, experience, or availability, or use the Contact section to reach him.";
+const DEFAULT_REPLY = `That one's outside what this assistant covers. Ask about Ali's skills, projects, ${hasSection("services") ? "services, " : ""}experience, or availability, or use the Contact section to reach him.`;
 
 function generateResponse(userMessage: string): string {
   const msg = userMessage.toLowerCase();
