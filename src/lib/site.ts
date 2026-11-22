@@ -6,5 +6,5 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://aliwithai.
 
 export const SITE_HOST = new URL(SITE_URL).host;
 
-export const RESUME_URL = "/assets/MuhammadAli_Iqbal.pdf";
-export const RESUME_FILENAME = "MuhammadAli_Iqbal_Resume.pdf";
+export const RESUME_URL = "/assets/MuhammadAli_Resume.pdf";
+export const RESUME_FILENAME = "MuhammadAli_Resume.pdf";

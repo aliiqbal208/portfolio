@@ -43,7 +43,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env*
 
 # vercel
 .vercel
@@ -53,6 +52,6 @@ yarn-error.log*
 next-env.d.ts
 
 # editor
-.vscode/*
 !.vscode/extensions.json
 .idea
+config.bat
