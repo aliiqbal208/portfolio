@@ -25,6 +25,7 @@ const Contact = dynamic(() => import("@/components/Contact"), {
 const Footer = dynamic(() => import("@/components/Footer"));
 const ChatBot = dynamic(() => import("@/components/ChatBot"), { ssr: false });
 const Dock = dynamic(() => import("@/components/Dock"), { ssr: false });
+const ResumeViewer = dynamic(() => import("@/components/ResumeViewer"), { ssr: false });
 
 /* Order and visibility come from the active variant (lib/variant.ts). */
 const SECTIONS: Record<SectionId, ComponentType> = {
@@ -96,6 +97,7 @@ export default function Home() {
       </SmoothScroll>
       <ChatBot />
       <Dock />
+      <ResumeViewer />
     </MotionConfig>
   );
 }

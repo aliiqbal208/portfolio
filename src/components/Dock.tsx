@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Download, Settings, X } from "lucide-react";
-import { RESUME_URL, RESUME_FILENAME } from "@/lib/site";
+import { FileText, Settings, X } from "lucide-react";
+import { openResumeViewer } from "@/lib/resume";
 
 const THEMES = [
   { name: "Default", id: "default", primary: "#0888ae", accent: "#00d4ff" },
@@ -19,14 +19,14 @@ const THEMES = [
 
 interface DockItemData {
   id: string;
-  icon: typeof Download;
+  icon: typeof FileText;
   label: string;
-  isDownload?: boolean;
+  isResume?: boolean;
   isSettings?: boolean;
 }
 
 const DOCK_ITEMS: DockItemData[] = [
-  { id: "resume", icon: Download, label: "Resume", isDownload: true },
+  { id: "resume", icon: FileText, label: "Resume", isResume: true },
   { id: "settings", icon: Settings, label: "Settings", isSettings: true },
 ];
 
@@ -119,13 +119,6 @@ export default function Dock() {
     localStorage.setItem("portfolio-theme", id);
   };
 
-  const handleDownload = () => {
-    const a = document.createElement("a");
-    a.href = RESUME_URL;
-    a.download = RESUME_FILENAME;
-    a.click();
-  };
-
   return (
     <AnimatePresence mode="wait">
       {visible && (
@@ -200,7 +193,10 @@ export default function Dock() {
                 isActive={!!item.isSettings && settingsOpen}
                 onClick={() => {
                   if (item.isSettings) setSettingsOpen(!settingsOpen);
-                  else if (item.isDownload) handleDownload();
+                  else if (item.isResume) {
+                    setSettingsOpen(false);
+                    openResumeViewer();
+                  }
                 }}
               />
             ))}

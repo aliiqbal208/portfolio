@@ -10,7 +10,7 @@
       "title": "Lead AI Engineer"
     },
     "cta": {
-      "primary": "Download Résumé",
+      "primary": "View Résumé",
       "secondary": "View Experience",
       "secondaryHref": "#experience"
     },
@@ -49,7 +49,7 @@
       "line1": "Hiring for AI?",
       "line2": "Let's Talk."
     },
-    "description": "I'm open to senior and lead AI engineering roles: building LLM, RAG, and agent systems that hold up in production. Reach me by email, or download my résumé.",
+    "description": "I'm open to senior and lead AI engineering roles: building LLM, RAG, and agent systems that hold up in production. Reach me by email, or view my résumé.",
     "globe": {
       "availability": "Open to AI Roles"
     }

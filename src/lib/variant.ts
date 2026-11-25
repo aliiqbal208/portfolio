@@ -25,7 +25,7 @@ export type SectionId =
   | "faq"
   | "contact";
 
-/* "calendly" opens the booking popup; "resume" downloads the PDF. */
+/* "calendly" opens the booking popup; "resume" opens the résumé viewer. */
 export type PrimaryAction = "calendly" | "resume";
 
 interface VariantConfig {

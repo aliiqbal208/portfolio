@@ -1,14 +1,15 @@
 "use client";
 
-import { Calendar, Download } from "lucide-react";
+import { Calendar, FileText } from "lucide-react";
 import content from "@/lib/content";
 import { openCalendlyPopup } from "@/lib/calendly";
-import { RESUME_FILENAME, RESUME_URL } from "@/lib/site";
+import { RESUME_URL } from "@/lib/site";
+import { openResumeViewer } from "@/lib/resume";
 import { variantConfig } from "@/lib/variant";
 
 const { contact } = content;
 
-/* The site's main call to action: book a call (independent) or download the
+/* The site's main call to action: book a call (independent) or view the
    résumé (job), per lib/variant.ts. Styling is left to the caller. */
 export default function PrimaryAction({
   label,
@@ -21,8 +22,17 @@ export default function PrimaryAction({
 }) {
   if (variantConfig.primaryAction === "resume") {
     return (
-      <a href={RESUME_URL} download={RESUME_FILENAME} className={className}>
-        <Download className={iconClassName} />
+      <a
+        href={RESUME_URL}
+        onClick={(e) => {
+          // Let modified clicks (new tab / window) fall through to the PDF.
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          openResumeViewer();
+        }}
+        className={className}
+      >
+        <FileText className={iconClassName} />
         {label}
       </a>
     );
